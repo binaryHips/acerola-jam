@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://dth7lthp8v78r"]
+
+[ext_resource type="Script" path="res://src/scenes/nexus/nexus.gd" id="1_xeyjv"]
+[ext_resource type="Script" path="res://src/Nodes/plant_ward/ward.gd" id="1_xggrv"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xkkl0"]
+albedo_color = Color(0.788235, 0, 0.180392, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_dw5hh"]
+
+[node name="Nexus" type="Node3D"]
+script = ExtResource("1_xeyjv")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.433977, 0)
+material_override = SubResource("StandardMaterial3D_xkkl0")
+mesh = SubResource("BoxMesh_dw5hh")
+
+[node name="Ward" type="Node3D" parent="."]
+script = ExtResource("1_xggrv")
+debugview = true
+tag = "nexus"

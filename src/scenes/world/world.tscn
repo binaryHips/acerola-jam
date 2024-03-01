@@ -1,0 +1,171 @@
+[gd_scene load_steps=14 format=3 uid="uid://d1u318s5pv1iy"]
+
+[ext_resource type="PackedScene" uid="uid://d1scgasuvckup" path="res://src/scenes/player/Player.tscn" id="1_gqbbc"]
+[ext_resource type="Script" path="res://src/scenes/world/WorldEnvironment.gd" id="2_pw55t"]
+[ext_resource type="PackedScene" uid="uid://dth7lthp8v78r" path="res://src/scenes/nexus/nexus.tscn" id="3_ka6ec"]
+[ext_resource type="Script" path="res://src/Nodes/plant_ward/ward.gd" id="4_ieyfk"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_wl4to"]
+frequency = 0.0088
+fractal_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_4kuxn"]
+seamless = true
+as_normal_map = true
+bump_strength = 10.7
+noise = SubResource("FastNoiseLite_wl4to")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_65n61"]
+albedo_color = Color(0.352941, 0.309804, 0.113725, 1)
+normal_enabled = true
+normal_texture = SubResource("NoiseTexture2D_4kuxn")
+uv1_scale = Vector3(4.37, 4.37, 4.37)
+
+[sub_resource type="Animation" id="Animation_k5o7a"]
+resource_name = "cycle"
+length = 10.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("daynight cycle/DirectionalLight3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5.1, 6.7, 8.4, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-8.74228e-08, 1.5708, 3.14159), Vector3(-4.37114e-08, 0, 1.5708), Vector3(-2.94383e-08, -0.512913, 1.05788), Vector3(-1.42731e-08, -1.05788, 0.512913), Vector3(0, -1.5708, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("daynight cycle/WorldEnvironment:environment:sky:sky_material:sky_top_color")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.9, 4, 5.1, 5.8, 8.6, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.560784, 0.160784, 0, 1), Color(0.258824, 0.454902, 0.698039, 1), Color(0.258824, 0.454902, 0.698039, 1), Color(0.454902, 0.12549, 0, 1), Color(0.305882, 0.0980392, 0.470588, 1), Color(0.305882, 0.0980392, 0.470588, 1), Color(0.560784, 0.160784, 0, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("daynight cycle/WorldEnvironment:environment:sky:sky_material:sky_horizon_color")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.3, 3.6, 4.6, 6.2, 7.9, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.784314, 0.47451, 0, 1), Color(0.6463, 0.6558, 0.6708, 1), Color(0.6463, 0.6558, 0.6708, 1), Color(0.784314, 0.47451, 0, 1), Color(0.254902, 0.145098, 0.223529, 1), Color(0.254902, 0.145098, 0.223529, 1), Color(0.784314, 0.47451, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_oduhd"]
+length = 0.001
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("daynight cycle/DirectionalLight3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -1.5708, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("daynight cycle/WorldEnvironment:environment:sky:sky_material:sky_top_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.258824, 0.454902, 0.698039, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("daynight cycle/WorldEnvironment:environment:sky:sky_material:sky_horizon_color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.6463, 0.6558, 0.6708, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_aqwhh"]
+_data = {
+"RESET": SubResource("Animation_oduhd"),
+"cycle": SubResource("Animation_k5o7a")
+}
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sg5e1"]
+sky_top_color = Color(0.258824, 0.454902, 0.698039, 1)
+
+[sub_resource type="Sky" id="Sky_7orkv"]
+sky_material = SubResource("ProceduralSkyMaterial_sg5e1")
+
+[sub_resource type="Environment" id="Environment_fdwmh"]
+background_mode = 2
+background_color = Color(1, 1, 1, 1)
+sky = SubResource("Sky_7orkv")
+ambient_light_source = 2
+ambient_light_color = Color(0.6, 0.780392, 0.831373, 1)
+ambient_light_sky_contribution = 0.0
+tonemap_exposure = 1.1
+adjustment_enabled = true
+adjustment_brightness = 1.1
+adjustment_contrast = 1.2
+adjustment_saturation = 0.98
+
+[node name="world" type="Node3D"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -66.2311, -0.366522, 0)
+material_override = SubResource("StandardMaterial3D_65n61")
+use_collision = true
+size = Vector3(218.955, 1, 121.575)
+
+[node name="Player" parent="." instance=ExtResource("1_gqbbc")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 3.28498, 0)
+
+[node name="daynight cycle" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_aqwhh")
+}
+autoplay = "cycle"
+speed_scale = 0.2
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="daynight cycle"]
+environment = SubResource("Environment_fdwmh")
+script = ExtResource("2_pw55t")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="daynight cycle"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3.10785, 25.2792, 0)
+rotation_order = 4
+
+[node name="Nexus" parent="." instance=ExtResource("3_ka6ec")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.2339, 0.262822, 0)
+
+[node name="Ward2" type="Node3D" parent="Nexus"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.91715, 0, 7.67358)
+script = ExtResource("4_ieyfk")
+debugview = true
+tag = "grandeward"
+range = 20.0
+
+[node name="Ward3" type="Node3D" parent="Nexus"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.45073, 1.90735e-06, -1.81097)
+script = ExtResource("4_ieyfk")
+debugview = true
+tag = "petiteward"
+range = 10.0
