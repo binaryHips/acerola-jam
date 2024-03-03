@@ -17,6 +17,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 Gamemaster="*res://src/globals/Gamemaster.gd"
+ResourcesManager="*res://src/globals/resourcesManager.gd"
 
 [input]
 

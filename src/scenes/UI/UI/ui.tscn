@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://cng4vguovxxpf"]
+
+[ext_resource type="PackedScene" uid="uid://cj3wgxg5028a5" path="res://src/scenes/UI/shop/shop.tscn" id="1_7bqrw"]
+[ext_resource type="Script" path="res://src/scenes/UI/UI/ui.gd" id="1_8obsi"]
+
+[node name="UI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_8obsi")
+
+[node name="shop" parent="." instance=ExtResource("1_7bqrw")]
+layout_mode = 1
+
+[node name="resources" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -321.0
+offset_top = -213.0
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+expand_mode = 2

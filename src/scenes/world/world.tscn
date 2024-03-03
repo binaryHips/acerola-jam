@@ -1,9 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://d1u318s5pv1iy"]
+[gd_scene load_steps=18 format=3 uid="uid://d1u318s5pv1iy"]
 
 [ext_resource type="PackedScene" uid="uid://d1scgasuvckup" path="res://src/scenes/player/Player.tscn" id="1_gqbbc"]
 [ext_resource type="Script" path="res://src/scenes/world/WorldEnvironment.gd" id="2_pw55t"]
 [ext_resource type="PackedScene" uid="uid://dth7lthp8v78r" path="res://src/scenes/nexus/nexus.tscn" id="3_ka6ec"]
-[ext_resource type="Script" path="res://src/Nodes/plant_ward/ward.gd" id="4_ieyfk"]
+[ext_resource type="PackedScene" uid="uid://bj1h0gk1cpokl" path="res://src/scenes/UI/resources_UI/resources_UI.tscn" id="4_8qns1"]
+[ext_resource type="Script" path="res://src/Nodes/resource_area/resource_area.gd" id="5_2c2qu"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_wl4to"]
 frequency = 0.0088
@@ -20,6 +21,49 @@ albedo_color = Color(0.352941, 0.309804, 0.113725, 1)
 normal_enabled = true
 normal_texture = SubResource("NoiseTexture2D_4kuxn")
 uv1_scale = Vector3(4.37, 4.37, 4.37)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_wsed3"]
+viewport_path = NodePath("resource_ui/SubViewport")
+
+[sub_resource type="Animation" id="Animation_oduhd"]
+length = 0.001
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("daynight cycle/DirectionalLight3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -1.5708, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("daynight cycle/WorldEnvironment:environment:sky:sky_material:sky_top_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.258824, 0.454902, 0.698039, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("daynight cycle/WorldEnvironment:environment:sky:sky_material:sky_horizon_color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.6463, 0.6558, 0.6708, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_k5o7a"]
 resource_name = "cycle"
@@ -62,46 +106,6 @@ tracks/2/keys = {
 "values": [Color(0.784314, 0.47451, 0, 1), Color(0.6463, 0.6558, 0.6708, 1), Color(0.6463, 0.6558, 0.6708, 1), Color(0.784314, 0.47451, 0, 1), Color(0.254902, 0.145098, 0.223529, 1), Color(0.254902, 0.145098, 0.223529, 1), Color(0.784314, 0.47451, 0, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_oduhd"]
-length = 0.001
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("daynight cycle/DirectionalLight3D:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, -1.5708, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("daynight cycle/WorldEnvironment:environment:sky:sky_material:sky_top_color")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0.258824, 0.454902, 0.698039, 1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("daynight cycle/WorldEnvironment:environment:sky:sky_material:sky_horizon_color")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0.6463, 0.6558, 0.6708, 1)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_aqwhh"]
 _data = {
 "RESET": SubResource("Animation_oduhd"),
@@ -127,6 +131,11 @@ adjustment_brightness = 1.1
 adjustment_contrast = 1.2
 adjustment_saturation = 0.98
 
+[sub_resource type="CylinderMesh" id="CylinderMesh_of2gs"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wv6a8"]
+size = Vector3(7.83789, 2.74023, 5.80762)
+
 [node name="world" type="Node3D"]
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
@@ -137,6 +146,19 @@ size = Vector3(218.955, 1, 121.575)
 
 [node name="Player" parent="." instance=ExtResource("1_gqbbc")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 3.28498, 0)
+
+[node name="PathFollow" parent="Player/Path" index="0"]
+transform = Transform3D(-0.999998, -0.000749263, -0.00205189, 0, 0.939334, -0.343005, 0.00218441, -0.343004, -0.939331, -0.00762939, -2.17762, -2.5437)
+
+[node name="resources" parent="Player/UI" index="1"]
+anchor_left = 0.743056
+anchor_top = 0.682099
+offset_left = 0.0
+offset_top = 0.0
+offset_bottom = 6.10352e-05
+texture = SubResource("ViewportTexture_wsed3")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="daynight cycle" type="AnimationPlayer" parent="."]
 libraries = {
@@ -150,22 +172,28 @@ environment = SubResource("Environment_fdwmh")
 script = ExtResource("2_pw55t")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="daynight cycle"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3.10785, 25.2792, 0)
+transform = Transform3D(-3.61999e-06, 0, -1, 0, 1, 0, 1, 0, -3.61999e-06, -3.10785, 25.2792, 0)
 rotation_order = 4
 
 [node name="Nexus" parent="." instance=ExtResource("3_ka6ec")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.2339, 0.262822, 0)
 
-[node name="Ward2" type="Node3D" parent="Nexus"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.91715, 0, 7.67358)
-script = ExtResource("4_ieyfk")
-debugview = true
-tag = "grandeward"
-range = 20.0
+[node name="resource_ui" parent="." instance=ExtResource("4_8qns1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.7547, -47.3406, 0)
 
-[node name="Ward3" type="Node3D" parent="Nexus"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.45073, 1.90735e-06, -1.81097)
-script = ExtResource("4_ieyfk")
-debugview = true
-tag = "petiteward"
-range = 10.0
+[node name="resources" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="resources"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.35789, 0, 13.2473)
+mesh = SubResource("CylinderMesh_of2gs")
+skeleton = NodePath("ResourceArea")
+
+[node name="ResourceArea" type="Area3D" parent="resources/MeshInstance3D"]
+script = ExtResource("5_2c2qu")
+resources = Vector3i(40, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="resources/MeshInstance3D/ResourceArea"]
+shape = SubResource("BoxShape3D_wv6a8")
+
+[editable path="Player"]
+[editable path="Player/UI"]

@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://bg41wlohdjem7"]
+
+[ext_resource type="Script" path="res://src/scenes/plants/extractor/extractor.gd" id="1_cen27"]
+[ext_resource type="Script" path="res://src/Nodes/plant_ward/ward.gd" id="2_660bh"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_qvysw"]
+radius = 2.21941
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oo4km"]
+albedo_color = Color(0.796078, 0.490196, 0.227451, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_6uwf4"]
+height = 1.0
+
+[node name="extractor" type="Node3D"]
+script = ExtResource("1_cen27")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_qvysw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.230744, 0)
+material_override = SubResource("StandardMaterial3D_oo4km")
+mesh = SubResource("CylinderMesh_6uwf4")
+
+[node name="Ward" type="Node3D" parent="."]
+script = ExtResource("2_660bh")
+debugview = true
+tag = "extractor"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

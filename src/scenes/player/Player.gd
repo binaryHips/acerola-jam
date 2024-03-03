@@ -26,7 +26,7 @@ func _ready():
 func _physics_process(delta):
 	new_pos = get_3d_mouse_pos()
 	
-	if new_pos:
+	if new_pos != Vector3.INF:
 		$cursor.global_position = new_pos
 	if moving && new_pos:
 		
@@ -53,10 +53,9 @@ func _unhandled_input(event):
 	if event.is_action_pressed("move_camera"):
 		
 		var newpos = get_3d_mouse_pos()
-		if newpos:
+		if newpos != Vector3.INF:
 			last_pos = newpos
 			last_screen_pos = camera.get_viewport().get_mouse_position()
-			print(newpos)
 			moving = true
 		
 	if event.is_action_released("move_camera"):
@@ -73,7 +72,10 @@ func _unhandled_input(event):
 	if event.is_action_pressed("interact") && new_pos != null:
 		
 		if get_tree().paused: return
-
+		
+		if ResourcesManager.selected_shop_item != null:
+			ResourcesManager.try_buy()
+		
 		#if Invocables.buy(
 			#new_pos
 		#):
@@ -84,7 +86,7 @@ func _unhandled_input(event):
 
 
 
-func get_3d_mouse_pos():
+func get_3d_mouse_pos() -> Vector3:
 	var mouse_coords = camera.get_viewport().get_mouse_position()
 	
 	var from = camera.project_ray_origin(mouse_coords)
@@ -101,7 +103,13 @@ func get_3d_mouse_pos():
 	var intersection = space.intersect_ray(params)
 	if intersection:
 		return intersection["position"]
+	else:
+		return Vector3.INF
 
+func is_cursor_space_free():
+	return ($cursor/Area3D.has_overlapping_bodies()
+	|| $cursor/Area3D.has_overlapping_bodies()
+	)
 
 func play_sound(sound):
 	$cursor.get_node("audio").stream = sound

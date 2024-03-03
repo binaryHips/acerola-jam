@@ -1,0 +1,88 @@
+[gd_scene load_steps=4 format=3 uid="uid://cj3wgxg5028a5"]
+
+[ext_resource type="PackedScene" uid="uid://bble2ybl6rjmc" path="res://src/scenes/UI/shop/shop_item.tscn" id="1_n0wmn"]
+[ext_resource type="Script" path="res://src/scenes/UI/shop/shop.gd" id="1_v8ohl"]
+[ext_resource type="PackedScene" uid="uid://bg41wlohdjem7" path="res://src/scenes/plants/extractor/extractor.tscn" id="3_odaow"]
+
+[node name="shop" type="Control"]
+layout_mode = 3
+anchor_top = 0.784
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -0.0320129
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_v8ohl")
+
+[node name="resources_plants" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.429
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -0.0600166
+offset_bottom = -3.05176e-05
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="extractor" parent="resources_plants" instance=ExtResource("1_n0wmn")]
+layout_mode = 2
+item_name = "Extractor"
+scene = ExtResource("3_odaow")
+price = Vector3i(10, 0, 0)
+
+[node name="shop_item2" parent="resources_plants" instance=ExtResource("1_n0wmn")]
+layout_mode = 2
+
+[node name="shop_item3" parent="resources_plants" instance=ExtResource("1_n0wmn")]
+layout_mode = 2
+
+[node name="defense_plants" type="HBoxContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.429
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -0.0600166
+offset_bottom = -3.05176e-05
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="shop_item2" parent="defense_plants" instance=ExtResource("1_n0wmn")]
+layout_mode = 2
+
+[node name="shop_item3" parent="defense_plants" instance=ExtResource("1_n0wmn")]
+layout_mode = 2
+
+[node name="shop_item" parent="defense_plants" instance=ExtResource("1_n0wmn")]
+layout_mode = 2
+
+[node name="Resources" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.779
+anchor_right = 0.104
+anchor_bottom = 1.0
+offset_top = -0.0600052
+offset_right = 0.192001
+grow_horizontal = 2
+grow_vertical = 0
+text = "Resources"
+
+[node name="Defense" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.104
+anchor_top = 0.779
+anchor_right = 0.208
+anchor_bottom = 1.0
+offset_left = 0.192001
+offset_top = -0.0600052
+offset_right = 0.384003
+grow_horizontal = 2
+grow_vertical = 0
+text = "Defense"
+
+[connection signal="pressed" from="Resources" to="." method="_on_resources_pressed"]
+[connection signal="pressed" from="Defense" to="." method="_on_defense_pressed"]

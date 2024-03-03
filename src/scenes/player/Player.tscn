@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://d1scgasuvckup"]
+[gd_scene load_steps=5 format=3 uid="uid://d1scgasuvckup"]
 
 [ext_resource type="Script" path="res://src/scenes/player/Player.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://cnbkuj1ns2a35" path="res://src/scenes/player/cursor.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://cng4vguovxxpf" path="res://src/scenes/UI/UI/ui.tscn" id="3_n8t71"]
 
 [sub_resource type="Curve3D" id="1"]
 _data = {
@@ -28,3 +29,5 @@ current = true
 far = 512.5
 
 [node name="cursor" parent="." instance=ExtResource("2")]
+
+[node name="UI" parent="." instance=ExtResource("3_n8t71")]
