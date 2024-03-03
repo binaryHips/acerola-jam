@@ -1,4 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://c0244jmj7i2f6"]
+[gd_scene load_steps=5 format=3 uid="uid://c0244jmj7i2f6"]
+
+[ext_resource type="Material" uid="uid://dxq414tybkhjw" path="res://resources/materials/envrionment/mutagen.tres" id="1_b0jgk"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_xcr43"]
 friction = 0.0
@@ -20,4 +22,5 @@ physics_material_override = SubResource("PhysicsMaterial_xcr43")
 shape = SubResource("SphereShape3D_f4ikb")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = ExtResource("1_b0jgk")
 mesh = SubResource("SphereMesh_n07cw")

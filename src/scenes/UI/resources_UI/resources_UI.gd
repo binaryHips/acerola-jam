@@ -15,7 +15,7 @@ func add_mutagen(n:int):
 	for i in n:
 		var ball = BALL.instantiate()
 		$mutagen.add_child(ball)
-		ball.position.z += randf_range(-1, 1)
+		ball.position.z += randf_range(-0.5, 0.5)
 		
 		await get_tree().create_timer(TIME).timeout
 		
@@ -24,6 +24,7 @@ func add_metal(n:int):
 	for i in n:
 		var ball = BALL.instantiate()
 		$metal.add_child(ball)
+		ball.position.z += randf_range(-0.5, 0.5)
 		await get_tree().create_timer(TIME).timeout
 		
 		
@@ -32,6 +33,7 @@ func add_oil(n:int):
 	for i in n:
 		var ball = BALL.instantiate()
 		$oil.add_child(ball)
+		ball.position.z += randf_range(-0.5, 0.5)
 		await get_tree().create_timer(TIME).timeout
 		
 		

@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://d2wkgxkhy1p8f"]
+
+[ext_resource type="PackedScene" uid="uid://bo53ara27jxic" path="res://resources/meshes/barrel.glb" id="1_74xl5"]
+[ext_resource type="Material" uid="uid://djtkt32famb6y" path="res://resources/materials/envrionment/barrel.tres" id="2_wucu2"]
+
+[node name="barrel2" instance=ExtResource("1_74xl5")]
+
+[node name="barrel" parent="." index="0"]
+material_override = ExtResource("2_wucu2")

@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://dpyoyl17s8w6v"]
+
+[ext_resource type="PackedScene" uid="uid://dvypeabl5sc2u" path="res://resources/meshes/puddle.glb" id="1_0wbni"]
+[ext_resource type="Material" uid="uid://dxq414tybkhjw" path="res://resources/materials/envrionment/mutagen.tres" id="2_lvf12"]
+
+[node name="puddle2" instance=ExtResource("1_0wbni")]
+
+[node name="puddle" parent="." index="0"]
+material_override = ExtResource("2_lvf12")

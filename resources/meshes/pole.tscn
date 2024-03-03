@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bynloduqwvbe4"]
+
+[ext_resource type="PackedScene" uid="uid://nql5fbijql38" path="res://resources/meshes/pole.glb" id="1_gidb1"]
+[ext_resource type="Material" uid="uid://bok4kxthh2a7" path="res://resources/materials/envrionment/wood.tres" id="2_v6j1w"]
+
+[node name="pole2" instance=ExtResource("1_gidb1")]
+
+[node name="pole" parent="." index="0"]
+material_override = ExtResource("2_v6j1w")
