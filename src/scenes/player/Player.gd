@@ -28,7 +28,7 @@ func _physics_process(delta):
 	
 	if new_pos != Vector3.INF:
 		$cursor.global_position = new_pos
-	if moving && new_pos:
+	if moving && new_pos != Vector3.INF:
 		
 		last_screen_pos = camera.get_viewport().get_mouse_position()
 		
@@ -57,6 +57,7 @@ func _unhandled_input(event):
 			last_pos = newpos
 			last_screen_pos = camera.get_viewport().get_mouse_position()
 			moving = true
+			
 		
 	if event.is_action_released("move_camera"):
 		moving = false

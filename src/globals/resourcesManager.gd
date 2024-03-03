@@ -52,8 +52,8 @@ func try_buy():
 		if pos == Vector3.INF: return
 		var plant:Node3D = selected_shop_item.scene.instantiate()
 		
-		add_child(plant) #dirty but its fine
-		plant.global_position = pos
+		plant.position = pos #cant set global position before having a parent, but it works anyway here.
+		Gamemaster.world.get_node("plants").add_child(plant) #dirty but its fine
 		print("bought!")
 		remove_resources(selected_shop_item.price)
 	else:

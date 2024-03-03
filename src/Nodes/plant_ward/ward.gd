@@ -7,11 +7,14 @@ class_name Ward
 
 var is_linked_to_base:bool = false
 
-@export var range:float = 30
+@export var range:float = 15
 
 func _ready():
 	Gamemaster.add_ward(self)
-	
+	if Gamemaster.nexus:
+		print(Gamemaster.nexus.global_position)
+		print(global_position)
+		print(global_position.distance_to(Gamemaster.nexus.global_position))
 	if debugview:
 		debug_view()
 
@@ -19,8 +22,8 @@ func debug_view():
 	
 	var v := MeshInstance3D.new()
 	v.mesh = CylinderMesh.new()
-	v.scale.x = range
-	v.scale.z = range
+	v.scale.x = range*2.0
+	v.scale.z = range*2.0
 	v.material_override = load("res://resources/materials/debug.tres")
 	add_child(v)
 

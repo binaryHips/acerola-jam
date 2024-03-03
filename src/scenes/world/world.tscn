@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dth7lthp8v78r" path="res://src/scenes/nexus/nexus.tscn" id="3_ka6ec"]
 [ext_resource type="PackedScene" uid="uid://bj1h0gk1cpokl" path="res://src/scenes/UI/resources_UI/resources_UI.tscn" id="4_8qns1"]
 [ext_resource type="Script" path="res://src/Nodes/resource_area/resource_area.gd" id="5_2c2qu"]
-[ext_resource type="PackedScene" uid="uid://dckxmobc10eh7" path="res://resources/meshes/rock.glb" id="6_e8ds4"]
+[ext_resource type="PackedScene" uid="uid://3yediwp256c5" path="res://resources/meshes/rock.tscn" id="6_jdpoj"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_wl4to"]
 frequency = 0.0088
@@ -137,7 +137,7 @@ adjustment_saturation = 0.98
 [sub_resource type="BoxShape3D" id="BoxShape3D_wv6a8"]
 size = Vector3(7.83789, 2.74023, 7.10254)
 
-[node name="world" type="Node3D"]
+[node name="world" type="Node3D" groups=["world"]]
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -121.149, -0.366522, 23.6355)
@@ -149,7 +149,7 @@ size = Vector3(366.762, 1, 250.04)
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 3.28498, 0)
 
 [node name="PathFollow" parent="Player/Path" index="0"]
-transform = Transform3D(-0.999998, -0.000749263, -0.00205189, 0, 0.939334, -0.343005, 0.00218441, -0.343004, -0.939331, -0.00762939, -2.17762, -2.5437)
+transform = Transform3D(-0.999998, -0.000749263, -0.00205189, 0, 0.939334, -0.343005, 0.00218441, -0.343004, -0.939332, -0.00762939, -2.17762, -2.5437)
 
 [node name="resources" parent="Player/UI" index="1"]
 anchor_left = 0.743056
@@ -176,16 +176,16 @@ script = ExtResource("2_pw55t")
 transform = Transform3D(-3.61999e-06, 0, -1, 0, 1, 0, 1, 0, -3.61999e-06, -3.10785, 25.2792, 0)
 rotation_order = 4
 
-[node name="Nexus" parent="." instance=ExtResource("3_ka6ec")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.2339, 0.262822, 0)
-
 [node name="resource_ui" parent="." instance=ExtResource("4_8qns1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.7547, -47.3406, 0)
+
+[node name="Camera3D" parent="resource_ui/SubViewport" index="0"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 14.0547, -45.3506, 0)
 
 [node name="resources" type="Node3D" parent="."]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="resources"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.35789, 0, 13.2473)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.35789, 0, 23.1488)
 mesh = SubResource("CylinderMesh_of2gs")
 skeleton = NodePath("ResourceArea")
 
@@ -198,59 +198,62 @@ shape = SubResource("BoxShape3D_wv6a8")
 
 [node name="environment" type="Node3D" parent="."]
 
-[node name="rock2" parent="environment" instance=ExtResource("6_e8ds4")]
-transform = Transform3D(5.48865, 0, 3.94618, 0, 6.76, 0, -3.94618, 0, 5.48865, -13.9491, 3.16837, 25.5978)
+[node name="rock" parent="environment" instance=ExtResource("6_jdpoj")]
+transform = Transform3D(5.56977, 0, 8.30528, 0, 10, 0, -8.30528, 0, 5.56977, -22.6601, 4.80053, 47.6511)
 
-[node name="rock3" parent="environment" instance=ExtResource("6_e8ds4")]
-transform = Transform3D(-14.7736, 0, 20.9498, 0, 25.635, 0, -20.9498, 0, -14.7736, -21.5519, 3.16837, -45.6344)
+[node name="rock2" parent="environment" instance=ExtResource("6_jdpoj")]
+transform = Transform3D(34.6857, 0, 51.7211, 0, 62.275, 0, -51.7211, 0, 34.6857, -75.3005, 19.4492, 138.802)
 
-[node name="rock12" parent="environment" instance=ExtResource("6_e8ds4")]
-transform = Transform3D(-21.7761, 0, 13.526, 0, 25.635, 0, -13.526, 0, -21.7761, 61.6782, 3.16837, 41.4655)
+[node name="rock16" parent="environment" instance=ExtResource("6_jdpoj")]
+transform = Transform3D(35.3772, 46.5698, -21.3982, -51.1689, 33.5627, -11.5525, 2.89334, 24.1448, 57.3309, 62.1449, 19.1893, 29.3898)
 
-[node name="rock4" parent="environment" instance=ExtResource("6_e8ds4")]
-transform = Transform3D(4.07374, 5.6468, 24.6713, -24.0944, 8.51426, 2.02974, -7.74707, -23.5112, 6.66047, -38.0316, 0.897188, 50.8641)
+[node name="rock17" parent="environment" instance=ExtResource("6_jdpoj")]
+transform = Transform3D(35.4812, 48.9345, -14.9892, -51.1689, 33.5627, -11.5525, -0.999411, 18.8981, 59.3299, 62.3808, 19.1893, 97.0086)
 
-[node name="rock5" parent="environment" instance=ExtResource("6_e8ds4")]
-transform = Transform3D(19.9064, 14.8959, 6.24505, -16.1182, 18.9614, 6.14987, -1.04573, -8.70218, 24.0901, -57.9905, 0.432745, 29.2487)
+[node name="rock9" parent="environment" instance=ExtResource("6_jdpoj")]
+transform = Transform3D(3.37861, 0, 62.1833, 0, 62.275, 0, -62.1833, 0, 3.37861, -121.261, 19.4492, 113.834)
 
-[node name="rock6" parent="environment" instance=ExtResource("6_e8ds4")]
-transform = Transform3D(-27.7185, -34.2962, 33.0956, -34.6665, 40.7817, 13.2269, -32.7076, -14.1594, -42.0666, -103.12, 7.19826, -69.0475)
+[node name="rock14" parent="environment" instance=ExtResource("6_jdpoj")]
+transform = Transform3D(24.0081, 53.2847, 21.5065, -55.8387, 27.1341, -4.89387, -13.558, -17.3971, 58.2383, 51.7659, 19.4492, -51.3703)
 
-[node name="rock16" parent="environment" instance=ExtResource("6_e8ds4")]
-transform = Transform3D(-73.5572, -48.6757, -91.7964, -102.022, 12.5321, 75.1062, -19.6807, 116.962, -46.2499, -187.434, 7.19826, -73.3304)
+[node name="rock10" parent="environment" instance=ExtResource("6_jdpoj")]
+transform = Transform3D(3.37861, 0, 62.1833, 57.4049, 23.94, -3.11899, -23.9048, 57.4896, 1.29882, -208.019, 24.6274, 124.06)
 
-[node name="rock19" parent="environment" instance=ExtResource("6_e8ds4")]
-transform = Transform3D(-73.5572, -48.6757, -91.7964, -102.022, 12.5321, 75.1062, -19.6807, 116.962, -46.2499, -30.7604, 7.19826, 188.706)
+[node name="rock3" parent="environment" instance=ExtResource("6_jdpoj")]
+transform = Transform3D(-9.02251, -9.53991, 60.8749, 25.2862, 55.5317, 12.4503, -56.1906, 26.5215, -4.17194, 5.62158, 19.4492, 154.54)
 
-[node name="rock17" parent="environment" instance=ExtResource("6_e8ds4")]
-transform = Transform3D(83.2418, 62.7821, -73.0464, 84.0789, -0.262123, 95.5889, 46.9905, -110.747, -41.636, -216.345, 7.19826, -79.3117)
+[node name="rock4" parent="environment" instance=ExtResource("6_jdpoj")]
+transform = Transform3D(34.3146, -12.5637, -13.6544, 15.8396, 34.7859, 7.79907, 9.66407, -12.4046, 35.7003, -64.2738, 14.9614, -74.8142)
 
-[node name="rock15" parent="environment" instance=ExtResource("6_e8ds4")]
-transform = Transform3D(-12.2893, -25.7483, 47.1791, -34.6665, 40.7817, 13.2269, -41.074, -26.716, -25.2795, -165.13, 7.19826, -20.9984)
+[node name="rock15" parent="environment" instance=ExtResource("6_jdpoj")]
+transform = Transform3D(-0.0825008, 11.4786, -51.0299, 49.161, 17.4423, 3.84397, 17.8607, -47.9564, -10.8161, -13.4409, 21.7845, -74.8142)
 
-[node name="rock7" parent="environment" instance=ExtResource("6_e8ds4")]
-transform = Transform3D(-27.7185, -34.2962, 33.0956, -34.6665, 40.7817, 13.2269, -32.7076, -14.1594, -42.0666, -67.0925, 0.432752, 98.465)
+[node name="rock5" parent="environment" instance=ExtResource("6_jdpoj")]
+transform = Transform3D(27.0688, -17.2893, 22.1391, 15.8396, 34.7859, 7.79907, -23.1984, 3.57765, 31.1579, -103.292, 14.9614, 39.9612)
 
-[node name="rock8" parent="environment" instance=ExtResource("6_e8ds4")]
-transform = Transform3D(3.07685, 8.50325, 54.3884, -51.8729, -17.7877, 5.71554, 18.4283, -51.4894, 7.00748, 5.2513, 0.432752, 107.267)
+[node name="rock6" parent="environment" instance=ExtResource("6_jdpoj")]
+transform = Transform3D(28.686, -7.36989, -25.3886, 15.8396, 34.7859, 7.79907, 21.166, -16.0438, 28.5723, -176.765, 14.9614, -28.4968)
 
-[node name="rock13" parent="environment" instance=ExtResource("6_e8ds4")]
-transform = Transform3D(-12.9278, -16.9421, 50.8498, 46.5155, -29.5336, 1.98589, 26.6279, 43.3659, 21.2184, -108.05, 0.432752, 107.267)
+[node name="rock12" parent="environment" instance=ExtResource("6_jdpoj")]
+transform = Transform3D(-6.55461, 104.068, -55.1824, 63.7242, 49.6147, 85.9983, 99.0675, -25.0287, -58.9686, -198.879, 4.88178, -76.8619)
 
-[node name="rock18" parent="environment" instance=ExtResource("6_e8ds4")]
-transform = Transform3D(-12.9278, -16.9421, 50.8498, 15.9709, 48.7142, 20.291, -51.1632, 19.4874, -6.51468, -166.193, 11.6719, 107.267)
+[node name="rock13" parent="environment" instance=ExtResource("6_jdpoj")]
+transform = Transform3D(51.2365, -26.9654, -102.79, 58.6104, -88.0178, 52.3048, -88.644, -73.7824, -24.8296, -310.883, 6.09126, -86.9441)
 
-[node name="rock10" parent="environment" instance=ExtResource("6_e8ds4")]
-transform = Transform3D(-13.0723, 33.4829, -14.4363, -36.4432, -12.4967, 4.01544, -1.18648, 14.9373, 35.7193, 66.9447, 2.77747, 80.1195)
+[node name="rock11" parent="environment" instance=ExtResource("6_jdpoj")]
+transform = Transform3D(28.8014, 19.2858, -44.8396, -28.8411, 48.7271, 2.43262, 39.3793, 21.582, 34.5767, -272.433, 14.9614, 13.5298)
 
-[node name="rock9" parent="environment" instance=ExtResource("6_e8ds4")]
-transform = Transform3D(-13.487, -27.3201, -45.952, -51.6567, 18.8649, 3.94557, 13.7678, 44.0182, -30.2112, 40.058, 3.38091, -66.6375)
+[node name="rock7" parent="environment" instance=ExtResource("6_jdpoj")]
+transform = Transform3D(-2.12899, -20.8081, -48.7088, 50.912, 12.6436, -7.62657, 14.6114, -47.0874, 19.4768, -139.27, 14.9614, -75.5842)
 
-[node name="rock14" parent="environment" instance=ExtResource("6_e8ds4")]
-transform = Transform3D(5.3131, -0.298949, -54.8776, -51.0109, 20.3043, -5.04934, 20.2369, 51.2593, 1.68004, -29.4135, 9.72675, -94.6674)
+[node name="rock8" parent="environment" instance=ExtResource("6_jdpoj")]
+transform = Transform3D(3.88669, -19.1728, -49.2682, -3.58953, 49.1915, -19.4261, 52.7454, 4.76048, 2.30844, -95.9708, 23.0687, -98.2298)
 
-[node name="rock11" parent="environment" instance=ExtResource("6_e8ds4")]
-transform = Transform3D(-19.264, -50.8849, -8.91557, -51.6567, 18.8649, 3.94557, -0.590892, 9.73168, -54.2661, 64.2915, 3.38091, 2.39805)
+[node name="plants" type="Node3D" parent="."]
+
+[node name="Nexus" parent="plants" instance=ExtResource("3_ka6ec")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.2339, 0.262822, 0)
 
 [editable path="Player"]
 [editable path="Player/UI"]
+[editable path="resource_ui"]

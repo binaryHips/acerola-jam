@@ -6,6 +6,7 @@ var player
 #plant nexus
 var nexus
 
+@onready var world = get_tree().get_first_node_in_group("world") #TODO change this when possible
 
 var wards:Array[Ward] = []
 
