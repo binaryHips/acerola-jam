@@ -34,6 +34,14 @@ _subresources={
 "@MATERIAL:0": {
 "use_external/path": "res://resources/materials/envrionment/stone.tres"
 }
+},
+"nodes": {
+"PATH:rock": {
+"generate/physics": true,
+"mesh_instance/visibility_range_begin": 1.0,
+"mesh_instance/visibility_range_begin_margin": 2.0,
+"mesh_instance/visibility_range_fade_mode": 2
+}
 }
 }
 gltf/naming_version=1

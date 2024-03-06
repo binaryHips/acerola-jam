@@ -1,15 +1,24 @@
-[gd_scene load_steps=5 format=3 uid="uid://d1scgasuvckup"]
+[gd_scene load_steps=8 format=3 uid="uid://d1scgasuvckup"]
 
 [ext_resource type="Script" path="res://src/scenes/player/Player.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://cnbkuj1ns2a35" path="res://src/scenes/player/cursor.tscn" id="2"]
+[ext_resource type="Shader" path="res://resources/materials/post_process/pixelate.gdshader" id="2_o7s2y"]
 [ext_resource type="PackedScene" uid="uid://cng4vguovxxpf" path="res://src/scenes/UI/UI/ui.tscn" id="3_n8t71"]
 
 [sub_resource type="Curve3D" id="1"]
 _data = {
-"points": PackedVector3Array(-0.00405884, -0.678497, -1.85809, 0.00405884, 0.678497, 1.85809, -0.00762939, -2.17762, -2.5437, 0, -0.468226, -0.652867, 0, 0.468226, 0.652867, 0, -0.851954, 0.195085, 0, -0.952262, -0.8641, 0, 0.952262, 0.8641, 0, 2.19917, 3.83957, 0, -2.94507, -2.67789, 0, 2.94507, 2.67789, 0, 8.23953, 9.42288),
-"tilts": PackedFloat32Array(0, 0, 0, 0)
+"points": PackedVector3Array(-0.00405884, -0.678497, -1.85809, 0.00405884, 0.678497, 1.85809, -0.00762939, -2.17762, -2.5437, 0, -0.468226, -0.652867, 0, 0.468226, 0.652867, 0, -0.851954, 0.195085, 0, -0.952262, -0.8641, 0, 0.952262, 0.8641, 0, 2.19917, 3.83957, 0, -2.94507, -2.67789, 0, 2.94507, 2.67789, 0, 8.23953, 9.42288, 0, 0.111227, 0.46003, 0, -0.111227, -0.46003, 0, 16.1626, 14.491),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0)
 }
-point_count = 4
+point_count = 5
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_grjuu"]
+render_priority = 0
+shader = ExtResource("2_o7s2y")
+shader_parameter/pixelate = 100.0
+shader_parameter/posterize = 2.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_3ffyt"]
 
 [node name="Player" type="Node3D"]
 script = ExtResource("1")
@@ -19,7 +28,7 @@ transform = Transform3D(1, 0, 0, 0, 0.793959, 0.607972, 0, -0.607972, 0.793959, 
 curve = SubResource("1")
 
 [node name="PathFollow" type="PathFollow3D" parent="Path"]
-transform = Transform3D(-0.999998, -0.000749263, -0.00205189, 0, 0.939334, -0.343004, 0.00218441, -0.343004, -0.93933, -0.00762939, -2.17762, -2.5437)
+transform = Transform3D(-0.999998, -0.000749263, -0.00205189, 0, 0.939334, -0.343004, 0.00218441, -0.343004, -0.939331, -0.00762939, -2.17762, -2.5437)
 rotation_mode = 4
 loop = false
 
@@ -27,6 +36,15 @@ loop = false
 transform = Transform3D(-0.999997, -0.00169886, -0.00178406, 0.000264407, 0.645991, -0.763344, 0.00244931, -0.763344, -0.64599, 3.72529e-09, -0.0318494, -0.212316)
 current = true
 far = 512.5
+
+[node name="post_process" type="MeshInstance3D" parent="Path/PathFollow/Camera"]
+transform = Transform3D(1, -2.91038e-11, -4.65661e-10, -2.91038e-11, 1, 0, -2.32831e-10, 0, 1, 0, 0, -0.051)
+sorting_offset = 9999.0
+material_override = SubResource("ShaderMaterial_grjuu")
+cast_shadow = 0
+extra_cull_margin = 16384.0
+ignore_occlusion_culling = true
+mesh = SubResource("QuadMesh_3ffyt")
 
 [node name="cursor" parent="." instance=ExtResource("2")]
 

@@ -1,0 +1,105 @@
+[gd_resource type="ShaderMaterial" load_steps=9 format=3 uid="uid://bqm6o0o5n2466"]
+
+[ext_resource type="FastNoiseLite" uid="uid://b804bxc6q7ahx" path="res://resources/materials/envrionment/resources balls/metal_noise.tres" id="1_w2ayy"]
+
+[sub_resource type="Shader" id="Shader_opwpi"]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.2.stable's StandardMaterial3D.
+
+shader_type spatial;
+render_mode blend_mix,depth_draw_opaque,cull_back,diffuse_burley,specular_schlick_ggx;
+uniform vec4 albedo : source_color;
+uniform sampler2D texture_albedo : source_color,filter_linear_mipmap,repeat_enable;
+uniform float point_size : hint_range(0,128);
+uniform float roughness : hint_range(0,1);
+uniform sampler2D texture_metallic : hint_default_white,filter_linear_mipmap,repeat_enable;
+uniform vec4 metallic_texture_channel;
+uniform sampler2D texture_roughness : hint_roughness_r,filter_linear_mipmap,repeat_enable;
+uniform float specular;
+uniform float metallic;
+uniform sampler2D texture_emission : source_color, hint_default_black,filter_linear_mipmap,repeat_enable;
+uniform sampler2D normal_map : source_color, repeat_enable;
+uniform vec4 emission : source_color;
+uniform float emission_energy;
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
+uniform vec3 uv2_scale;
+uniform vec3 uv2_offset;
+
+
+void vertex() {
+	//UV=UV*uv1_scale.xy+uv1_offset.xy;
+}
+
+
+
+float fresnel(float amount, vec3 normal, vec3 view)
+{
+	return pow((1.0 - clamp(dot(normalize(normal), normalize(view)), 0.0, 1.0 )), amount);
+}
+
+
+void fragment() {
+	vec2 base_uv = UV;
+	base_uv.x *= 2.5;
+	vec4 albedo_tex = texture(texture_albedo,base_uv);
+	ALBEDO = albedo.rgb * albedo_tex.rgb;
+	float metallic_tex = dot(texture(texture_metallic,base_uv),metallic_texture_channel);
+	METALLIC = metallic_tex * metallic;
+	vec4 roughness_texture_channel = vec4(1.0,0.0,0.0,0.0);
+	float roughness_tex = dot(texture(texture_roughness,base_uv),roughness_texture_channel);
+	ROUGHNESS = roughness_tex * roughness;
+	SPECULAR = specular;
+	vec3 emission_tex = texture(texture_emission,base_uv).rgb;
+	
+	NORMAL = texture(normal_map, base_uv).rgb;
+	
+	EMISSION = (emission.rgb+emission_tex)*30.0 * fresnel(3.0, NORMAL, VIEW);
+}
+"
+
+[sub_resource type="Gradient" id="Gradient_xuqss"]
+offsets = PackedFloat32Array(0, 0.801282)
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_h8obp"]
+seamless = true
+as_normal_map = true
+bump_strength = 22.3
+color_ramp = SubResource("Gradient_xuqss")
+noise = ExtResource("1_w2ayy")
+
+[sub_resource type="Gradient" id="Gradient_msimm"]
+offsets = PackedFloat32Array(0.0769231, 0.557692, 0.769231)
+colors = PackedColorArray(0.461866, 0.259761, 0.116423, 1, 0.344853, 0.332274, 0.30556, 1, 0.332913, 0.339673, 0.32486, 1)
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_0qyc7"]
+seamless = true
+color_ramp = SubResource("Gradient_msimm")
+noise = ExtResource("1_w2ayy")
+
+[sub_resource type="Gradient" id="Gradient_rw7vi"]
+offsets = PackedFloat32Array(0, 0.294872, 0.557692, 0.846154)
+colors = PackedColorArray(0.908759, 0.26023, 0.59176, 1, 0.778796, 0.383617, 0.679, 1, 0.47268, 0.05955, 0.501465, 1, 0, 0, 0, 1)
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_yg2ot"]
+seamless = true
+color_ramp = SubResource("Gradient_rw7vi")
+noise = ExtResource("1_w2ayy")
+
+[resource]
+render_priority = 0
+shader = SubResource("Shader_opwpi")
+shader_parameter/albedo = Color(0.615686, 0.615686, 0.615686, 1)
+shader_parameter/point_size = null
+shader_parameter/roughness = null
+shader_parameter/metallic_texture_channel = null
+shader_parameter/specular = null
+shader_parameter/metallic = null
+shader_parameter/emission = Color(0.658824, 0.109804, 0.498039, 1)
+shader_parameter/emission_energy = 23.995
+shader_parameter/uv1_scale = null
+shader_parameter/uv1_offset = null
+shader_parameter/uv2_scale = null
+shader_parameter/uv2_offset = null
+shader_parameter/texture_albedo = SubResource("NoiseTexture2D_0qyc7")
+shader_parameter/texture_emission = SubResource("NoiseTexture2D_yg2ot")
+shader_parameter/normal_map = SubResource("NoiseTexture2D_h8obp")

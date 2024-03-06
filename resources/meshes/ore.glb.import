@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bkucmjnsj1pfw"
-path="res://.godot/imported/ledge.glb-9932879f1d126291654a256f8772ebee.scn"
+uid="uid://4bgdsyqc10at"
+path="res://.godot/imported/ore.glb-09dafff8bf796036881036d5b1a0f78b.scn"
 
 [deps]
 
-source_file="res://resources/meshes/ledge.glb"
-dest_files=["res://.godot/imported/ledge.glb-9932879f1d126291654a256f8772ebee.scn"]
+source_file="res://resources/meshes/ore.glb"
+dest_files=["res://.godot/imported/ore.glb-09dafff8bf796036881036d5b1a0f78b.scn"]
 
 [params]
 
@@ -29,12 +29,6 @@ animation/fps=30
 animation/trimming=false
 animation/remove_immutable_tracks=true
 import_script/path=""
-_subresources={
-"nodes": {
-"PATH:ledge": {
-"generate/physics": true
-}
-}
-}
+_subresources={}
 gltf/naming_version=1
 gltf/embedded_image_handling=1

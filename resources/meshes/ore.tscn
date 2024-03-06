@@ -1,6 +1,8 @@
-[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://dxq414tybkhjw"]
+[gd_scene load_steps=9 format=3 uid="uid://ccdyle6s1mx7n"]
 
-[sub_resource type="Shader" id="Shader_jo45a"]
+[ext_resource type="PackedScene" uid="uid://4bgdsyqc10at" path="res://resources/meshes/ore.glb" id="1_3l02d"]
+
+[sub_resource type="Shader" id="Shader_tyv42"]
 code = "// NOTE: Shader automatically converted from Godot Engine 4.2.stable's StandardMaterial3D.
 
 shader_type spatial;
@@ -17,8 +19,6 @@ uniform float metallic;
 uniform sampler2D texture_emission : source_color, hint_default_black,filter_linear_mipmap,repeat_enable;
 uniform vec4 emission : source_color;
 uniform float emission_energy;
-uniform sampler2D texture_normal : hint_roughness_normal,filter_linear_mipmap,repeat_enable;
-uniform float normal_scale : hint_range(-16,16);
 uniform vec3 uv1_scale;
 uniform vec3 uv1_offset;
 uniform vec3 uv2_scale;
@@ -31,13 +31,14 @@ void vertex() {
 
 
 
-
+float fresnel(float amount, vec3 normal, vec3 view)
+{
+	return pow((1.0 - clamp(dot(normalize(normal), normalize(view)), 0.0, 1.0 )), amount);
+}
 
 
 void fragment() {
 	vec2 base_uv = UV;
-	base_uv.x *= 2.0;
-	base_uv *= 4.0;
 	vec4 albedo_tex = texture(texture_albedo,base_uv);
 	ALBEDO = albedo.rgb * albedo_tex.rgb;
 	float metallic_tex = dot(texture(texture_metallic,base_uv),metallic_texture_channel);
@@ -46,44 +47,52 @@ void fragment() {
 	float roughness_tex = dot(texture(texture_roughness,base_uv),roughness_texture_channel);
 	ROUGHNESS = roughness_tex * roughness;
 	SPECULAR = specular;
-	
-	
-	vec2 offset_uv = base_uv + vec2(TIME/50.0, sin(TIME/50.0));
-	NORMAL_MAP = texture(texture_normal,offset_uv).rgb;
-	NORMAL_MAP_DEPTH = normal_scale;
 	vec3 emission_tex = texture(texture_emission,base_uv).rgb;
-	EMISSION = (emission.rgb+emission_tex)*emission_energy;
+	
+	EMISSION = (emission.rgb+emission_tex)*30.0 * fresnel(3.0, NORMAL, VIEW);
 }
+"
 
-
-uniform vec3 incident_light = vec3(1, 1, 0);
-void light() {
-    DIFFUSE_LIGHT = vec3(1, 1, 1) * dot(NORMAL, normalize(incident_light));
-	SPECULAR_LIGHT = vec3(0,0,0);
-}"
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_22ge3"]
-fractal_octaves = 1
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_l3bbf"]
-seamless = true
-noise = SubResource("FastNoiseLite_22ge3")
-
-[resource]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_53hmb"]
 render_priority = 0
-shader = SubResource("Shader_jo45a")
-shader_parameter/albedo = Color(0.109804, 0.592157, 0, 1)
+shader = SubResource("Shader_tyv42")
+shader_parameter/albedo = Color(0.270588, 0.164706, 0.392157, 1)
 shader_parameter/point_size = 1.0
-shader_parameter/roughness = 1.0
+shader_parameter/roughness = 0.46
 shader_parameter/metallic_texture_channel = null
-shader_parameter/specular = 0.5
-shader_parameter/metallic = 0.0
-shader_parameter/emission = Color(0.423529, 0.682353, 0, 1)
-shader_parameter/emission_energy = 0.42
-shader_parameter/normal_scale = 1.0
+shader_parameter/specular = 0.48
+shader_parameter/metallic = 1.0
+shader_parameter/emission = Color(0.168627, 0.0196078, 0.14902, 1)
+shader_parameter/emission_energy = 3.05
 shader_parameter/uv1_scale = Vector3(1, 1, 1)
 shader_parameter/uv1_offset = Vector3(0, 0, 0)
 shader_parameter/uv2_scale = Vector3(1, 1, 1)
 shader_parameter/uv2_offset = Vector3(0, 0, 0)
-shader_parameter/incident_light = Vector3(1, 1, 0)
-shader_parameter/texture_normal = SubResource("NoiseTexture2D_l3bbf")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_mjxfe"]
+frequency = 0.0051
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_vuhpy"]
+noise = SubResource("FastNoiseLite_mjxfe")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_fwcj5"]
+frequency = 0.0229
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_jwup3"]
+as_normal_map = true
+noise = SubResource("FastNoiseLite_fwcj5")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ulwe3"]
+albedo_color = Color(0.584314, 0.466667, 0.32549, 1)
+albedo_texture = SubResource("NoiseTexture2D_vuhpy")
+roughness = 0.69
+normal_enabled = true
+normal_texture = SubResource("NoiseTexture2D_jwup3")
+uv1_scale = Vector3(1.71, 1.71, 1.71)
+proximity_fade_distance = 160.54
+
+[node name="ore2" instance=ExtResource("1_3l02d")]
+
+[node name="ore" parent="." index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_53hmb")
+surface_material_override/1 = SubResource("StandardMaterial3D_ulwe3")

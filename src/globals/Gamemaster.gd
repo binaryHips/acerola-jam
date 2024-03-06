@@ -12,6 +12,7 @@ var wards:Array[Ward] = []
 
 var connections:Dictionary = {}
 
+var max_connected_wards:int = 10
 
 
 func add_ward(ward:Ward):
@@ -62,8 +63,8 @@ func recompute_connexity():
 	var stack := [nexus]
 
 	var not_visited:Array[Ward] = wards.duplicate()
-	while stack != []:
-
+	for m in max_connected_wards:
+		if stack == []: break
 		var ward = stack.pop_front()
 		
 		

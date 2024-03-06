@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bble2ybl6rjmc"]
+[gd_scene load_steps=8 format=3 uid="uid://bble2ybl6rjmc"]
 
 [ext_resource type="Script" path="res://src/scenes/UI/shop/shop_item.gd" id="1_5trjx"]
 
@@ -9,12 +9,22 @@ gradient = SubResource("Gradient_et3cy")
 fill_from = Vector2(0.426087, 0.421739)
 fill_to = Vector2(0.934783, 1)
 
+[sub_resource type="Gradient" id="Gradient_oy6rm"]
+offsets = PackedFloat32Array(0, 0.97619)
+colors = PackedColorArray(0.18443, 0.191376, 0.202853, 0, 0.83237, 0.0569432, 0.655939, 0.784314)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_74yqv"]
+gradient = SubResource("Gradient_oy6rm")
+fill_from = Vector2(0, 1)
+
 [sub_resource type="Gradient" id="Gradient_o3vsj"]
-colors = PackedColorArray(0, 0, 0, 0.117647, 0.576471, 0.266667, 0.635294, 0.67451)
+offsets = PackedFloat32Array(0, 0.97619)
+colors = PackedColorArray(0.517647, 0.188235, 0, 0.447059, 0.408948, 0, 0.0327284, 0.784314)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_rdvq5"]
 gradient = SubResource("Gradient_o3vsj")
-fill_from = Vector2(0.213675, 0.816239)
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0.771552, 0.487069)
 
 [node name="shop_item" type="Control"]
 custom_minimum_size = Vector2(150, 0)
@@ -50,7 +60,18 @@ text = "[center]TEST"
 fit_content = true
 scroll_active = false
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="select_highlight" type="TextureRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_74yqv")
+
+[node name="cantbuy_overlay" type="TextureRect" parent="."]
 visible = false
 layout_mode = 1
 anchors_preset = 15

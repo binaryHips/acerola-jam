@@ -99,7 +99,7 @@ func get_3d_mouse_pos() -> Vector3:
 	params.from = from
 	params.to = to
 	params.exclude = []
-	params.collision_mask = 1 #32768 ?
+	params.collision_mask = 2 #32768 ?
 	
 	var intersection = space.intersect_ray(params)
 	if intersection:

@@ -1,11 +1,16 @@
 extends Node
 
-var mutagen:int = 20
+var mutagen:int = 0
 var metal:int = 0
 var oil:int = 0
 
 
 var resource_UI:Node3D
+
+func _ready():
+	add_mutagen.call_deferred(20)
+	add_metal.call_deferred(30)
+	add_oil.call_deferred(0)
 
 func has_enough_resources(res:Vector3i):
 	

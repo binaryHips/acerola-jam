@@ -4,11 +4,16 @@ class_name ResourceArea
 @export var resources:Vector3i
 
 var max_resources:Vector3i
-# Called when the node enters the scene tree for the first time.
+var main_type:int = 0
+
+
 func _ready():
 	add_to_group("resource")
 	max_resources = resources
-
+	for i in [1, 2]: #used for puddles scaling
+		if max_resources[i] > max_resources[main_type]:
+			main_type = i
+	assert(max_resources[main_type] > 0, "resource area not configured right!!")
 
 
 func extract():
@@ -23,7 +28,10 @@ func extract():
 	if resources[2] > 0:
 		resources[2] -= 1
 		ResourcesManager.add_oil(1)
-		
+	
+	for k in get_children():
+		if not k is CollisionShape3D:
+			k.scale = Vector3.ONE * resources[main_type] / float(max_resources[main_type])
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

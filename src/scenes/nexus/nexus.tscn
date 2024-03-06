@@ -18,5 +18,4 @@ mesh = SubResource("BoxMesh_dw5hh")
 
 [node name="Ward" type="Node3D" parent="."]
 script = ExtResource("1_xggrv")
-debugview = true
 tag = "nexus"

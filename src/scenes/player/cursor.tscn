@@ -1,11 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://cnbkuj1ns2a35"]
+[gd_scene load_steps=6 format=3 uid="uid://cnbkuj1ns2a35"]
 
-[sub_resource type="Gradient" id="Gradient_6cyjb"]
+[ext_resource type="Texture2D" uid="uid://dmu5e54hblxmy" path="res://resources/textures/cursor/cursor_ground1.png" id="1_3hiyf"]
+[ext_resource type="Texture2D" uid="uid://b4h5fr80ug61w" path="res://resources/textures/cursor/cursor_ground2.png" id="2_vhcd8"]
+[ext_resource type="Texture2D" uid="uid://cjtedq1pmhaal" path="res://resources/textures/cursor/cursor_ground3.png" id="3_abjfp"]
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_uf4wl"]
-gradient = SubResource("Gradient_6cyjb")
-width = 32
-height = 32
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_3r7fc"]
+frames = 3
+speed_scale = 3.0
+frame_0/texture = ExtResource("1_3hiyf")
+frame_1/texture = ExtResource("2_vhcd8")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("3_abjfp")
+frame_2/duration = 1.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xvorn"]
 size = Vector3(1.08984, 1, 1.44141)
@@ -15,7 +21,9 @@ size = Vector3(1.08984, 1, 1.44141)
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(10, 0, 0, 0, -4.37114e-07, -1, 0, 10, -4.37114e-08, 0, 0.01, 0)
 sorting_offset = 0.032
-texture = SubResource("GradientTexture2D_uf4wl")
+alpha_cut = 3
+texture_filter = 0
+texture = SubResource("AnimatedTexture_3r7fc")
 
 [node name="audio" type="AudioStreamPlayer3D" parent="."]
 

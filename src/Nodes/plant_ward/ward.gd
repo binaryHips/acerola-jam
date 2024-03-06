@@ -2,7 +2,9 @@ extends Node3D
 class_name Ward
 
 
-@export var debugview := false
+static var debugview := false
+
+
 @export var tag:String = ""
 
 var is_linked_to_base:bool = false

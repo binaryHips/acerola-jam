@@ -1,11 +1,14 @@
-[gd_scene load_steps=19 format=3 uid="uid://d1u318s5pv1iy"]
+[gd_scene load_steps=23 format=3 uid="uid://d1u318s5pv1iy"]
 
-[ext_resource type="PackedScene" uid="uid://d1scgasuvckup" path="res://src/scenes/player/Player.tscn" id="1_gqbbc"]
+[ext_resource type="Texture2D" uid="uid://cx3077bos741p" path="res://resources/textures/Ground037_1K-JPG_Color.jpg" id="1_itoa3"]
 [ext_resource type="Script" path="res://src/scenes/world/WorldEnvironment.gd" id="2_pw55t"]
 [ext_resource type="PackedScene" uid="uid://dth7lthp8v78r" path="res://src/scenes/nexus/nexus.tscn" id="3_ka6ec"]
-[ext_resource type="PackedScene" uid="uid://bj1h0gk1cpokl" path="res://src/scenes/UI/resources_UI/resources_UI.tscn" id="4_8qns1"]
+[ext_resource type="PackedScene" uid="uid://d2wkgxkhy1p8f" path="res://resources/meshes/barrel.tscn" id="3_mh637"]
 [ext_resource type="Script" path="res://src/Nodes/resource_area/resource_area.gd" id="5_2c2qu"]
+[ext_resource type="PackedScene" uid="uid://i8suom75g58k" path="res://resources/meshes/ledge.tscn" id="5_am454"]
+[ext_resource type="PackedScene" uid="uid://dpyoyl17s8w6v" path="res://resources/meshes/puddle.tscn" id="5_rxypu"]
 [ext_resource type="PackedScene" uid="uid://3yediwp256c5" path="res://resources/meshes/rock.tscn" id="6_jdpoj"]
+[ext_resource type="PackedScene" uid="uid://ccdyle6s1mx7n" path="res://resources/meshes/ore.tscn" id="6_x2c17"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_wl4to"]
 frequency = 0.0088
@@ -18,13 +21,13 @@ bump_strength = 10.7
 noise = SubResource("FastNoiseLite_wl4to")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_65n61"]
-albedo_color = Color(0.352941, 0.309804, 0.113725, 1)
-normal_enabled = true
+diffuse_mode = 2
+specular_mode = 1
+albedo_color = Color(0.72549, 0.643137, 0.431373, 1)
+albedo_texture = ExtResource("1_itoa3")
 normal_texture = SubResource("NoiseTexture2D_4kuxn")
-uv1_scale = Vector3(4.37, 4.37, 4.37)
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_wsed3"]
-viewport_path = NodePath("resource_ui/SubViewport")
+uv1_scale = Vector3(0.66, 0.66, 0.66)
+texture_filter = 1
 
 [sub_resource type="Animation" id="Animation_oduhd"]
 length = 0.001
@@ -127,15 +130,26 @@ ambient_light_source = 2
 ambient_light_color = Color(0.6, 0.780392, 0.831373, 1)
 ambient_light_sky_contribution = 0.0
 tonemap_exposure = 1.1
+ssao_enabled = true
+ssao_radius = 3.11
+ssao_intensity = 6.36
+ssao_detail = 3.49
+ssao_horizon = 0.0
 adjustment_enabled = true
-adjustment_brightness = 1.1
-adjustment_contrast = 1.2
-adjustment_saturation = 0.98
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_of2gs"]
+adjustment_brightness = 1.4
+adjustment_contrast = 1.4
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wv6a8"]
 size = Vector3(7.83789, 2.74023, 7.10254)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3wmmi"]
+size = Vector3(11.7745, 2.74023, 14.0215)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_n4c2r"]
+size = Vector3(7.83789, 2.74023, 10.1631)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hmcck"]
+size = Vector3(16.0313, 2.74023, 18.3499)
 
 [node name="world" type="Node3D" groups=["world"]]
 
@@ -143,23 +157,9 @@ size = Vector3(7.83789, 2.74023, 7.10254)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -121.149, -0.366522, 23.6355)
 material_override = SubResource("StandardMaterial3D_65n61")
 use_collision = true
-size = Vector3(366.762, 1, 250.04)
-
-[node name="Player" parent="." instance=ExtResource("1_gqbbc")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 3.28498, 0)
-
-[node name="PathFollow" parent="Player/Path" index="0"]
-transform = Transform3D(-0.999998, -0.000749263, -0.00205189, 0, 0.939334, -0.343005, 0.00218441, -0.343004, -0.939332, -0.00762939, -2.17762, -2.5437)
-
-[node name="resources" parent="Player/UI" index="1"]
-anchor_left = 0.743056
-anchor_top = 0.682099
-offset_left = 0.0
-offset_top = 0.0
-offset_bottom = 6.10352e-05
-texture = SubResource("ViewportTexture_wsed3")
-expand_mode = 1
-metadata/_edit_use_anchors_ = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(742.698, 1, 606.687)
 
 [node name="daynight cycle" type="AnimationPlayer" parent="."]
 libraries = {
@@ -176,30 +176,313 @@ script = ExtResource("2_pw55t")
 transform = Transform3D(-3.61999e-06, 0, -1, 0, 1, 0, 1, 0, -3.61999e-06, -3.10785, 25.2792, 0)
 rotation_order = 4
 
-[node name="resource_ui" parent="." instance=ExtResource("4_8qns1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.7547, -47.3406, 0)
-
-[node name="Camera3D" parent="resource_ui/SubViewport" index="0"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 14.0547, -45.3506, 0)
-
 [node name="resources" type="Node3D" parent="."]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="resources"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.35789, 0, 23.1488)
-mesh = SubResource("CylinderMesh_of2gs")
-skeleton = NodePath("ResourceArea")
+[node name="mutagen_spot" type="Node3D" parent="resources"]
+transform = Transform3D(1, 0, 0, 0, 1, 3.49246e-10, 0, 0, 1, -21.4248, 1.06659, 10.5254)
 
-[node name="ResourceArea" type="Area3D" parent="resources/MeshInstance3D"]
+[node name="mutagen_barrel" parent="resources/mutagen_spot" instance=ExtResource("3_mh637")]
+transform = Transform3D(0.00232672, 0.894721, 0.44662, -0.999997, 0.00260049, -3.12479e-10, -0.00116143, -0.446618, 0.894724, -2.82117, 2.38419e-07, 0.547779)
+
+[node name="mutagen_barrel2" parent="resources/mutagen_spot" instance=ExtResource("3_mh637")]
+transform = Transform3D(-0.000679543, -0.261312, 0.965254, -0.999997, 0.00260049, 1.95422e-10, -0.00251013, -0.965251, -0.261313, 1.00549, 2.38419e-07, 2.5658)
+
+[node name="ResourceArea" type="Area3D" parent="resources/mutagen_spot"]
+transform = Transform3D(0.400061, 0, 0.916488, 3.2008e-10, 1, -1.3972e-10, -0.916488, 0, 0.400061, -0.0222454, -0.93311, -0.0577078)
 script = ExtResource("5_2c2qu")
 resources = Vector3i(40, 0, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="resources/MeshInstance3D/ResourceArea"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="resources/mutagen_spot/ResourceArea"]
 shape = SubResource("BoxShape3D_wv6a8")
+
+[node name="puddle2" parent="resources/mutagen_spot/ResourceArea" instance=ExtResource("5_rxypu")]
+transform = Transform3D(0.400061, 0, -0.916488, 0, 1, 0, 0.916488, 0, 0.400061, -0.181839, 9.53674e-07, -1.20498)
+
+[node name="puddle3" parent="resources/mutagen_spot/ResourceArea" instance=ExtResource("5_rxypu")]
+transform = Transform3D(-0.974664, 0, -0.223675, 0, 1, 0, 0.223675, 0, -0.974664, 2.62989, 1.43051e-06, 0.111037)
+
+[node name="puddle5" parent="resources/mutagen_spot/ResourceArea" instance=ExtResource("5_rxypu")]
+transform = Transform3D(-0.223675, 0, 0.974664, 0, 1, 0, -0.974664, 0, -0.223675, 0.547983, 1.43051e-06, 1.62293)
+
+[node name="puddle6" parent="resources/mutagen_spot/ResourceArea" instance=ExtResource("5_rxypu")]
+transform = Transform3D(-0.194748, 0, -0.980853, 0, 1, 0, 0.980853, 0, -0.194748, 2.09727, -0.114154, -2.32672)
+
+[node name="puddle4" parent="resources/mutagen_spot/ResourceArea" instance=ExtResource("5_rxypu")]
+transform = Transform3D(0.962871, 0, 0.269962, 0, 1, 0, -0.269962, 0, 0.962871, 0.679552, 1.90735e-06, 0.279095)
+
+[node name="puddle7" parent="resources/mutagen_spot/ResourceArea" instance=ExtResource("5_rxypu")]
+transform = Transform3D(-0.165925, 0, 0.986138, 0, 1, 0, -0.986138, 0, -0.165925, -0.508499, 1.90735e-06, 0.497427)
+
+[node name="mutagen_spot2" type="Node3D" parent="resources"]
+transform = Transform3D(-0.053556, 0, 0.998565, 0, 1, 3.49246e-10, -0.998565, 0, -0.053556, -32.381, 1.06659, 47.9556)
+
+[node name="mutagen_barrel" parent="resources/mutagen_spot2" instance=ExtResource("3_mh637")]
+transform = Transform3D(0.00232672, 0.894721, 0.44662, -0.999997, 0.00260049, -3.12479e-10, -0.00116143, -0.446618, 0.894724, -2.82117, 2.38419e-07, 0.547779)
+
+[node name="mutagen_barrel2" parent="resources/mutagen_spot2" instance=ExtResource("3_mh637")]
+transform = Transform3D(-0.000679543, -0.261312, 0.965254, -0.999997, 0.00260049, 1.95422e-10, -0.00251013, -0.965251, -0.261313, 1.00549, 2.38419e-07, 2.5658)
+
+[node name="ResourceArea" type="Area3D" parent="resources/mutagen_spot2"]
+transform = Transform3D(0.400061, 0, 0.916488, 3.2008e-10, 1, -1.3972e-10, -0.916488, 0, 0.400061, -0.0222454, -0.93311, -0.0577078)
+script = ExtResource("5_2c2qu")
+resources = Vector3i(80, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="resources/mutagen_spot2/ResourceArea"]
+shape = SubResource("BoxShape3D_wv6a8")
+
+[node name="puddle2" parent="resources/mutagen_spot2/ResourceArea" instance=ExtResource("5_rxypu")]
+transform = Transform3D(0.400061, 0, -0.916488, 0, 1, 0, 0.916488, 0, 0.400061, -0.181839, 9.53674e-07, -1.20498)
+
+[node name="puddle3" parent="resources/mutagen_spot2/ResourceArea" instance=ExtResource("5_rxypu")]
+transform = Transform3D(-0.974664, 0, -0.223675, 0, 1, 0, 0.223675, 0, -0.974664, 2.62989, 1.43051e-06, 0.111037)
+
+[node name="puddle5" parent="resources/mutagen_spot2/ResourceArea" instance=ExtResource("5_rxypu")]
+transform = Transform3D(-0.223675, 0, 0.974664, 0, 1, 0, -0.974664, 0, -0.223675, 0.547983, 1.43051e-06, 1.62293)
+
+[node name="puddle6" parent="resources/mutagen_spot2/ResourceArea" instance=ExtResource("5_rxypu")]
+transform = Transform3D(-0.194748, 0, -0.980853, 0, 1, 0, 0.980853, 0, -0.194748, 2.09727, -0.114154, -2.32672)
+
+[node name="puddle4" parent="resources/mutagen_spot2/ResourceArea" instance=ExtResource("5_rxypu")]
+transform = Transform3D(0.962871, 0, 0.269962, 0, 1, 0, -0.269962, 0, 0.962871, 0.679552, 1.90735e-06, 0.279095)
+
+[node name="puddle7" parent="resources/mutagen_spot2/ResourceArea" instance=ExtResource("5_rxypu")]
+transform = Transform3D(-0.165925, 0, 0.986138, 0, 1, 0, -0.986138, 0, -0.165925, -0.508499, 1.90735e-06, 0.497427)
+
+[node name="mutagen_spot3" type="Node3D" parent="resources"]
+transform = Transform3D(-0.611196, -1.78949e-17, -0.79148, -1.53371e-17, 1, 3.49246e-10, 0.79148, 1.91715e-17, -0.611196, -68.9202, 1.06659, -35.5134)
+
+[node name="mutagen_barrel" parent="resources/mutagen_spot3" instance=ExtResource("3_mh637")]
+transform = Transform3D(0.00232672, 0.894721, 0.44662, -0.999997, 0.00260049, -3.12479e-10, -0.00116143, -0.446618, 0.894724, -2.82117, 2.38419e-07, 0.547779)
+
+[node name="mutagen_barrel5" parent="resources/mutagen_spot3" instance=ExtResource("3_mh637")]
+transform = Transform3D(0.00255148, 0.981148, -0.193241, -0.999997, 0.00260049, -3.42836e-10, 0.000502522, 0.19324, 0.981151, -5.0877, 2.38419e-07, -3.36115)
+
+[node name="mutagen_barrel2" parent="resources/mutagen_spot3" instance=ExtResource("3_mh637")]
+transform = Transform3D(-0.000679543, -0.261312, 0.965254, -0.999997, 0.00260049, 1.95422e-10, -0.00251013, -0.965251, -0.261313, 1.00549, 2.38419e-07, 2.5658)
+
+[node name="mutagen_barrel3" parent="resources/mutagen_spot3" instance=ExtResource("3_mh637")]
+transform = Transform3D(-0.00220794, -0.849043, 0.52832, -0.999997, 0.00260049, 3.62054e-10, -0.00137389, -0.528318, -0.849046, 4.36409, 2.38419e-07, 1.15884)
+
+[node name="mutagen_barrel4" parent="resources/mutagen_spot3" instance=ExtResource("3_mh637")]
+transform = Transform3D(-0.611912, -0.274712, 0.741685, 0.00243693, 0.937084, 0.349096, -0.790922, 0.215423, -0.572744, 3.07743, 0.529253, 2.75274)
+
+[node name="ResourceArea" type="Area3D" parent="resources/mutagen_spot3"]
+transform = Transform3D(0.400061, 0, 0.916488, 3.2008e-10, 1, -1.3972e-10, -0.916488, 0, 0.400061, -0.0222454, -0.93311, -0.0577078)
+script = ExtResource("5_2c2qu")
+resources = Vector3i(250, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="resources/mutagen_spot3/ResourceArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, -8.27181e-25, 1, 1.96829, 0, 2.28882e-05)
+shape = SubResource("BoxShape3D_3wmmi")
+
+[node name="puddle2" parent="resources/mutagen_spot3/ResourceArea" instance=ExtResource("5_rxypu")]
+transform = Transform3D(0.400061, 0, -0.916488, 0, 1, 0, 0.916488, 0, 0.400061, -0.181839, 9.53674e-07, -1.20498)
+
+[node name="puddle3" parent="resources/mutagen_spot3/ResourceArea" instance=ExtResource("5_rxypu")]
+transform = Transform3D(-0.974664, 0, -0.223675, 0, 1, 0, 0.223675, -8.27181e-25, -0.974664, 4.49693, 4.76837e-07, 1.77438)
+
+[node name="puddle5" parent="resources/mutagen_spot3/ResourceArea" instance=ExtResource("5_rxypu")]
+transform = Transform3D(-0.223675, 0, 0.974664, -1.65436e-24, 1, 0, -0.974664, -8.27181e-25, -0.223675, 1.32281, 1.43051e-06, 5.18808)
+
+[node name="puddle6" parent="resources/mutagen_spot3/ResourceArea" instance=ExtResource("5_rxypu")]
+transform = Transform3D(-0.194748, 0, -0.980853, 0, 1, -1.65436e-24, 0.980853, -8.27181e-25, -0.194748, 3.63979, -0.114154, -2.5526)
+
+[node name="puddle4" parent="resources/mutagen_spot3/ResourceArea" instance=ExtResource("5_rxypu")]
+transform = Transform3D(0.962871, 0, 0.269962, 1.65436e-24, 1, 0, -0.269962, -8.27181e-25, 0.962871, 2.555, 1.90735e-06, -4.73502)
+
+[node name="puddle7" parent="resources/mutagen_spot3/ResourceArea" instance=ExtResource("5_rxypu")]
+transform = Transform3D(4.27062, -5.3165e-17, -5.46536, 1.54378e-16, 1, -3.30628e-16, 6.50684, 1.11683e-17, 3.58707, 3.09142, 1.90735e-06, 0.284119)
+
+[node name="mutagen_spot4" type="Node3D" parent="resources"]
+transform = Transform3D(0.987778, 3.57009e-17, 0.155866, -2.63211e-17, 1, 3.49246e-10, -0.155866, -2.5622e-17, 0.987778, -126.741, 1.06659, 83.6396)
+
+[node name="mutagen_barrel" parent="resources/mutagen_spot4" instance=ExtResource("3_mh637")]
+transform = Transform3D(0.00232672, 0.894721, 0.44662, -0.999997, 0.00260049, -3.12479e-10, -0.00116143, -0.446618, 0.894724, -2.82117, 2.38419e-07, 0.547779)
+
+[node name="mutagen_barrel5" parent="resources/mutagen_spot4" instance=ExtResource("3_mh637")]
+transform = Transform3D(0.00255148, 0.981148, -0.193241, -0.999997, 0.00260049, -3.42836e-10, 0.000502522, 0.19324, 0.981151, -5.0877, 2.38419e-07, -3.36115)
+
+[node name="mutagen_barrel2" parent="resources/mutagen_spot4" instance=ExtResource("3_mh637")]
+transform = Transform3D(-0.000679543, -0.261312, 0.965254, -0.999997, 0.00260049, 1.95422e-10, -0.00251013, -0.965251, -0.261313, 1.00549, 2.38419e-07, 2.5658)
+
+[node name="mutagen_barrel3" parent="resources/mutagen_spot4" instance=ExtResource("3_mh637")]
+transform = Transform3D(-0.00220794, -0.849043, 0.52832, -0.999997, 0.00260049, 3.62054e-10, -0.00137389, -0.528318, -0.849046, 4.36409, 2.38419e-07, 1.15884)
+
+[node name="mutagen_barrel4" parent="resources/mutagen_spot4" instance=ExtResource("3_mh637")]
+transform = Transform3D(-0.611912, -0.274712, 0.741685, 0.00243693, 0.937084, 0.349096, -0.790922, 0.215423, -0.572744, 3.07743, 0.529253, 2.75274)
+
+[node name="ResourceArea" type="Area3D" parent="resources/mutagen_spot4"]
+transform = Transform3D(0.400061, 0, 0.916488, 3.2008e-10, 1, -1.3972e-10, -0.916488, 0, 0.400061, -0.0222454, -0.93311, -0.0577078)
+script = ExtResource("5_2c2qu")
+resources = Vector3i(250, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="resources/mutagen_spot4/ResourceArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, -8.27181e-25, 1, 1.96829, 0, 2.28882e-05)
+shape = SubResource("BoxShape3D_3wmmi")
+
+[node name="puddle2" parent="resources/mutagen_spot4/ResourceArea" instance=ExtResource("5_rxypu")]
+transform = Transform3D(0.400061, 0, -0.916488, 0, 1, 0, 0.916488, 0, 0.400061, -0.181839, 9.53674e-07, -1.20498)
+
+[node name="puddle3" parent="resources/mutagen_spot4/ResourceArea" instance=ExtResource("5_rxypu")]
+transform = Transform3D(-0.974664, 0, -0.223675, 0, 1, 0, 0.223675, -8.27181e-25, -0.974664, 4.49693, 4.76837e-07, 1.77438)
+
+[node name="puddle5" parent="resources/mutagen_spot4/ResourceArea" instance=ExtResource("5_rxypu")]
+transform = Transform3D(-0.223675, 0, 0.974664, -1.65436e-24, 1, 0, -0.974664, -8.27181e-25, -0.223675, 1.32281, 1.43051e-06, 5.18808)
+
+[node name="puddle6" parent="resources/mutagen_spot4/ResourceArea" instance=ExtResource("5_rxypu")]
+transform = Transform3D(-0.194748, 0, -0.980853, 0, 1, -1.65436e-24, 0.980853, -8.27181e-25, -0.194748, 3.63979, -0.114154, -2.5526)
+
+[node name="puddle4" parent="resources/mutagen_spot4/ResourceArea" instance=ExtResource("5_rxypu")]
+transform = Transform3D(0.962871, 0, 0.269962, 1.65436e-24, 1, 0, -0.269962, -8.27181e-25, 0.962871, 2.555, 1.90735e-06, -4.73502)
+
+[node name="puddle7" parent="resources/mutagen_spot4/ResourceArea" instance=ExtResource("5_rxypu")]
+transform = Transform3D(4.27062, -5.3165e-17, -5.46536, 1.54378e-16, 1, -3.30628e-16, 6.50684, 1.11683e-17, 3.58707, 3.09142, 1.90735e-06, 0.284119)
+
+[node name="mutagen_spot5" type="Node3D" parent="resources"]
+transform = Transform3D(-0.381167, 8.56546e-18, -0.924506, -2.2894e-17, 1, 3.49246e-10, 0.924506, 4.08581e-17, -0.381167, -254.017, 1.06659, -5.38536)
+
+[node name="mutagen_barrel" parent="resources/mutagen_spot5" instance=ExtResource("3_mh637")]
+transform = Transform3D(0.00232672, 0.894721, 0.44662, -0.999997, 0.00260049, -3.12479e-10, -0.00116143, -0.446618, 0.894724, -2.82117, 2.38419e-07, 0.547779)
+
+[node name="mutagen_barrel5" parent="resources/mutagen_spot5" instance=ExtResource("3_mh637")]
+transform = Transform3D(0.00255148, 0.981148, -0.193241, -0.999997, 0.00260049, -3.42836e-10, 0.000502522, 0.19324, 0.981151, -5.0877, 2.38419e-07, -3.36115)
+
+[node name="mutagen_barrel2" parent="resources/mutagen_spot5" instance=ExtResource("3_mh637")]
+transform = Transform3D(-0.000679543, -0.261312, 0.965254, -0.999997, 0.00260049, 1.95422e-10, -0.00251013, -0.965251, -0.261313, 1.00549, 2.38419e-07, 2.5658)
+
+[node name="mutagen_barrel3" parent="resources/mutagen_spot5" instance=ExtResource("3_mh637")]
+transform = Transform3D(-0.00220794, -0.849043, 0.52832, -0.999997, 0.00260049, 3.62054e-10, -0.00137389, -0.528318, -0.849046, 4.36409, 2.38419e-07, 1.15884)
+
+[node name="mutagen_barrel4" parent="resources/mutagen_spot5" instance=ExtResource("3_mh637")]
+transform = Transform3D(-0.611912, -0.274712, 0.741685, 0.00243693, 0.937084, 0.349096, -0.790922, 0.215423, -0.572744, 3.07743, 0.529253, 2.75274)
+
+[node name="ResourceArea" type="Area3D" parent="resources/mutagen_spot5"]
+transform = Transform3D(0.400061, 0, 0.916488, 3.2008e-10, 1, -1.3972e-10, -0.916488, 0, 0.400061, -0.0222454, -0.93311, -0.0577078)
+script = ExtResource("5_2c2qu")
+resources = Vector3i(250, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="resources/mutagen_spot5/ResourceArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, -8.27181e-25, 1, 1.96829, 0, 2.28882e-05)
+shape = SubResource("BoxShape3D_3wmmi")
+
+[node name="puddle2" parent="resources/mutagen_spot5/ResourceArea" instance=ExtResource("5_rxypu")]
+transform = Transform3D(0.400061, 0, -0.916488, 0, 1, 0, 0.916488, 0, 0.400061, -0.181839, 9.53674e-07, -1.20498)
+
+[node name="puddle3" parent="resources/mutagen_spot5/ResourceArea" instance=ExtResource("5_rxypu")]
+transform = Transform3D(-0.974664, 0, -0.223675, 0, 1, 0, 0.223675, -8.27181e-25, -0.974664, 4.49693, 4.76837e-07, 1.77438)
+
+[node name="puddle5" parent="resources/mutagen_spot5/ResourceArea" instance=ExtResource("5_rxypu")]
+transform = Transform3D(-0.223675, 0, 0.974664, -1.65436e-24, 1, 0, -0.974664, -8.27181e-25, -0.223675, 1.32281, 1.43051e-06, 5.18808)
+
+[node name="puddle6" parent="resources/mutagen_spot5/ResourceArea" instance=ExtResource("5_rxypu")]
+transform = Transform3D(-0.194748, 0, -0.980853, 0, 1, -1.65436e-24, 0.980853, -8.27181e-25, -0.194748, 3.63979, -0.114154, -2.5526)
+
+[node name="puddle4" parent="resources/mutagen_spot5/ResourceArea" instance=ExtResource("5_rxypu")]
+transform = Transform3D(0.962871, 0, 0.269962, 1.65436e-24, 1, 0, -0.269962, -8.27181e-25, 0.962871, 2.555, 1.90735e-06, -4.73502)
+
+[node name="puddle7" parent="resources/mutagen_spot5/ResourceArea" instance=ExtResource("5_rxypu")]
+transform = Transform3D(4.27062, -5.3165e-17, -5.46536, 1.54378e-16, 1, -3.30628e-16, 6.50684, 1.11683e-17, 3.58707, 3.09142, 1.90735e-06, 0.284119)
+
+[node name="ore_spot" type="Node3D" parent="resources"]
+transform = Transform3D(0.93529, 0, 0.353883, 0, 1, 3.49246e-10, -0.353883, 0, 0.93529, -36.134, 1.06659, -0.549795)
+
+[node name="ResourceArea" type="Area3D" parent="resources/ore_spot"]
+transform = Transform3D(0.400061, 0, 0.916488, 3.2008e-10, 1, -1.3972e-10, -0.916488, 0, 0.400061, -0.0222454, -0.93311, -0.0577078)
+script = ExtResource("5_2c2qu")
+resources = Vector3i(0, 50, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="resources/ore_spot/ResourceArea"]
+transform = Transform3D(0.905606, 0, 0.42412, 0, 1, 0, -0.42412, 0, 0.905606, 0.97852, 4.76837e-07, -0.218037)
+shape = SubResource("BoxShape3D_n4c2r")
+
+[node name="ore2" parent="resources/ore_spot/ResourceArea" instance=ExtResource("6_x2c17")]
+transform = Transform3D(0.400061, 0, -0.916488, 0, 1, 3.49246e-10, 0.916488, 0, 0.400061, 1.72709, -0.374594, -3.00559)
+
+[node name="ore3" parent="resources/ore_spot/ResourceArea" instance=ExtResource("6_x2c17")]
+transform = Transform3D(0.372433, -0.14609, -0.916488, 0.365169, 0.930941, 3.49246e-10, 0.853197, -0.334673, 0.400061, 3.21734, -0.374594, 1.07967)
+
+[node name="ore4" parent="resources/ore_spot/ResourceArea" instance=ExtResource("6_x2c17")]
+transform = Transform3D(0.945815, 0.140797, -0.292592, -0.223453, 0.936023, -0.271901, 0.235589, 0.322549, 0.916766, 3.74511, -0.374594, -1.43831)
+
+[node name="ore_spot2" type="Node3D" parent="resources"]
+transform = Transform3D(0.556151, 0, -0.831082, 0, 1, 3.49246e-10, 0.831082, 0, 0.556151, 15.5241, 1.06659, -37.775)
+
+[node name="ResourceArea" type="Area3D" parent="resources/ore_spot2"]
+transform = Transform3D(0.400061, 0, 0.916488, 3.2008e-10, 1, -1.3972e-10, -0.916488, 0, 0.400061, -0.0222454, -0.93311, -0.0577078)
+script = ExtResource("5_2c2qu")
+resources = Vector3i(0, 50, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="resources/ore_spot2/ResourceArea"]
+transform = Transform3D(0.905606, 0, 0.42412, 0, 1, 0, -0.42412, 0, 0.905606, 0.97852, 4.76837e-07, -0.218037)
+shape = SubResource("BoxShape3D_n4c2r")
+
+[node name="ore2" parent="resources/ore_spot2/ResourceArea" instance=ExtResource("6_x2c17")]
+transform = Transform3D(0.400061, 0, -0.916488, 0, 1, 3.49246e-10, 0.916488, 0, 0.400061, 1.72709, -0.374594, -3.0056)
+
+[node name="ore3" parent="resources/ore_spot2/ResourceArea" instance=ExtResource("6_x2c17")]
+transform = Transform3D(0.372433, -0.14609, -0.916488, 0.365169, 0.930941, 3.49246e-10, 0.853197, -0.334673, 0.400061, 3.21734, -0.374594, 1.07967)
+
+[node name="ore4" parent="resources/ore_spot2/ResourceArea" instance=ExtResource("6_x2c17")]
+transform = Transform3D(0.945815, 0.140797, -0.292592, -0.223453, 0.936023, -0.271901, 0.235589, 0.322549, 0.916766, 3.74511, -0.374594, -1.43831)
+
+[node name="ore_spot3" type="Node3D" parent="resources"]
+transform = Transform3D(-0.685907, 0, 0.727689, 0, 1, 3.49246e-10, -0.727689, 0, -0.685907, -94.0487, 1.06659, 11.8985)
+
+[node name="ResourceArea" type="Area3D" parent="resources/ore_spot3"]
+transform = Transform3D(0.400061, 0, 0.916488, 3.2008e-10, 1, -1.3972e-10, -0.916488, 0, 0.400061, -0.0222454, -0.93311, -0.0577078)
+script = ExtResource("5_2c2qu")
+resources = Vector3i(0, 80, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="resources/ore_spot3/ResourceArea"]
+transform = Transform3D(0.905606, 0, 0.42412, 0, 1, 0, -0.42412, 0, 0.905606, 0.97852, 4.76837e-07, -0.218037)
+shape = SubResource("BoxShape3D_n4c2r")
+
+[node name="ore2" parent="resources/ore_spot3/ResourceArea" instance=ExtResource("6_x2c17")]
+transform = Transform3D(0.400061, 0, -0.916488, 0, 1, 3.49246e-10, 0.916488, 0, 0.400061, 1.72709, -0.374594, -3.00559)
+
+[node name="ore3" parent="resources/ore_spot3/ResourceArea" instance=ExtResource("6_x2c17")]
+transform = Transform3D(0.372433, -0.14609, -0.916488, 0.365169, 0.930941, 3.49246e-10, 0.853197, -0.334673, 0.400061, 3.21734, -0.374594, 1.07967)
+
+[node name="ore4" parent="resources/ore_spot3/ResourceArea" instance=ExtResource("6_x2c17")]
+transform = Transform3D(0.945815, 0.140797, -0.292592, -0.223453, 0.936023, -0.271901, 0.235589, 0.322549, 0.916766, 3.74511, -0.374594, -1.43832)
+
+[node name="ore_spot4" type="Node3D" parent="resources"]
+transform = Transform3D(0.492484, 0, 0.870321, 0, 1, 3.49246e-10, -0.870321, 0, 0.492484, -154.718, 1.06659, 17.7253)
+
+[node name="ResourceArea" type="Area3D" parent="resources/ore_spot4"]
+transform = Transform3D(0.400061, 0, 0.916488, 3.2008e-10, 1, -1.3972e-10, -0.916488, 0, 0.400061, -0.0222454, -0.93311, -0.0577078)
+script = ExtResource("5_2c2qu")
+resources = Vector3i(0, 200, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="resources/ore_spot4/ResourceArea"]
+transform = Transform3D(0.56393, 0, 0.825823, 0, 1, 0, -0.825823, 0, 0.56393, 2.24888, 4.76837e-07, -1.96877)
+shape = SubResource("BoxShape3D_hmcck")
+
+[node name="ore2" parent="resources/ore_spot4/ResourceArea" instance=ExtResource("6_x2c17")]
+transform = Transform3D(0.779071, -0.54052, -1.48866, -0.443208, 1.51833, -0.783239, 1.52047, 0.719538, 0.534462, -1.13539, -0.374594, -4.99812)
+
+[node name="ore3" parent="resources/ore_spot4/ResourceArea" instance=ExtResource("6_x2c17")]
+transform = Transform3D(0.616377, -0.241779, -1.51679, 0.604355, 1.54071, 5.6389e-08, 1.41204, -0.553884, 0.662101, 6.00371, -0.374594, 2.79285)
+
+[node name="ore4" parent="resources/ore_spot4/ResourceArea" instance=ExtResource("6_x2c17")]
+transform = Transform3D(1.83961, 0.273851, -0.569091, -0.434617, 1.82056, -0.528847, 0.458221, 0.627357, 1.78311, 1.35239, -0.344409, -3.7356)
+
+[node name="ore5" parent="resources/ore_spot4/ResourceArea" instance=ExtResource("6_x2c17")]
+transform = Transform3D(3.42858, 0.51039, -1.06065, -0.810018, 3.39308, -0.985641, 0.854012, 1.16924, 3.32328, 5.94217, -0.374594, -4.36307)
 
 [node name="environment" type="Node3D" parent="."]
 
 [node name="rock" parent="environment" instance=ExtResource("6_jdpoj")]
 transform = Transform3D(5.56977, 0, 8.30528, 0, 10, 0, -8.30528, 0, 5.56977, -22.6601, 4.80053, 47.6511)
+
+[node name="rock18" parent="environment" instance=ExtResource("6_jdpoj")]
+transform = Transform3D(-9.04269, 0, 4.26963, 0, 10, 0, -4.26963, 0, -9.04269, -47.9023, 4.80053, -7.65907)
+
+[node name="rock19" parent="environment" instance=ExtResource("6_jdpoj")]
+transform = Transform3D(-6.62067, 4.1091, 12.4673, 2.98406, 9.11676, -5.61923, -12.7862, 0, -7.76696, -35.7916, 4.80053, -10.5645)
+
+[node name="rock20" parent="environment" instance=ExtResource("6_jdpoj")]
+transform = Transform3D(-6.62067, 4.1091, 12.4673, 2.98406, 9.11676, -5.61923, -12.7862, 0, -7.76696, -23.4517, 4.80053, 56.345)
 
 [node name="rock2" parent="environment" instance=ExtResource("6_jdpoj")]
 transform = Transform3D(34.6857, 0, 51.7211, 0, 62.275, 0, -51.7211, 0, 34.6857, -75.3005, 19.4492, 138.802)
@@ -208,7 +491,7 @@ transform = Transform3D(34.6857, 0, 51.7211, 0, 62.275, 0, -51.7211, 0, 34.6857,
 transform = Transform3D(35.3772, 46.5698, -21.3982, -51.1689, 33.5627, -11.5525, 2.89334, 24.1448, 57.3309, 62.1449, 19.1893, 29.3898)
 
 [node name="rock17" parent="environment" instance=ExtResource("6_jdpoj")]
-transform = Transform3D(35.4812, 48.9345, -14.9892, -51.1689, 33.5627, -11.5525, -0.999411, 18.8981, 59.3299, 62.3808, 19.1893, 97.0086)
+transform = Transform3D(35.4812, 48.9345, -14.9892, -51.1689, 33.5627, -11.5525, -0.999411, 18.8981, 59.3299, 62.3808, 17.3211, 46.1875)
 
 [node name="rock9" parent="environment" instance=ExtResource("6_jdpoj")]
 transform = Transform3D(3.37861, 0, 62.1833, 0, 62.275, 0, -62.1833, 0, 3.37861, -121.261, 19.4492, 113.834)
@@ -220,7 +503,7 @@ transform = Transform3D(24.0081, 53.2847, 21.5065, -55.8387, 27.1341, -4.89387, 
 transform = Transform3D(3.37861, 0, 62.1833, 57.4049, 23.94, -3.11899, -23.9048, 57.4896, 1.29882, -208.019, 24.6274, 124.06)
 
 [node name="rock3" parent="environment" instance=ExtResource("6_jdpoj")]
-transform = Transform3D(-9.02251, -9.53991, 60.8749, 25.2862, 55.5317, 12.4503, -56.1906, 26.5215, -4.17194, 5.62158, 19.4492, 154.54)
+transform = Transform3D(-9.02251, -9.53991, 60.8749, 25.2862, 55.5317, 12.4503, -56.1906, 26.5215, -4.17194, -32.8884, 19.4492, 161.988)
 
 [node name="rock4" parent="environment" instance=ExtResource("6_jdpoj")]
 transform = Transform3D(34.3146, -12.5637, -13.6544, 15.8396, 34.7859, 7.79907, 9.66407, -12.4046, 35.7003, -64.2738, 14.9614, -74.8142)
@@ -235,25 +518,39 @@ transform = Transform3D(27.0688, -17.2893, 22.1391, 15.8396, 34.7859, 7.79907, -
 transform = Transform3D(28.686, -7.36989, -25.3886, 15.8396, 34.7859, 7.79907, 21.166, -16.0438, 28.5723, -176.765, 14.9614, -28.4968)
 
 [node name="rock12" parent="environment" instance=ExtResource("6_jdpoj")]
-transform = Transform3D(-6.55461, 104.068, -55.1824, 63.7242, 49.6147, 85.9983, 99.0675, -25.0287, -58.9686, -198.879, 4.88178, -76.8619)
+transform = Transform3D(-6.55461, 104.068, -55.1824, 63.7242, 49.6147, 85.9983, 99.0675, -25.0287, -58.9686, -157.334, 4.88178, -80.7013)
 
 [node name="rock13" parent="environment" instance=ExtResource("6_jdpoj")]
 transform = Transform3D(51.2365, -26.9654, -102.79, 58.6104, -88.0178, 52.3048, -88.644, -73.7824, -24.8296, -310.883, 6.09126, -86.9441)
 
 [node name="rock11" parent="environment" instance=ExtResource("6_jdpoj")]
-transform = Transform3D(28.8014, 19.2858, -44.8396, -28.8411, 48.7271, 2.43262, 39.3793, 21.582, 34.5767, -272.433, 14.9614, 13.5298)
+transform = Transform3D(28.8014, 19.2858, -44.8396, -28.8411, 48.7271, 2.43262, 39.3793, 21.582, 34.5767, -284.325, 14.9614, 5.30772)
 
 [node name="rock7" parent="environment" instance=ExtResource("6_jdpoj")]
 transform = Transform3D(-2.12899, -20.8081, -48.7088, 50.912, 12.6436, -7.62657, 14.6114, -47.0874, 19.4768, -139.27, 14.9614, -75.5842)
 
-[node name="rock8" parent="environment" instance=ExtResource("6_jdpoj")]
-transform = Transform3D(3.88669, -19.1728, -49.2682, -3.58953, 49.1915, -19.4261, 52.7454, 4.76048, 2.30844, -95.9708, 23.0687, -98.2298)
+[node name="ledge2" parent="environment" instance=ExtResource("5_am454")]
+transform = Transform3D(-3.56573, 0.222301, 3.49802, 0.237755, 4.99378, -0.0750004, -3.497, 0.112848, -3.57187, -104.228, -9.43182, -15.0491)
+
+[node name="ledge6" parent="environment" instance=ExtResource("5_am454")]
+transform = Transform3D(-4.9489, 0.245671, 0.669384, 0.210062, 4.98787, -0.277569, -0.681398, -0.24661, -4.94721, -170.453, 3.33881, 10.8378)
+
+[node name="ledge7" parent="environment" instance=ExtResource("5_am454")]
+transform = Transform3D(-4.9489, 0.245671, 0.669384, 0.210062, 4.98787, -0.277569, -0.681398, -0.24661, -4.94721, -73.9998, 3.33881, 94.4228)
+
+[node name="ledge3" parent="environment" instance=ExtResource("5_am454")]
+transform = Transform3D(-4.62357, -0.076499, 1.90178, -0.131632, 4.99685, -0.119023, -1.89876, -0.160129, -4.62267, -83.0393, -8.65828, -68.1257)
+
+[node name="ledge4" parent="environment" instance=ExtResource("5_am454")]
+transform = Transform3D(4.4366, -0.1767, 2.29899, 0.237755, 4.99378, -0.0750004, -2.29348, 0.175869, 4.43948, -38.9696, -9.43182, 70.3436)
+
+[node name="ledge5" parent="environment" instance=ExtResource("5_am454")]
+transform = Transform3D(3.24926, 0.17602, 3.79622, -0.131632, 4.99685, -0.119023, -3.79802, -0.0225935, 3.25185, 4.82018, -8.65828, 107.066)
+
+[node name="ledge8" parent="environment" instance=ExtResource("5_am454")]
+transform = Transform3D(0.70232, 0.642736, 1.75887, -0.904551, 1.76126, -0.282419, -1.63968, -0.696321, 0.909177, -26.1322, 1.70556, 17.2515)
 
 [node name="plants" type="Node3D" parent="."]
 
 [node name="Nexus" parent="plants" instance=ExtResource("3_ka6ec")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.2339, 0.262822, 0)
-
-[editable path="Player"]
-[editable path="Player/UI"]
-[editable path="resource_ui"]

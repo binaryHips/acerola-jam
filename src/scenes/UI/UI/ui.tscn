@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://cng4vguovxxpf"]
+[gd_scene load_steps=5 format=3 uid="uid://cng4vguovxxpf"]
 
 [ext_resource type="PackedScene" uid="uid://cj3wgxg5028a5" path="res://src/scenes/UI/shop/shop.tscn" id="1_7bqrw"]
 [ext_resource type="Script" path="res://src/scenes/UI/UI/ui.gd" id="1_8obsi"]
+[ext_resource type="Texture2D" uid="uid://ddbp3etodl43c" path="res://resources/textures/UI/UI-LR-BG-v1.png" id="2_0ga17"]
+[ext_resource type="Texture2D" uid="uid://51xv2eiml1lk" path="res://resources/textures/UI/UI-LR-FG-v1.png" id="4_etkcs"]
 
 [node name="UI" type="Control"]
 layout_mode = 3
@@ -12,6 +14,17 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_8obsi")
+
+[node name="UI background" type="TextureRect" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_0ga17")
+expand_mode = 1
 
 [node name="shop" parent="." instance=ExtResource("1_7bqrw")]
 layout_mode = 1
@@ -29,3 +42,23 @@ grow_horizontal = 0
 grow_vertical = 2
 mouse_filter = 2
 expand_mode = 2
+
+[node name="UI foreground" type="TextureRect" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("4_etkcs")
+expand_mode = 1
+
+[node name="debug_text" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.5
+anchor_bottom = 0.199
+offset_right = 1.0
+offset_bottom = 0.0479889

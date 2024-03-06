@@ -1,3 +1,38 @@
-[gd_scene format=3 uid="uid://b62fl7tq1fev2"]
+[gd_scene load_steps=5 format=3 uid="uid://b62fl7tq1fev2"]
+
+[ext_resource type="PackedScene" uid="uid://d1u318s5pv1iy" path="res://src/scenes/world/world.tscn" id="1_rxcm1"]
+[ext_resource type="PackedScene" uid="uid://d1scgasuvckup" path="res://src/scenes/player/Player.tscn" id="2_6g8be"]
+[ext_resource type="PackedScene" uid="uid://bj1h0gk1cpokl" path="res://src/scenes/UI/resources_UI/resources_UI.tscn" id="3_iilpr"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_f5bw1"]
+viewport_path = NodePath("resource_ui/SubViewport")
 
 [node name="Node3D" type="Node3D"]
+
+[node name="world" parent="." instance=ExtResource("1_rxcm1")]
+
+[node name="Player" parent="." instance=ExtResource("2_6g8be")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 3.28498, 0)
+
+[node name="PathFollow" parent="Player/Path" index="0"]
+transform = Transform3D(-0.999998, -0.000749263, -0.00205189, 0, 0.939334, -0.343005, 0.00218441, -0.343004, -0.939332, -0.00762939, -2.17762, -2.5437)
+
+[node name="resources" parent="Player/UI" index="2"]
+anchor_left = 0.743056
+anchor_top = 0.682099
+offset_left = 0.0
+offset_top = 0.0
+offset_bottom = 6.10352e-05
+texture = SubResource("ViewportTexture_f5bw1")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="resource_ui" parent="." instance=ExtResource("3_iilpr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.7547, -47.3406, 0)
+
+[node name="Camera3D" parent="resource_ui/SubViewport" index="0"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 14.0547, -45.3506, 0)
+
+[editable path="Player"]
+[editable path="Player/UI"]
+[editable path="resource_ui"]

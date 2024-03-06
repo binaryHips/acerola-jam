@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://bgk88yp1g50m0"]
+
+[ext_resource type="Script" path="res://src/scenes/hitbox/hitbox.gd" id="1_43lfn"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nbqxt"]
+
+[sub_resource type="Gradient" id="Gradient_5j8ri"]
+offsets = PackedFloat32Array(0.0367647, 0.584559, 1)
+colors = PackedColorArray(0.463224, 0.679456, 0.260396, 1, 0.720661, 0.87253, 0.565952, 1, 0.389614, 0.608042, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_tgqo4"]
+gradient = SubResource("Gradient_5j8ri")
+width = 120
+height = 20
+
+[node name="hitbox" type="Area3D"]
+collision_layer = 8
+collision_mask = 8
+monitoring = false
+script = ExtResource("1_43lfn")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_nbqxt")
+
+[node name="Sprite3D" type="Sprite3D" parent="." groups=["hitbox"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.924702, 0)
+billboard = 1
+texture = SubResource("GradientTexture2D_tgqo4")

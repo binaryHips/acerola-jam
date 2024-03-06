@@ -15,12 +15,19 @@ func _ready():
 	
 	ResourcesManager.selected_changed.connect(
 		func (selected):
-			if selected != self: $TextureRect.hide()
+			if selected != self: $select_highlight.hide()
 	)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	if ResourcesManager.has_enough_resources(price):
+		$cantbuy_overlay.hide()
+		$TextureButton.disabled = false
+	else:
+		$cantbuy_overlay.show()
+		$TextureButton.disabled = true
+		if ResourcesManager.selected_shop_item == self:
+			ResourcesManager.selected_shop_item  = null
 
 
 
@@ -29,4 +36,4 @@ func _process(delta):
 
 func _on_texture_button_pressed():
 	ResourcesManager.selected_shop_item = self
-	$TextureRect.show()
+	$select_highlight.show()

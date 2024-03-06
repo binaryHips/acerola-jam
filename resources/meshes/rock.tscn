@@ -7,3 +7,6 @@
 
 [node name="rock" parent="." index="0"]
 material_override = ExtResource("2_wh4wd")
+visibility_range_begin = 2.0
+visibility_range_begin_margin = 1.0
+visibility_range_fade_mode = 1
