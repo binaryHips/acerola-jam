@@ -13,9 +13,16 @@ func _process(delta):
 
 func _on_resources_pressed():
 	$resources_plants.show()
+	$attack_plants.hide()
 	$defense_plants.hide()
 
 
 func _on_defense_pressed():
 	$resources_plants.hide()
 	$defense_plants.show()
+	$attack_plants.hide()
+
+func _on_attack_pressed():
+	$resources_plants.hide()
+	$defense_plants.hide()
+	$attack_plants.show()

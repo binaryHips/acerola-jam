@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://d1u318s5pv1iy"]
+[gd_scene load_steps=24 format=3 uid="uid://d1u318s5pv1iy"]
 
 [ext_resource type="Texture2D" uid="uid://cx3077bos741p" path="res://resources/textures/Ground037_1K-JPG_Color.jpg" id="1_itoa3"]
 [ext_resource type="Script" path="res://src/scenes/world/WorldEnvironment.gd" id="2_pw55t"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dpyoyl17s8w6v" path="res://resources/meshes/puddle.tscn" id="5_rxypu"]
 [ext_resource type="PackedScene" uid="uid://3yediwp256c5" path="res://resources/meshes/rock.tscn" id="6_jdpoj"]
 [ext_resource type="PackedScene" uid="uid://ccdyle6s1mx7n" path="res://resources/meshes/ore.tscn" id="6_x2c17"]
+[ext_resource type="Script" path="res://src/scenes/world/roots_manager.gd" id="10_pk5ag"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_wl4to"]
 frequency = 0.0088
@@ -554,3 +555,6 @@ transform = Transform3D(0.70232, 0.642736, 1.75887, -0.904551, 1.76126, -0.28241
 
 [node name="Nexus" parent="plants" instance=ExtResource("3_ka6ec")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.2339, 0.262822, 0)
+
+[node name="roots_manager" type="Node3D" parent="."]
+script = ExtResource("10_pk5ag")

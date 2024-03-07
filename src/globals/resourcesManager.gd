@@ -8,7 +8,7 @@ var oil:int = 0
 var resource_UI:Node3D
 
 func _ready():
-	add_mutagen.call_deferred(20)
+	add_mutagen.call_deferred(200)
 	add_metal.call_deferred(30)
 	add_oil.call_deferred(0)
 

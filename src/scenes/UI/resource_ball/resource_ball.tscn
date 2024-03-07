@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://c0244jmj7i2f6"]
+[gd_scene load_steps=4 format=3 uid="uid://c0244jmj7i2f6"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_xcr43"]
 friction = 0.0
@@ -6,87 +6,6 @@ bounce = 0.11
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_f4ikb"]
 radius = 0.1
-
-[sub_resource type="Shader" id="Shader_xcuj5"]
-code = "// NOTE: Shader automatically converted from Godot Engine 4.2.stable's StandardMaterial3D.
-
-shader_type spatial;
-render_mode blend_mix,depth_draw_opaque,cull_back,diffuse_burley,specular_toon;
-uniform vec4 albedo : source_color;
-uniform sampler2D texture_albedo : source_color,filter_linear_mipmap,repeat_enable;
-uniform float point_size : hint_range(0,128);
-uniform float roughness : hint_range(0,1);
-uniform sampler2D texture_metallic : hint_default_white,filter_linear_mipmap,repeat_enable;
-uniform vec4 metallic_texture_channel;
-uniform sampler2D texture_roughness : hint_roughness_r,filter_linear_mipmap,repeat_enable;
-uniform float specular;
-uniform float metallic;
-uniform sampler2D texture_normal : hint_roughness_normal,filter_linear_mipmap,repeat_enable;
-uniform float normal_scale : hint_range(-16,16);
-uniform vec3 uv1_scale;
-uniform vec3 uv1_offset;
-uniform vec3 uv2_scale;
-uniform vec3 uv2_offset;
-
-
-void vertex() {
-	UV=UV*uv1_scale.xy+uv1_offset.xy;
-}
-
-
-
-
-
-
-void fragment() {
-	vec2 base_uv = SCREEN_UV;
-	base_uv.x *= 3.0;
-	base_uv /= 2.0;
-	vec4 albedo_tex = texture(texture_albedo,base_uv);
-	ALBEDO = albedo.rgb * albedo_tex.rgb;
-	float metallic_tex = dot(texture(texture_metallic,base_uv),metallic_texture_channel);
-	METALLIC = metallic_tex * metallic;
-	vec4 roughness_texture_channel = vec4(1.0,0.0,0.0,0.0);
-	float roughness_tex = dot(texture(texture_roughness,base_uv),roughness_texture_channel);
-	ROUGHNESS = roughness_tex * roughness;
-	SPECULAR = specular;
-	
-	vec2 offset_uv = base_uv + vec2(TIME/70.0, sin(TIME/70.0));
-	NORMAL_MAP = texture(texture_normal,offset_uv).rgb;
-	NORMAL_MAP_DEPTH = normal_scale;
-}
-
-uniform vec3 incident_light = vec3(1, 0, 0);
-void light() {
-    DIFFUSE_LIGHT = vec3(1, 1, 1) * dot(NORMAL, normalize(incident_light));
-	SPECULAR_LIGHT = vec3(0.0,0,0);
-}"
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_x70io"]
-frequency = 0.0209
-fractal_octaves = 2
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_p6p0q"]
-seamless = true
-as_normal_map = true
-noise = SubResource("FastNoiseLite_x70io")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_udg8u"]
-render_priority = 0
-shader = SubResource("Shader_xcuj5")
-shader_parameter/albedo = Color(0.054902, 0.054902, 0.054902, 1)
-shader_parameter/point_size = 1.0
-shader_parameter/roughness = 0.22
-shader_parameter/metallic_texture_channel = null
-shader_parameter/specular = 0.5
-shader_parameter/metallic = 0.0
-shader_parameter/normal_scale = 1.0
-shader_parameter/uv1_scale = Vector3(1, 1, 1)
-shader_parameter/uv1_offset = Vector3(0, 0, 0)
-shader_parameter/uv2_scale = Vector3(1, 1, 1)
-shader_parameter/uv2_offset = Vector3(0, 0, 0)
-shader_parameter/incident_light = Vector3(7.24, -2.265, 3.01)
-shader_parameter/texture_normal = SubResource("NoiseTexture2D_p6p0q")
 
 [sub_resource type="SphereMesh" id="SphereMesh_n07cw"]
 radius = 0.2
@@ -102,5 +21,4 @@ gravity_scale = 0.3
 shape = SubResource("SphereShape3D_f4ikb")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-material_override = SubResource("ShaderMaterial_udg8u")
 mesh = SubResource("SphereMesh_n07cw")

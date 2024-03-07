@@ -1,6 +1,6 @@
 extends Control
 
-
+@export var resourcesVP:SubViewport
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	#(
@@ -8,7 +8,7 @@ func _ready():
 		#$resources.texture = ResourcesManager.resource_UI.get_node("SubViewport").get_texture()
 		#
 	#).call_deferred()
-	pass
+	$resources.texture = resourcesVP.get_texture()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

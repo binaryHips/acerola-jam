@@ -6,6 +6,9 @@ var player
 #plant nexus
 var nexus
 
+#roots manager
+var roots_manager
+
 @onready var world = get_tree().get_first_node_in_group("world") #TODO change this when possible
 
 var wards:Array[Ward] = []
@@ -44,17 +47,15 @@ func can_connect(w1:Ward, w2:Ward):
 	var dist := w1.global_position.distance_to(w2.global_position)
 	return dist <= max(w1.range, w2.range)
 
-func get_closest(ward):
+func get_closest_connected(ward):
 	
 	var dist:float = INF
 	var candidate:Ward
 	
 	for w in wards:
-		if ward.global_position.distance_squared_to(w) < dist**2:
-			dist = ward.global_position.distance_squared_to(w)
+		if w.is_linked_to_base && ward.global_position.distance_squared_to(w.global_position) < dist**2:
+			dist = ward.global_position.distance_squared_to(w.global_position)
 			candidate = ward
-			
-	
 	return candidate
 
 func recompute_connexity():
@@ -71,7 +72,10 @@ func recompute_connexity():
 		for i in connections[ward]:
 			if not (i in stack) && (i in not_visited):
 				stack.append(i)
-				
+				 
+				var closest:Ward = get_closest_connected(i)
+				if closest:
+					roots_manager.add_connection(ward, i) #TODO doesnt work. Should do another pass instead of putting it here
 		
 		
 		not_visited.erase(ward)
@@ -79,6 +83,7 @@ func recompute_connexity():
 	
 	for w in not_visited:
 		w.is_linked_to_base = false
+		roots_manager.remove_conections(w)
 
 
 # Called when the node enters the scene tree for the first time.

@@ -60,14 +60,39 @@ offset_bottom = -3.05176e-05
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="shop_item2" parent="defense_plants" instance=ExtResource("1_n0wmn")]
+[node name="basic_tower" parent="defense_plants" instance=ExtResource("1_n0wmn")]
+layout_mode = 2
+item_name = "slingroot"
+
+[node name="mine" parent="defense_plants" instance=ExtResource("1_n0wmn")]
 layout_mode = 2
 
-[node name="shop_item3" parent="defense_plants" instance=ExtResource("1_n0wmn")]
+[node name="mega_tower" parent="defense_plants" instance=ExtResource("1_n0wmn")]
 layout_mode = 2
 
-[node name="shop_item" parent="defense_plants" instance=ExtResource("1_n0wmn")]
+[node name="attack_plants" type="HBoxContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.429
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -0.0600166
+offset_bottom = -3.05176e-05
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="mini_spawner" parent="attack_plants" instance=ExtResource("1_n0wmn")]
 layout_mode = 2
+item_name = "incubator"
+
+[node name="booster" parent="attack_plants" instance=ExtResource("1_n0wmn")]
+layout_mode = 2
+item_name = "infuser"
+
+[node name="mega_spawner" parent="attack_plants" instance=ExtResource("1_n0wmn")]
+layout_mode = 2
+item_name = "mega incubator"
 
 [node name="Resources" type="Button" parent="."]
 layout_mode = 1
@@ -114,4 +139,4 @@ text = "Attack"
 
 [connection signal="pressed" from="Resources" to="." method="_on_resources_pressed"]
 [connection signal="pressed" from="Defense" to="." method="_on_defense_pressed"]
-[connection signal="pressed" from="Attack" to="." method="_on_defense_pressed"]
+[connection signal="pressed" from="Attack" to="." method="_on_attack_pressed"]

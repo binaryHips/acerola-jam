@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bj1h0gk1cpokl" path="res://src/scenes/UI/resources_UI/resources_UI.tscn" id="3_iilpr"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_f5bw1"]
-viewport_path = NodePath("resource_ui/SubViewport")
+viewport_path = NodePath("SubViewport")
 
 [node name="Node3D" type="Node3D"]
 
@@ -16,6 +16,9 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 3.2
 
 [node name="PathFollow" parent="Player/Path" index="0"]
 transform = Transform3D(-0.999998, -0.000749263, -0.00205189, 0, 0.939334, -0.343005, 0.00218441, -0.343004, -0.939332, -0.00762939, -2.17762, -2.5437)
+
+[node name="UI" parent="Player" index="2" node_paths=PackedStringArray("resourcesVP")]
+resourcesVP = NodePath("../../resource_ui/SubViewport")
 
 [node name="resources" parent="Player/UI" index="2"]
 anchor_left = 0.743056
