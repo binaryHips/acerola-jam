@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://b5ywpbkxoaa38"]
+
+[ext_resource type="Script" path="res://src/scenes/humans/soldier/soldier.gd" id="1_iqy7m"]
+[ext_resource type="PackedScene" uid="uid://bgk88yp1g50m0" path="res://src/scenes/hitbox/hitbox.tscn" id="2_i6tkv"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5qxdk"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_g8fp8"]
+
+[node name="soldier" type="CharacterBody3D"]
+script = ExtResource("1_iqy7m")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_5qxdk")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_g8fp8")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+target_desired_distance = 4.0
+path_max_distance = 1.01
+
+[node name="hitbox" parent="." instance=ExtResource("2_i6tkv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.56156, 0)
+team = 1
+
+[connection signal="target_reached" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_target_reached"]

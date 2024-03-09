@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://cgod3y3e3usg3"]
+
+[ext_resource type="Script" path="res://src/scenes/plants/basic_tower/basic_tower.gd" id="1_d5oei"]
+[ext_resource type="Script" path="res://src/Nodes/plant_ward/ward.gd" id="2_vauo6"]
+[ext_resource type="PackedScene" uid="uid://bgk88yp1g50m0" path="res://src/scenes/hitbox/hitbox.tscn" id="3_qu16u"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_qvysw"]
+radius = 6.64932
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oo4km"]
+albedo_color = Color(0.796078, 0.490196, 0.227451, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_6uwf4"]
+height = 1.0
+
+[node name="basic_tower" type="Node3D"]
+script = ExtResource("1_d5oei")
+
+[node name="shooting_range" type="Area3D" parent="."]
+collision_layer = 8
+collision_mask = 8
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="shooting_range"]
+shape = SubResource("SphereShape3D_qvysw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.230744, 0)
+material_override = SubResource("StandardMaterial3D_oo4km")
+mesh = SubResource("CylinderMesh_6uwf4")
+
+[node name="Ward" type="Node3D" parent="."]
+script = ExtResource("2_vauo6")
+tag = "tower"
+range = 25.0
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.8
+autostart = true
+
+[node name="hitbox" parent="." instance=ExtResource("3_qu16u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.492219, 0)
+passive_regen = 2.0
+HP = 50.0
+
+[connection signal="body_entered" from="shooting_range" to="." method="_on_shooting_range_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="shoot"]

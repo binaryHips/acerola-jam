@@ -3,6 +3,7 @@ render_mode unshaded;
 
 uniform float pixelate = 85.0;
 uniform float posterize = 3.0;
+uniform bool clip_normal_edges = true;
 
 uniform sampler2D screen_texture: source_color, hint_screen_texture, filter_nearest;
 uniform sampler2D depth_texture: source_color, hint_depth_texture, filter_nearest;
@@ -89,14 +90,23 @@ void fragment() {
 	};
 	
 	float depth_diff = 0.0;
+	
+	vec2 nearest_uv = SCREEN_UV;
+	float nearest_depth = 0.0;
 	for (int i = 0; i<4; ++i){
 		float d = get_depth(uvs[i], INV_PROJECTION_MATRIX);
 		depth_diff += depth-d;
+		
+		if (d < nearest_depth){
+			nearest_depth = d;
+			nearest_uv = uvs[i];
+			
+		}
 	}
 	
 	if (depth_diff > 2.0){
 		
-		ALBEDO *= 0.2;
+		ALBEDO *=  colorband(texture(screen_texture, nearest_uv).xyz) * 0.4;
 	}
 	
 	float normal_sum = 0.0;
@@ -114,10 +124,15 @@ void fragment() {
 	
 	float normal_edge = sqrt(normal_sum);
 	
-	if (normal_edge > depth/100.0){
+	if (normal_edge > depth/100.0 && clip_normal_edges){
 		
 		ALBEDO *= 0.5;
 	}
+	if (normal_edge > 0.3 && !clip_normal_edges){
+		
+		ALBEDO *= 0.5;
+	}
+	
 }
 
 

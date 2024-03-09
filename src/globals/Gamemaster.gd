@@ -9,6 +9,9 @@ var nexus
 #roots manager
 var roots_manager
 
+#UI root
+var UI
+
 @onready var world = get_tree().get_first_node_in_group("world") #TODO change this when possible
 
 var wards:Array[Ward] = []
@@ -29,7 +32,7 @@ func add_ward(ward:Ward):
 			connections[ward].append(w)
 			connections[w].append(ward)
 			
-			print("connecté: ", w.tag, " - ", ward.tag)
+			#print("connecté: ", w.tag, " - ", ward.tag)
 	
 	recompute_connexity()
 
@@ -37,9 +40,11 @@ func add_ward(ward:Ward):
 func remove_ward(ward:Ward):
 	wards.erase(ward)
 	
-	for c in connections:
+	roots_manager.remove_connections(ward)
+	for c in connections.keys():
+		
 		if ward in connections[c]:
-			connections[c].erase(c)
+			connections[c].erase(ward)
 	
 	recompute_connexity()
 
@@ -52,13 +57,25 @@ func get_closest_connected(ward):
 	var dist:float = INF
 	var candidate:Ward
 	
-	for w in wards:
+	for w in connections[ward]:
 		if w.is_linked_to_base && ward.global_position.distance_squared_to(w.global_position) < dist**2:
 			dist = ward.global_position.distance_squared_to(w.global_position)
-			candidate = ward
+			candidate = w
+	return candidate
+
+func get_closest_in(ward, array):
+	
+	var dist:float = INF
+	var candidate:Ward
+	
+	for w in connections[ward]:
+		if w != ward && w.is_linked_to_base && ward.global_position.distance_squared_to(w.global_position) < dist**2:
+			dist = ward.global_position.distance_squared_to(w.global_position)
+			candidate = w
 	return candidate
 
 func recompute_connexity():
+	
 	if not nexus: return
 	
 	var stack := [nexus]
@@ -72,19 +89,31 @@ func recompute_connexity():
 		for i in connections[ward]:
 			if not (i in stack) && (i in not_visited):
 				stack.append(i)
-				 
-				var closest:Ward = get_closest_connected(i)
-				if closest:
-					roots_manager.add_connection(ward, i) #TODO doesnt work. Should do another pass instead of putting it here
-		
 		
 		not_visited.erase(ward)
 		ward.is_linked_to_base = true
 	
 	for w in not_visited:
 		w.is_linked_to_base = false
-		roots_manager.remove_conections(w)
-
+	
+	
+	#second pass for roots.
+	stack = [nexus]
+	var visited:Array = []
+	
+	while stack != []:
+		var ward = stack.pop_back()
+		if connections[ward] == []: continue #fixes a first-frame problem. it's 2am and idc anymore
+		
+		roots_manager.add_connection(get_closest_in(ward, visited), ward)
+		visited.append(ward)
+		
+		
+		for i in connections[ward]:
+			
+			if (i in visited or i in stack or not i.is_linked_to_base): continue
+			
+			stack.append(i)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

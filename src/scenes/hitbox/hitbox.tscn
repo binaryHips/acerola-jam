@@ -5,13 +5,14 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_nbqxt"]
 
 [sub_resource type="Gradient" id="Gradient_5j8ri"]
-offsets = PackedFloat32Array(0.0367647, 0.584559, 1)
-colors = PackedColorArray(0.463224, 0.679456, 0.260396, 1, 0.720661, 0.87253, 0.565952, 1, 0.389614, 0.608042, 0, 1)
+offsets = PackedFloat32Array(0.0297619, 0.619048, 1)
+colors = PackedColorArray(0.67, 0, 0.122833, 1, 0.95, 0.601667, 0.532, 1, 0.69, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_tgqo4"]
 gradient = SubResource("Gradient_5j8ri")
-width = 120
-height = 20
+width = 200
+height = 30
+fill_to = Vector2(1, 0.310345)
 
 [node name="hitbox" type="Area3D"]
 collision_layer = 8
@@ -23,6 +24,10 @@ script = ExtResource("1_43lfn")
 shape = SubResource("BoxShape3D_nbqxt")
 
 [node name="Sprite3D" type="Sprite3D" parent="." groups=["hitbox"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.924702, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.22355, 0)
+visibility_range_end = 25.0
+visibility_range_end_margin = 3.0
 billboard = 1
+transparent = false
+double_sided = false
 texture = SubResource("GradientTexture2D_tgqo4")

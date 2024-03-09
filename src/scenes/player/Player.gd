@@ -6,6 +6,7 @@ const RAY_DIST := 50
 var velocity := Vector3(0, 0, 0)
 
 var zoom_velocity := 0.0
+var rotate_velocity := 0.0
 
 const MAX_DIST = 95
 var moving:=false
@@ -39,9 +40,14 @@ func _physics_process(delta):
 	
 	if abs(zoom_velocity) >= 0.05:
 		$Path/PathFollow.progress_ratio = clamp($Path/PathFollow.progress_ratio + zoom_velocity / 10.0 , 0.1, 0.9)
-	zoom_velocity *= 0.9
+		zoom_velocity = move_toward(zoom_velocity, 0.0, delta * 1.0)
 	
-	velocity *= 0.8
+	if abs(rotate_velocity) >= 0.05:
+		rotate_y(rotate_velocity/10.0)
+		rotate_velocity = move_toward(rotate_velocity, 0.0, delta * 10.0)
+	
+	
+	velocity = velocity.move_toward(Vector3.ZERO, delta * 5.0)
 	#transform.origin = lerp(transform.origin, transform.origin+velocity, 0.5)
 	transform.origin = transform.origin+velocity
 	global_transform.origin.x = clamp(global_transform.origin.x, -MAX_DIST, MAX_DIST)
@@ -62,6 +68,8 @@ func _unhandled_input(event):
 	if event.is_action_released("move_camera"):
 		moving = false
 		
+	if event is InputEventMouseMotion && Input.is_action_pressed("rotate_camera"):
+		rotate_velocity += event.relative.x/100.0 #in pixels so it's much higher than needed
 	
 	if event.is_action_pressed("unzoom"):
 		zoom_velocity -= zoom_acc

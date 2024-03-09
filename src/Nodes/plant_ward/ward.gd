@@ -2,7 +2,7 @@ extends Node3D
 class_name Ward
 
 
-static var debugview := false
+static var debugview := true
 
 
 @export var tag:String = ""
@@ -13,10 +13,6 @@ var is_linked_to_base:bool = false
 
 func _ready():
 	Gamemaster.add_ward(self)
-	if Gamemaster.nexus:
-		print(Gamemaster.nexus.global_position)
-		print(global_position)
-		print(global_position.distance_to(Gamemaster.nexus.global_position))
 	if debugview:
 		debug_view()
 
@@ -32,6 +28,7 @@ func debug_view():
 
 func _exit_tree():
 	Gamemaster.remove_ward(self)
+	print("WARD REMOVED")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

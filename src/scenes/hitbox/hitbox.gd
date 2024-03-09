@@ -15,10 +15,11 @@ func _ready():
 
 
 
-func _damage(d:float):
+func damage(d:float):
 	HP -= d
 	update_lifebar()
-	if HP <= 0:
+	
+	if HP <= 1:
 		die()
 	
 func _process(delta):
@@ -32,4 +33,10 @@ func update_lifebar():
 
 func die():
 	print("DEAD")
+	
+	if get_parent().has_method("die"):
+		get_parent().die()
+		return
+		
+	#TODO remove this when it's not needed anymore
 	get_parent().queue_free()

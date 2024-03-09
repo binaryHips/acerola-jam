@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dth7lthp8v78r"]
+[gd_scene load_steps=6 format=3 uid="uid://dth7lthp8v78r"]
 
 [ext_resource type="Script" path="res://src/scenes/nexus/nexus.gd" id="1_xeyjv"]
 [ext_resource type="Script" path="res://src/Nodes/plant_ward/ward.gd" id="1_xggrv"]
+[ext_resource type="PackedScene" uid="uid://bgk88yp1g50m0" path="res://src/scenes/hitbox/hitbox.tscn" id="3_0acjy"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xkkl0"]
 albedo_color = Color(0.788235, 0, 0.180392, 1)
@@ -19,3 +20,9 @@ mesh = SubResource("BoxMesh_dw5hh")
 [node name="Ward" type="Node3D" parent="."]
 script = ExtResource("1_xggrv")
 tag = "nexus"
+
+[node name="hitbox" parent="." instance=ExtResource("3_0acjy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.672624, 0)
+MAX_HP = 600.0
+passive_regen = 10.0
+HP = 60.0
