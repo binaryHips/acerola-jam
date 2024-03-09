@@ -48,14 +48,15 @@ func spawn_root(pos:Vector3):
 	#introduce some random
 	
 	root.position.x += last_rand
-	var new_rand := randf_range(-0.4, 0.4)
+	var new_rand := randf_range(-0.6, 0.6)
 	root.rotate_y(new_rand)
 	last_rand = new_rand
 	root.scale = Vector3(randf_range(0.9, 1.1), randf_range(0.9, 1.1), randf_range(0.9, 1.1))
 	
 	
 	var mesh = root.get_child(0) as Node3D #dirty but fuck it
-
+	
+	
 	var tween = get_tree().create_tween()
 	tween.tween_property(mesh, "position", Vector3.ZERO, TIME_TO_GROW_ONE_ROOT).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
 	#tween.tween_property(mesh, "rotation.x", 90.0, TIME_TO_GROW_ONE_ROOT)

@@ -8,7 +8,7 @@ var velocity := Vector3(0, 0, 0)
 var zoom_velocity := 0.0
 var rotate_velocity := 0.0
 
-const MAX_DIST = 95
+const MAX_DIST = 950
 var moving:=false
 var last_pos:Vector3
 

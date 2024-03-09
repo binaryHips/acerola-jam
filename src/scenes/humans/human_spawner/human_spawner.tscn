@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://byo68y61x8ucu"]
+
+[ext_resource type="Script" path="res://src/scenes/humans/human_spawner/human_spawner.gd" id="1_i6l33"]
+
+[node name="human_spawner" type="Node3D"]
+script = ExtResource("1_i6l33")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 99.0
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

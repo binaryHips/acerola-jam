@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://cdn0c30leai2y"]
+[gd_scene load_steps=7 format=3 uid="uid://cdn0c30leai2y"]
 
 [ext_resource type="Script" path="res://src/scenes/plants/neuron/neuron.gd" id="1_yott7"]
 [ext_resource type="Script" path="res://src/Nodes/plant_ward/ward.gd" id="2_q8b2x"]
+[ext_resource type="PackedScene" uid="uid://bgk88yp1g50m0" path="res://src/scenes/hitbox/hitbox.tscn" id="3_s7t8r"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_qvysw"]
 radius = 2.21941
@@ -31,3 +32,7 @@ mesh = SubResource("CylinderMesh_6uwf4")
 script = ExtResource("2_q8b2x")
 tag = "neuron"
 range = 25.0
+
+[node name="hitbox" parent="." instance=ExtResource("3_s7t8r")]
+passive_regen = 4.0
+HP = 100.0

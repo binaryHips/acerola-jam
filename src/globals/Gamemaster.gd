@@ -6,6 +6,9 @@ var player
 #plant nexus
 var nexus
 
+#human tank
+var tank
+
 #roots manager
 var roots_manager
 
@@ -17,6 +20,8 @@ var UI
 var wards:Array[Ward] = []
 
 var connections:Dictionary = {}
+
+var linked:Array[Ward] = [nexus]
 
 var max_connected_wards:int = 10
 
@@ -69,7 +74,7 @@ func get_closest_in(ward, array):
 	var candidate:Ward
 	
 	for w in connections[ward]:
-		if w != ward && w.is_linked_to_base && ward.global_position.distance_squared_to(w.global_position) < dist**2:
+		if w != ward && w in array && ward.global_position.distance_squared_to(w.global_position) < dist**2:
 			dist = ward.global_position.distance_squared_to(w.global_position)
 			candidate = w
 	return candidate
@@ -79,6 +84,8 @@ func recompute_connexity():
 	if not nexus: return
 	
 	var stack := [nexus]
+	linked = [] #recompute linked
+
 
 	var not_visited:Array[Ward] = wards.duplicate()
 	for m in max_connected_wards:
@@ -92,29 +99,33 @@ func recompute_connexity():
 		
 		not_visited.erase(ward)
 		ward.is_linked_to_base = true
+		linked.append(ward)
 	
 	for w in not_visited:
 		w.is_linked_to_base = false
 	
 	
 	#second pass for roots.
-	stack = [nexus]
-	var visited:Array = []
+	var visited = [nexus]
 	
-	while stack != []:
-		var ward = stack.pop_back()
+	linked.sort_custom(
+		func (a:Ward, b:Ward):
+			
+			return a.global_position.distance_squared_to(nexus.position) >  b.global_position.distance_squared_to(nexus.position)
+	)
+	
+	for ward in linked:
 		if connections[ward] == []: continue #fixes a first-frame problem. it's 2am and idc anymore
 		
-		roots_manager.add_connection(get_closest_in(ward, visited), ward)
-		visited.append(ward)
-		
-		
-		for i in connections[ward]:
+		for w in connections[ward]:
 			
-			if (i in visited or i in stack or not i.is_linked_to_base): continue
-			
-			stack.append(i)
-
+			if not w in visited:
+				roots_manager.add_connection(get_closest_in(w, visited), w)
+				visited.append(w)
+		
+		#debug
+		#(ward.get_parent().get_node("MeshInstance3D") as MeshInstance3D).material_override = preload("res://resources/materials/envrionment/mutagen.tres")
+		#await get_tree().create_timer(2.0).timeout
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.

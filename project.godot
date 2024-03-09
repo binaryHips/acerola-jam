@@ -20,6 +20,10 @@ config/icon="res://icon.svg"
 Gamemaster="*res://src/globals/Gamemaster.gd"
 ResourcesManager="*res://src/globals/resourcesManager.gd"
 
+[gui]
+
+timers/tooltip_delay_sec=0.2
+
 [input]
 
 move_camera={

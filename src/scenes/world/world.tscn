@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://d1u318s5pv1iy"]
+[gd_scene load_steps=35 format=3 uid="uid://d1u318s5pv1iy"]
 
 [ext_resource type="Texture2D" uid="uid://cx3077bos741p" path="res://resources/textures/Ground037_1K-JPG_Color.jpg" id="1_itoa3"]
 [ext_resource type="Script" path="res://src/scenes/world/WorldEnvironment.gd" id="2_pw55t"]
@@ -12,7 +12,11 @@
 [ext_resource type="PackedScene" uid="uid://ba6u0vf8d8ac6" path="res://resources/meshes/puddle_oil.tscn" id="7_rqekb"]
 [ext_resource type="Script" path="res://src/scenes/world/roots_manager.gd" id="10_pk5ag"]
 [ext_resource type="PackedScene" uid="uid://bswqm3ew8lx38" path="res://resources/meshes/humans/wall.tscn" id="12_8fnke"]
+[ext_resource type="Script" path="res://src/scenes/world/Human_base.gd" id="12_16pwh"]
 [ext_resource type="PackedScene" uid="uid://bapoq7j1vvl6a" path="res://src/scenes/humans/tower/human_tower.tscn" id="13_sfdxh"]
+[ext_resource type="Material" uid="uid://dxq414tybkhjw" path="res://resources/materials/envrionment/mutagen.tres" id="15_yjoyh"]
+[ext_resource type="PackedScene" uid="uid://bgk88yp1g50m0" path="res://src/scenes/hitbox/hitbox.tscn" id="16_djj8p"]
+[ext_resource type="PackedScene" uid="uid://byo68y61x8ucu" path="res://src/scenes/humans/human_spawner/human_spawner.tscn" id="17_ifby6"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_wl4to"]
 frequency = 0.0088
@@ -160,6 +164,13 @@ size = Vector3(11.8704, 2.74023, 11.4603)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_lnqtf"]
 size = Vector3(16.0557, 2.74023, 18.3418)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ar56n"]
+top_radius = 15.0
+bottom_radius = 17.0
+height = 35.0
+
+[sub_resource type="PrismMesh" id="PrismMesh_gn1aj"]
 
 [node name="world" type="Node3D" groups=["world"]]
 
@@ -651,6 +662,7 @@ script = ExtResource("10_pk5ag")
 
 [node name="Base" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -277.162, 0, 136.099)
+script = ExtResource("12_16pwh")
 
 [node name="wall" parent="Base" instance=ExtResource("12_8fnke")]
 transform = Transform3D(1.27786, 0, 2.71424, 0, 3, 0, -2.71424, 0, 1.27786, 44.0337, 1.72845, -9.91573)
@@ -664,5 +676,22 @@ transform = Transform3D(0.232223, 0, -0.972663, 0, 1, 0, 0.972663, 0, 0.232223, 
 [node name="HumanTower2" parent="Base" instance=ExtResource("13_sfdxh")]
 transform = Transform3D(-0.975176, 0, -0.221429, 0, 1, 0, 0.221429, 0, -0.975176, 19.5549, 3.8147e-06, 20.7413)
 
-[node name="HumanTower" parent="." instance=ExtResource("13_sfdxh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.9071, 0.133477, 36.4787)
+[node name="tank" type="MeshInstance3D" parent="Base"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 75.9118, 10.8618, 41.9176)
+material_override = ExtResource("15_yjoyh")
+mesh = SubResource("CylinderMesh_ar56n")
+
+[node name="hitbox" parent="Base/tank" instance=ExtResource("16_djj8p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.8087, -8.13969, -5.14337)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Base"]
+transform = Transform3D(1.49373, 0, 29.9628, 0, 30, 0, -29.9628, 0, 1.49373, 83.1598, 7.90153, 5.92593)
+mesh = SubResource("PrismMesh_gn1aj")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Base"]
+transform = Transform3D(29.4824, 0, 5.5489, 0, 30, 0, -5.5489, 0, 29.4824, 38.2395, 7.90153, 51.4633)
+mesh = SubResource("PrismMesh_gn1aj")
+
+[node name="human_spawner" parent="Base" instance=ExtResource("17_ifby6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.715, -7.62939e-06, 44.9678)
+number_of_simultaneous_spawns = 2

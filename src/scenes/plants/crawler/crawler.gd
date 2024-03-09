@@ -1,12 +1,12 @@
 extends CharacterBody3D
 
-const SHOOT_RANGE = 10.0
-const DAMAGE := 10.0
+const SHOOT_RANGE = 2.0
+const DAMAGE := 5.0
 enum TEAM {plants, humans}
 
-var movement_speed: float = 3.5
+var movement_speed: float = 6.0
 var movement_target_position: Vector3 = Vector3(-3.0,0.0,2.0)
-var team := TEAM.humans
+var team := TEAM.plants
 
 
 var target:Node3D
@@ -18,14 +18,14 @@ func _physics_process(delta):
 	pass
 	
 	
-
+#TODO priorize targets that can attack
 func find_new_target():
 	if not is_instance_valid(target): target = null
 	
 	
 	for k in $detection_range.get_overlapping_areas():
 		
-		if k.team == TEAM.plants:
+		if k.team == TEAM.humans:
 			if (
 				(not target)
 				or 
@@ -43,7 +43,6 @@ func _on_action_timer_timeout():
 		if target.global_position.distance_squared_to(global_position) < SHOOT_RANGE**2:
 			shoot()
 	else:
-		target = Gamemaster.nexus.get_parent().get_node("hitbox") #nexus is the ward!
 		$AI_agent.run_for_enemy_base()
 		
 

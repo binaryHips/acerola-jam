@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dxebldut1vkpi"]
+
+[ext_resource type="Script" path="res://src/scenes/IA/IA_agent.gd" id="1_kupvu"]
+
+[node name="AI_agent" type="NavigationAgent3D"]
+script = ExtResource("1_kupvu")

@@ -5,13 +5,23 @@ extends Control
 @export var price: Vector3i;
 
 @export var img:ImageTexture;
-
+@export_multiline var desc_tooltip:String = ""
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if img:
 		$TextureButton.texture_normal = img
 	$RichTextLabel.text = "[center]" + item_name
+	
+	$TextureButton.tooltip_text = ( #TODO use a custom popup better formatted for this.
+		item_name
+		+ "\n" + "Cost    MUTAGEN    METAL    OIL"
+		+ "\n            " + str(price[0]) + "                   " + str(price[1]) + "              " + str(price[2])
+		+ "\n\n"
+	
+	)
+	$TextureButton.tooltip_text += "\n" + desc_tooltip
+
 	
 	ResourcesManager.selected_changed.connect(
 		func (selected):

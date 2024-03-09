@@ -36,18 +36,22 @@ layout_mode = 2
 item_name = "Extractor"
 scene = ExtResource("3_odaow")
 price = Vector3i(10, 0, 0)
+desc_tooltip = "Extracts materials from near sources."
 
 [node name="neuron" parent="resources_plants" instance=ExtResource("1_n0wmn")]
 layout_mode = 2
-item_name = "neuron"
+item_name = "Neuron"
 scene = ExtResource("4_an1di")
 price = Vector3i(15, 10, 0)
+desc_tooltip = "Augments your plants cap by 4."
 
 [node name="mega_extractor" parent="resources_plants" instance=ExtResource("1_n0wmn")]
 layout_mode = 2
-item_name = "mega_extractor"
+item_name = "Mega extractor"
 scene = ExtResource("5_27kac")
 price = Vector3i(25, 10, 0)
+desc_tooltip = "Extracts materials from near sources.
+Faster than a simple extractor."
 
 [node name="defense_plants" type="HBoxContainer" parent="."]
 visible = false
@@ -63,14 +67,22 @@ grow_vertical = 2
 
 [node name="basic_tower" parent="defense_plants" instance=ExtResource("1_n0wmn")]
 layout_mode = 2
-item_name = "slingroot"
+item_name = "Slingroot"
 scene = ExtResource("6_8ubpk")
+price = Vector3i(10, 0, 10)
+desc_tooltip = "Shoots "
 
-[node name="mine" parent="defense_plants" instance=ExtResource("1_n0wmn")]
+[node name="aoe_tower" parent="defense_plants" instance=ExtResource("1_n0wmn")]
 layout_mode = 2
+item_name = "Incinerator"
+price = Vector3i(10, 15, 30)
+desc_tooltip = "Attacks all ennemies around it."
 
 [node name="mega_tower" parent="defense_plants" instance=ExtResource("1_n0wmn")]
 layout_mode = 2
+item_name = "Canon"
+price = Vector3i(30, 10, 20)
+desc_tooltip = "Shoots chunks of metal that can hit multiple targets."
 
 [node name="attack_plants" type="HBoxContainer" parent="."]
 visible = false
@@ -87,10 +99,13 @@ grow_vertical = 2
 [node name="mini_spawner" parent="attack_plants" instance=ExtResource("1_n0wmn")]
 layout_mode = 2
 item_name = "incubator"
+price = Vector3i(50, 15, 0)
+desc_tooltip = "Periodically spits crawlers."
 
 [node name="booster" parent="attack_plants" instance=ExtResource("1_n0wmn")]
 layout_mode = 2
 item_name = "infuser"
+desc_tooltip = "Boost all "
 
 [node name="mega_spawner" parent="attack_plants" instance=ExtResource("1_n0wmn")]
 layout_mode = 2

@@ -2,6 +2,7 @@ extends Node3D
 
 
 var connections: Array = []
+var connected:Array = []
 
 const ROOT = preload("res://src/scenes/root/root.tscn")
 
@@ -11,8 +12,9 @@ func _ready():
 
 func add_connection(w1:Ward, w2:Ward):
 	
-	if [w1, w2] in connections or [w2, w1] in connections: return #zlready connected?
+	if w2 in connected: return #zlready connected?
 	
+	connected.append(w2)
 	connections.append([w1, w2])
 	
 	var new_root = ROOT.instantiate()
@@ -23,7 +25,7 @@ func add_connection(w1:Ward, w2:Ward):
 	
 
 func remove_connections(ward:Ward):
-	
+	connected.erase(ward)
 	for k in range(len(connections)-1, 0, -1):
 		print(k)
 		if ward in connections[k]:
