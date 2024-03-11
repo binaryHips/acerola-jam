@@ -2,11 +2,11 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	#(
-	#func ():
-		#$resources.texture = ResourcesManager.resource_UI.get_node("SubViewport").get_texture()
-		#
-	#).call_deferred()
+	(
+	func ():
+		$resources.texture = ResourcesManager.resource_UI.get_node("SubViewport").get_texture()
+		
+	).call_deferred()
 	Gamemaster.UI = self
 
 

@@ -1,28 +1,28 @@
-[gd_scene load_steps=6 format=3 uid="uid://dth7lthp8v78r"]
+[gd_scene load_steps=5 format=3 uid="uid://dth7lthp8v78r"]
 
 [ext_resource type="Script" path="res://src/scenes/nexus/nexus.gd" id="1_xeyjv"]
 [ext_resource type="Script" path="res://src/Nodes/plant_ward/ward.gd" id="1_xggrv"]
 [ext_resource type="PackedScene" uid="uid://bgk88yp1g50m0" path="res://src/scenes/hitbox/hitbox.tscn" id="3_0acjy"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xkkl0"]
-albedo_color = Color(0.788235, 0, 0.180392, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_dw5hh"]
+[ext_resource type="PackedScene" uid="uid://cmfedi7i8g4pf" path="res://resources/meshes/plants/nexus.tscn" id="4_gabjg"]
 
 [node name="Nexus" type="Node3D"]
 script = ExtResource("1_xeyjv")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.433977, 0)
-material_override = SubResource("StandardMaterial3D_xkkl0")
-mesh = SubResource("BoxMesh_dw5hh")
 
 [node name="Ward" type="Node3D" parent="."]
 script = ExtResource("1_xggrv")
 tag = "nexus"
 
 [node name="hitbox" parent="." instance=ExtResource("3_0acjy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.672624, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.01198, 0)
 MAX_HP = 600.0
 passive_regen = 5.0
 HP = 600.0
+
+[node name="nexus" parent="." instance=ExtResource("4_gabjg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.356751, 0)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

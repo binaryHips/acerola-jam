@@ -1,7 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://bj1h0gk1cpokl"]
+[gd_scene load_steps=11 format=3 uid="uid://bj1h0gk1cpokl"]
 
 [ext_resource type="Script" path="res://src/scenes/UI/resources_UI/resources_UI.gd" id="1_rlwa5"]
-[ext_resource type="PackedScene" uid="uid://2sdm36qjxjvo" path="res://resources/meshes/tree.glb" id="2_aoak4"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_37gib"]
 size = Vector3(10, 1, 1)
@@ -283,5 +282,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.00637, 3.35439)
 [node name="metal" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.00637, 0)
 
-[node name="tree2" parent="." instance=ExtResource("2_aoak4")]
+[node name="tree2" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -4)

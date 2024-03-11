@@ -7,9 +7,14 @@ enum TEAM {plants, humans}
 const DAMAGE := 20.0
 
 var target
-
+@onready var tower = $turret/tower
 func _ready():
 	find_new_target()
+
+func _physics_process(delta):
+	if is_instance_valid(target):
+		tower.look_at(target.global_position, Vector3.UP, true)
+
 
 func _on_shooting_range_body_entered(body):
 	

@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://cbtc1cwej8cbv"]
+
+[ext_resource type="Script" path="res://src/scenes/plants/mega_tower/mega_tower.gd" id="1_dq71t"]
+[ext_resource type="Script" path="res://src/Nodes/plant_ward/ward.gd" id="2_5pfio"]
+[ext_resource type="PackedScene" uid="uid://bgk88yp1g50m0" path="res://src/scenes/hitbox/hitbox.tscn" id="3_145v7"]
+[ext_resource type="PackedScene" uid="uid://b8sgurht8pgd4" path="res://resources/meshes/plants/mega_turret.tscn" id="4_dou6b"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_qvysw"]
+radius = 6.64932
+
+[node name="basic_tower" type="Node3D"]
+script = ExtResource("1_dq71t")
+
+[node name="shooting_range" type="Area3D" parent="."]
+collision_layer = 8
+collision_mask = 8
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="shooting_range"]
+shape = SubResource("SphereShape3D_qvysw")
+
+[node name="Ward" type="Node3D" parent="."]
+script = ExtResource("2_5pfio")
+tag = "tower"
+range = 25.0
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.8
+autostart = true
+
+[node name="hitbox" parent="." instance=ExtResource("3_145v7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.89207, 0)
+MAX_HP = 350.0
+passive_regen = 4.0
+HP = 200.0
+
+[node name="mega_turret" parent="." instance=ExtResource("4_dou6b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.151154, 0)
+
+[connection signal="body_entered" from="shooting_range" to="." method="_on_shooting_range_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="shoot"]

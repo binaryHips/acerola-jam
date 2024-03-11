@@ -1,0 +1,199 @@
+[gd_scene load_steps=5 format=3 uid="uid://crcevtbiaombl"]
+
+[ext_resource type="PackedScene" uid="uid://c6bgvqh2qn1vn" path="res://resources/meshes/plants/extractor.glb" id="1_c0vp5"]
+
+[sub_resource type="Animation" id="Animation_rnf6s"]
+resource_name = "mining"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cylinder:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7, 0.9, 1.2, 1.6, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.32825, 2.61536, -0.74888), Vector3(-0.32825, 3.1735, -0.74888), Vector3(-0.32825, 1.75223, -0.74888), Vector3(-0.32825, 1.71778, -0.74888), Vector3(-0.32825, 1.90602, -0.74888), Vector3(-0.32825, 2.61536, -0.74888)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("root2:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.3, 0.9, 1.1, 1.5, 1.8),
+"transitions": PackedFloat32Array(2.73208, 1, 1, 0.615572, 1),
+"update": 0,
+"values": [Vector3(0.458036, -2.16344, -0.797824), Vector3(0.458036, -2.16344, -0.797824), Vector3(0.675196, -1.87831, -0.278175), Vector3(0.458036, -2.16344, -0.797824), Vector3(0.545724, -2.0856, -0.636442)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("root:rotation")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.8, 1.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.460189, -2.73158, -2.03797), Vector3(0.52773, -2.86666, -2.32741)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("root:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.8, 1.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.567114, 1.9546, 0), Vector3(-0.704961, 1.79064, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("root2:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.9, 1.1, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.759955, 1.60827, -1.04782), Vector3(0.759955, 1.23366, -1.11143), Vector3(0.759955, 1.23366, -1.11143)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("branch:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.9, 1.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.531302, 1.09977, -1.38921), Vector3(0.531302, 0.963345, -1.38921)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("branch_001:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.9, 1.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.528071, 1.27008, -0.167607), Vector3(-0.528071, 1.20836, -0.167607)]
+}
+
+[sub_resource type="Animation" id="Animation_squnx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cylinder:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.32825, 2.61536, -0.74888)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("root2:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.458036, -2.16344, -0.797824)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("root:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.460189, -2.73158, -2.03797)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("root:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.704961, 1.79064, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("root2:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.759955, 1.60827, -1.04782)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("branch:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.531302, 1.09977, -1.38921)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("branch_001:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.528071, 1.27008, -0.167607)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yqwen"]
+_data = {
+"RESET": SubResource("Animation_squnx"),
+"mining": SubResource("Animation_rnf6s")
+}
+
+[node name="extractor2" instance=ExtResource("1_c0vp5")]
+
+[node name="root" parent="." index="0"]
+transform = Transform3D(1.16447, -1.50704, -0.728223, -1.63111, -0.822758, -0.90555, 0.375456, 1.09971, -1.67545, -0.704961, 1.79064, 0)
+
+[node name="root2" parent="." index="1"]
+transform = Transform3D(-0.224798, -1.15681, -1.31204, -1.13231, 1.10451, -0.77983, 1.33325, 0.742995, -0.883522, 0.759955, 1.60827, -1.04782)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="6"]
+libraries = {
+"": SubResource("AnimationLibrary_yqwen")
+}
+autoplay = "mining"

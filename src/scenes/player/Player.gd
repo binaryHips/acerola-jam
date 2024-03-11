@@ -14,17 +14,37 @@ var last_pos:Vector3
 
 var zoom_acc := 0.1
 
+@export var is_active := false:
+	set(v):
+		if v:
+			$Path/PathFollow/Camera.make_current()
+		else:
+			$Path/PathFollow/Camera.clear_current()
+		
+		is_active = v
+		
+		visible = v
+		$UI.visible = v
+
+
+
 @onready var camera =  $Path/PathFollow/Camera
 
 var new_pos #contains mouse pos
 
 var last_screen_pos:Vector2
 
+
+
 func _ready():
 	Gamemaster.player = self
 
 
+
 func _physics_process(delta):
+	
+	if !is_active: return
+	
 	new_pos = get_3d_mouse_pos()
 	
 	if new_pos != Vector3.INF:
@@ -55,7 +75,7 @@ func _physics_process(delta):
 	global_transform.origin.y = 0
 	
 func _unhandled_input(event):
-	
+	if !is_active: return
 	if event.is_action_pressed("move_camera"):
 		
 		var newpos = get_3d_mouse_pos()

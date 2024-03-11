@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cj3wgxg5028a5"]
+[gd_scene load_steps=8 format=3 uid="uid://cj3wgxg5028a5"]
 
 [ext_resource type="PackedScene" uid="uid://bble2ybl6rjmc" path="res://src/scenes/UI/shop/shop_item.tscn" id="1_n0wmn"]
 [ext_resource type="Script" path="res://src/scenes/UI/shop/shop.gd" id="1_v8ohl"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cdn0c30leai2y" path="res://src/scenes/plants/neuron/neuron.tscn" id="4_an1di"]
 [ext_resource type="PackedScene" uid="uid://bra7l32cvnsev" path="res://src/scenes/plants/mega_extractor/mega_extractor.tscn" id="5_27kac"]
 [ext_resource type="PackedScene" uid="uid://cgod3y3e3usg3" path="res://src/scenes/plants/basic_tower/basic_tower.tscn" id="6_8ubpk"]
+[ext_resource type="PackedScene" uid="uid://cbtc1cwej8cbv" path="res://src/scenes/plants/mega_tower/mega_tower.tscn" id="7_b83wu"]
 
 [node name="shop" type="Control"]
 layout_mode = 3
@@ -81,6 +82,7 @@ desc_tooltip = "Attacks all ennemies around it."
 [node name="mega_tower" parent="defense_plants" instance=ExtResource("1_n0wmn")]
 layout_mode = 2
 item_name = "Canon"
+scene = ExtResource("7_b83wu")
 price = Vector3i(30, 10, 20)
 desc_tooltip = "Shoots chunks of metal that can hit multiple targets."
 

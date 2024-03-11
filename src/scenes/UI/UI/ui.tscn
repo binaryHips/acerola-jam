@@ -15,6 +15,15 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_8obsi")
 
+[node name="mouse_blocker" type="Control" parent="."]
+layout_mode = 1
+anchor_top = 0.784
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -0.0320129
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="UI background" type="TextureRect" parent="."]
 texture_filter = 1
 layout_mode = 1
@@ -23,8 +32,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 texture = ExtResource("2_0ga17")
-expand_mode = 1
+expand_mode = 2
 
 [node name="shop" parent="." instance=ExtResource("1_7bqrw")]
 layout_mode = 1
@@ -36,7 +46,7 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -321.0
+offset_left = -300.0
 offset_top = -213.0
 grow_horizontal = 0
 grow_vertical = 2

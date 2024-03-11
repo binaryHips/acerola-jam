@@ -8,7 +8,7 @@ var start_position:Vector3
 var end_position:Vector3
 
 
-var ROOT = preload("res://resources/meshes/root_1.tscn")
+var ROOT = preload("res://resources/meshes/props/root_1.tscn")
 
 func _ready():
 	

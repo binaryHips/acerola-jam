@@ -1,9 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://i8suom75g58k"]
-
-[ext_resource type="PackedScene" uid="uid://bkucmjnsj1pfw" path="res://resources/meshes/ledge.glb" id="1_gwg2q"]
-[ext_resource type="Material" uid="uid://cveol7l4pvqea" path="res://resources/materials/envrionment/stone.tres" id="2_i1hpq"]
-
-[node name="ledge2" instance=ExtResource("1_gwg2q")]
-
-[node name="ledge" parent="." index="0"]
-material_override = ExtResource("2_i1hpq")

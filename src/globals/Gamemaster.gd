@@ -127,8 +127,33 @@ func recompute_connexity():
 		#(ward.get_parent().get_node("MeshInstance3D") as MeshInstance3D).material_override = preload("res://resources/materials/envrionment/mutagen.tres")
 		#await get_tree().create_timer(2.0).timeout
 # Called when the node enters the scene tree for the first time.
+
+func fade_to_black(time):
+	
+	var tween = get_tree().create_tween()
+	tween.tween_property(fade, "color", Color(0, 0, 0, 1), 1.0)
+	tween.play()
+	await tween.finished
+	return
+
+func fade_from_black(time):
+	
+	var tween = get_tree().create_tween()
+	tween.tween_property(fade, "color", Color(0, 0, 0, 0), 1.0)
+	tween.play()
+	await tween.finished
+	return
+
+
+var fade: ColorRect
 func _ready():
-	pass # Replace with function body.
+	fade = ColorRect.new()
+	Control
+	fade.color = Color.BLACK
+	fade.set_anchors_preset(Control.PRESET_FULL_RECT)
+	fade.mouse_filter =Control.MOUSE_FILTER_IGNORE
+	get_parent().get_node("main").add_child(fade) #dirty
+	fade_from_black(0.5)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

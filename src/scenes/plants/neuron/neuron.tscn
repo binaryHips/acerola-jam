@@ -1,17 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://cdn0c30leai2y"]
+[gd_scene load_steps=6 format=3 uid="uid://cdn0c30leai2y"]
 
 [ext_resource type="Script" path="res://src/scenes/plants/neuron/neuron.gd" id="1_yott7"]
 [ext_resource type="Script" path="res://src/Nodes/plant_ward/ward.gd" id="2_q8b2x"]
 [ext_resource type="PackedScene" uid="uid://bgk88yp1g50m0" path="res://src/scenes/hitbox/hitbox.tscn" id="3_s7t8r"]
+[ext_resource type="PackedScene" uid="uid://bc1tbmy4jm8xj" path="res://resources/meshes/plants/neuron.tscn" id="4_65acp"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_qvysw"]
 radius = 2.21941
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oo4km"]
-albedo_color = Color(0.796078, 0.490196, 0.227451, 1)
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_6uwf4"]
-height = 1.0
 
 [node name="mega_extractor" type="Node3D"]
 script = ExtResource("1_yott7")
@@ -23,16 +18,15 @@ collision_mask = 3
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("SphereShape3D_qvysw")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.230744, 0)
-material_override = SubResource("StandardMaterial3D_oo4km")
-mesh = SubResource("CylinderMesh_6uwf4")
-
 [node name="Ward" type="Node3D" parent="."]
 script = ExtResource("2_q8b2x")
 tag = "neuron"
 range = 25.0
 
 [node name="hitbox" parent="." instance=ExtResource("3_s7t8r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.368075, 0)
 passive_regen = 4.0
 HP = 100.0
+
+[node name="neuron" parent="." instance=ExtResource("4_65acp")]
+transform = Transform3D(0.52, 0, 0, 0, 0.52, 0, 0, 0, 0.52, 0, -0.306816, 0)

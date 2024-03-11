@@ -1,0 +1,231 @@
+[gd_scene load_steps=6 format=3 uid="uid://wy87vcatkra8"]
+
+[ext_resource type="PackedScene" uid="uid://cnqm68s5b5q6v" path="res://resources/meshes/plants/mega_extractor.glb" id="1_nmmd5"]
+[ext_resource type="Material" uid="uid://bqm6o0o5n2466" path="res://resources/materials/envrionment/resources balls/metalball.tres" id="2_xfjdn"]
+
+[sub_resource type="Animation" id="Animation_gl5jx"]
+resource_name = "mining"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cylinder_004:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.3, 0.5, 0.55, 0.65, 0.9, 1.1),
+"transitions": PackedFloat32Array(2.63902, 1, 1, 1, 1, 2.46229),
+"update": 0,
+"values": [Vector3(-0.32825, 2.42639, -0.497876), Vector3(-0.32825, 1.64438, -0.497876), Vector3(-0.32825, 1.69356, -0.497876), Vector3(-0.32825, 1.64438, -0.497876), Vector3(-0.32825, 1.74213, -0.497876), Vector3(-0.32825, 1.83988, -0.497876)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Cylinder_005:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.2, 1.6, 1.7, 1.8),
+"transitions": PackedFloat32Array(2.21914, 2.21914, 1, 1),
+"update": 0,
+"values": [Vector3(0.301629, 1.49917, -1.22963), Vector3(0.301629, 2.16873, -1.22963), Vector3(0.301629, 1.49917, -1.22963), Vector3(0.301629, 1.52681, -1.22963)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("root2_001:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.6, 0.9, 1.7, 1.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.759955, 1.60827, -1.04782), Vector3(0.759955, 1.387, -1.04782), Vector3(0.759955, 1.47811, -1.04782), Vector3(0.759955, 1.387, -1.04782)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("root2_001:rotation")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.6, 0.9, 1.7, 1.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.458036, -2.16344, -0.797824), Vector3(0.351978, -2.0228, -0.312401), Vector3(0.395649, -2.08071, -0.512281), Vector3(0.351978, -2.0228, -0.312401)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("shield_001:position")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.1, 0.5, 0.6, 0.7, 1.2, 1.7, 1.8, 1.9),
+"transitions": PackedFloat32Array(1, 1, 1, 0.835303, 0.835303, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.774099, 0.747332, -1.44845), Vector3(0.774099, 0.747332, -1.44845), Vector3(0.774099, 0.555018, -1.63365), Vector3(0.774099, 0.747332, -1.44845), Vector3(0.774099, 0.747332, -1.44845), Vector3(0.774099, 0.747332, -1.44845), Vector3(0.774099, 0.555018, -1.63365), Vector3(0.774099, 0.747332, -1.44845)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("shield:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.5, 0.7, 1.6, 1.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.126012, 1.57989, -0.414129), Vector3(-0.125975, 1.56119, -0.265626), Vector3(-0.125992, 1.5695, -0.331627), Vector3(-0.125996, 1.57181, -0.349961)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("branch_002:position")
+tracks/6/interp = 2
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.5, 0.7, 1.6, 1.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.531302, 1.09977, -1.38921), Vector3(0.531302, 1.02374, -1.38921), Vector3(0.531302, 1.09977, -1.38921), Vector3(0.531302, 1.02374, -1.38921)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("branch_003:rotation")
+tracks/7/interp = 2
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.7, 0.9, 1.8, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.634321, -2.19952, -0.847967), Vector3(0.743618, -2.0549, -0.621399), Vector3(0.634321, -2.19952, -0.847967), Vector3(0.743618, -2.0549, -0.621399)]
+}
+
+[sub_resource type="Animation" id="Animation_egofh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cylinder_004:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.32825, 1.64438, -0.497876)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Cylinder_005:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.301629, 2.16873, -1.22963)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("root2_001:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.759955, 1.60827, -1.04782)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("root2_001:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.458036, -2.16344, -0.797824)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("shield_001:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.774099, 0.747332, -1.44845)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("shield:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.126012, 1.57989, -0.414129)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("branch_002:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.531302, 1.09977, -1.38921)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("branch_003:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.634321, -2.19952, -0.847967)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_avv0m"]
+_data = {
+"RESET": SubResource("Animation_egofh"),
+"mining": SubResource("Animation_gl5jx")
+}
+
+[node name="mega_extractor" instance=ExtResource("1_nmmd5")]
+
+[node name="root2_001" parent="." index="0"]
+transform = Transform3D(-0.224798, -1.15681, -1.31204, -1.13231, 1.10451, -0.779831, 1.33325, 0.742995, -0.883522, 0.759955, 1.60827, -1.04782)
+
+[node name="branch_003" parent="." index="1"]
+transform = Transform3D(-0.0062463, -0.16002, -0.137505, -0.127501, 0.112467, -0.12509, 0.168099, 0.079359, -0.0999888, -0.528071, 1.27008, -0.167607)
+
+[node name="shield" parent="." index="5"]
+transform = Transform3D(0.0224319, -0.0630326, 0.52675, -0.211969, 0.482243, 0.0667334, -0.486321, -0.213099, -0.00478986, 0, 1.78101, 0.171672)
+material_override = ExtResource("2_xfjdn")
+
+[node name="shield_001" parent="." index="6"]
+material_override = ExtResource("2_xfjdn")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="8"]
+libraries = {
+"": SubResource("AnimationLibrary_avv0m")
+}
+autoplay = "mining"

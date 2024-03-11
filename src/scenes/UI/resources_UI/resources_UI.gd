@@ -11,7 +11,7 @@ func _ready():
 	ResourcesManager.resource_UI = self
 	
 	(func ():
-		Gamemaster.UI.get_node("resources").texture= $SubViewport.get_texture()
+		#Gamemaster.UI.get_node("resources").texture= $SubViewport.get_texture()
 		).call_deferred()
 
 

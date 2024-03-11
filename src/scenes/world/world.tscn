@@ -1,15 +1,14 @@
-[gd_scene load_steps=35 format=3 uid="uid://d1u318s5pv1iy"]
+[gd_scene load_steps=36 format=3 uid="uid://d1u318s5pv1iy"]
 
 [ext_resource type="Texture2D" uid="uid://cx3077bos741p" path="res://resources/textures/Ground037_1K-JPG_Color.jpg" id="1_itoa3"]
 [ext_resource type="Script" path="res://src/scenes/world/WorldEnvironment.gd" id="2_pw55t"]
-[ext_resource type="PackedScene" uid="uid://dth7lthp8v78r" path="res://src/scenes/nexus/nexus.tscn" id="3_ka6ec"]
-[ext_resource type="PackedScene" uid="uid://d2wkgxkhy1p8f" path="res://resources/meshes/barrel.tscn" id="3_mh637"]
+[ext_resource type="PackedScene" uid="uid://d2wkgxkhy1p8f" path="res://resources/meshes/props/barrel.tscn" id="3_mh637"]
 [ext_resource type="Script" path="res://src/Nodes/resource_area/resource_area.gd" id="5_2c2qu"]
-[ext_resource type="PackedScene" uid="uid://i8suom75g58k" path="res://resources/meshes/ledge.tscn" id="5_am454"]
-[ext_resource type="PackedScene" uid="uid://dpyoyl17s8w6v" path="res://resources/meshes/puddle.tscn" id="5_rxypu"]
-[ext_resource type="PackedScene" uid="uid://3yediwp256c5" path="res://resources/meshes/rock.tscn" id="6_jdpoj"]
-[ext_resource type="PackedScene" uid="uid://ccdyle6s1mx7n" path="res://resources/meshes/ore.tscn" id="6_x2c17"]
-[ext_resource type="PackedScene" uid="uid://ba6u0vf8d8ac6" path="res://resources/meshes/puddle_oil.tscn" id="7_rqekb"]
+[ext_resource type="PackedScene" uid="uid://i8suom75g58k" path="res://resources/meshes/props/ledge.tscn" id="5_am454"]
+[ext_resource type="PackedScene" uid="uid://dpyoyl17s8w6v" path="res://resources/meshes/props/puddle.tscn" id="5_rxypu"]
+[ext_resource type="PackedScene" uid="uid://3yediwp256c5" path="res://resources/meshes/props/rock.tscn" id="6_jdpoj"]
+[ext_resource type="PackedScene" uid="uid://ccdyle6s1mx7n" path="res://resources/meshes/props/ore.tscn" id="6_x2c17"]
+[ext_resource type="PackedScene" uid="uid://ba6u0vf8d8ac6" path="res://resources/meshes/props/puddle_oil.tscn" id="7_rqekb"]
 [ext_resource type="Script" path="res://src/scenes/world/roots_manager.gd" id="10_pk5ag"]
 [ext_resource type="PackedScene" uid="uid://bswqm3ew8lx38" path="res://resources/meshes/humans/wall.tscn" id="12_8fnke"]
 [ext_resource type="Script" path="res://src/scenes/world/Human_base.gd" id="12_16pwh"]
@@ -17,6 +16,7 @@
 [ext_resource type="Material" uid="uid://dxq414tybkhjw" path="res://resources/materials/envrionment/mutagen.tres" id="15_yjoyh"]
 [ext_resource type="PackedScene" uid="uid://bgk88yp1g50m0" path="res://src/scenes/hitbox/hitbox.tscn" id="16_djj8p"]
 [ext_resource type="PackedScene" uid="uid://byo68y61x8ucu" path="res://src/scenes/humans/human_spawner/human_spawner.tscn" id="17_ifby6"]
+[ext_resource type="PackedScene" uid="uid://iljwpiewk2xg" path="res://src/scenes/camera_bound/camera_bound.tscn" id="17_jq6i6"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_wl4to"]
 frequency = 0.0088
@@ -171,6 +171,9 @@ bottom_radius = 17.0
 height = 35.0
 
 [sub_resource type="PrismMesh" id="PrismMesh_gn1aj"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dk2da"]
+size = Vector3(46.3494, 37.2263, 106.143)
 
 [node name="world" type="Node3D" groups=["world"]]
 
@@ -586,6 +589,9 @@ transform = Transform3D(-6.55461, 104.068, -55.1824, 63.7242, 49.6147, 85.9983, 
 [node name="rock13" parent="environment" instance=ExtResource("6_jdpoj")]
 transform = Transform3D(45.0357, -31.9626, -104.251, 58.6104, -88.0178, 52.3048, -91.9495, -71.7591, -17.7208, -315.936, 6.09128, -148.681)
 
+[node name="rock34" parent="environment" instance=ExtResource("6_jdpoj")]
+transform = Transform3D(-39.4026, -75.0172, -82.0851, 58.6104, -88.0178, 52.3048, -94.5006, -23.3108, 66.6658, -420.009, 6.09128, -144.216)
+
 [node name="rock26" parent="environment" instance=ExtResource("6_jdpoj")]
 transform = Transform3D(-90.6817, -10.3105, -74.7571, -47.1534, 98.9874, 43.5454, 58.9194, 63.3513, -80.2077, -299.639, 5.58617, 252.256)
 
@@ -654,9 +660,6 @@ transform = Transform3D(0.70232, 0.642736, 1.75887, -0.904551, 1.76126, -0.28241
 
 [node name="plants" type="Node3D" parent="."]
 
-[node name="Nexus" parent="plants" instance=ExtResource("3_ka6ec")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.2339, 0.262822, 0)
-
 [node name="roots_manager" type="Node3D" parent="."]
 script = ExtResource("10_pk5ag")
 
@@ -665,7 +668,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -277.162, 0, 136.099)
 script = ExtResource("12_16pwh")
 
 [node name="wall" parent="Base" instance=ExtResource("12_8fnke")]
-transform = Transform3D(1.27786, 0, 2.71424, 0, 3, 0, -2.71424, 0, 1.27786, 44.0337, 1.72845, -9.91573)
+transform = Transform3D(1.27786, 0, 2.71424, 0, 3, 0, -2.71424, 0, 1.27786, 44.0337, 0.100324, -11.764)
 
 [node name="wall2" parent="Base" instance=ExtResource("12_8fnke")]
 transform = Transform3D(-2.5631, 0, -1.55901, 0, 3, 0, 1.55901, 0, -2.5631, 9.78186, 0, 33.8497)
@@ -695,3 +698,81 @@ mesh = SubResource("PrismMesh_gn1aj")
 [node name="human_spawner" parent="Base" instance=ExtResource("17_ifby6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.715, -7.62939e-06, 44.9678)
 number_of_simultaneous_spawns = 2
+
+[node name="camera_bound" parent="." instance=ExtResource("17_jq6i6")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="camera_bound"]
+transform = Transform3D(0.995468, 0, -0.0950987, 0, 1, 0, 0.0950987, 0, 0.995468, 80.5068, 5.9109, 33.4833)
+shape = SubResource("BoxShape3D_dk2da")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="camera_bound"]
+transform = Transform3D(0.854495, 0, 0.519459, 0, 1, 0, -0.519459, 0, 0.854495, 69.5839, 5.9109, -57.9457)
+shape = SubResource("BoxShape3D_dk2da")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="camera_bound"]
+transform = Transform3D(0.313843, 0, 0.949475, 0, 1, 0, -0.949475, 0, 0.313843, 5.88133, 5.9109, -98.9985)
+shape = SubResource("BoxShape3D_dk2da")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="camera_bound"]
+transform = Transform3D(-0.35091, 0, 0.936409, 0, 1, 0, -0.936409, 0, -0.35091, -90.9873, 5.9109, -146.332)
+shape = SubResource("BoxShape3D_dk2da")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="camera_bound"]
+transform = Transform3D(-0.000401497, 0, 1, 0, 1, 0, -1, 0, -0.000401497, -182.148, 5.9109, -151.468)
+shape = SubResource("BoxShape3D_dk2da")
+
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="camera_bound"]
+transform = Transform3D(-0.000401497, 0, 1, 0, 1, 0, -1, 0, -0.000401497, -290.449, 5.9109, -158.455)
+shape = SubResource("BoxShape3D_dk2da")
+
+[node name="CollisionShape3D7" type="CollisionShape3D" parent="camera_bound"]
+transform = Transform3D(-0.815148, 0, 0.579253, 0, 1, 0, -0.579253, 0, -0.815148, -392.637, 5.9109, -123.519)
+shape = SubResource("BoxShape3D_dk2da")
+
+[node name="CollisionShape3D8" type="CollisionShape3D" parent="camera_bound"]
+transform = Transform3D(-0.815148, 0, 0.579253, 0, 1, 0, -0.579253, 0, -0.815148, -471.901, 5.9109, -36.8386)
+shape = SubResource("BoxShape3D_dk2da")
+
+[node name="CollisionShape3D9" type="CollisionShape3D" parent="camera_bound"]
+transform = Transform3D(-0.995287, 0, -0.096975, 0, 1, 0, 0.096975, 0, -0.995287, -483.255, 5.9109, 99.4118)
+shape = SubResource("BoxShape3D_dk2da")
+
+[node name="CollisionShape3D10" type="CollisionShape3D" parent="camera_bound"]
+transform = Transform3D(-0.728311, 0, -0.685247, 0, 1, 0, 0.685247, 0, -0.728311, -463.167, 5.9109, 185.878)
+shape = SubResource("BoxShape3D_dk2da")
+
+[node name="CollisionShape3D11" type="CollisionShape3D" parent="camera_bound"]
+transform = Transform3D(-0.203368, 0, -0.979102, 0, 1, 0, 0.979102, 0, -0.203368, -393.295, 5.9109, 240.029)
+shape = SubResource("BoxShape3D_dk2da")
+
+[node name="CollisionShape3D12" type="CollisionShape3D" parent="camera_bound"]
+transform = Transform3D(-0.692042, 0, -0.721857, 0, 1, 0, 0.721857, 0, -0.692042, -312.942, 5.9109, 279.332)
+shape = SubResource("BoxShape3D_dk2da")
+
+[node name="CollisionShape3D13" type="CollisionShape3D" parent="camera_bound"]
+transform = Transform3D(-0.433753, 0, -0.901032, 0, 1, 0, 0.901032, 0, -0.433753, -235.209, 5.9109, 333.483)
+shape = SubResource("BoxShape3D_dk2da")
+
+[node name="CollisionShape3D14" type="CollisionShape3D" parent="camera_bound"]
+transform = Transform3D(0.357602, 0, -0.933874, 0, 1, 0, 0.933874, 0, 0.357602, -140.882, 5.9109, 341.344)
+shape = SubResource("BoxShape3D_dk2da")
+
+[node name="CollisionShape3D15" type="CollisionShape3D" parent="camera_bound"]
+transform = Transform3D(0.85836, 0, -0.513047, 0, 1, 0, 0.513047, 0, 0.85836, -94.5918, 5.9109, 269.725)
+shape = SubResource("BoxShape3D_dk2da")
+
+[node name="CollisionShape3D16" type="CollisionShape3D" parent="camera_bound"]
+transform = Transform3D(0.576375, 0, -0.817185, 0, 1, 0, 0.817185, 0, 0.576375, -54.4154, 5.9109, 205.093)
+shape = SubResource("BoxShape3D_dk2da")
+
+[node name="CollisionShape3D17" type="CollisionShape3D" parent="camera_bound"]
+transform = Transform3D(-0.272314, 0, -0.962208, 0, 1, 0, 0.962208, 0, -0.272314, 21.5704, 5.9109, 198.979)
+shape = SubResource("BoxShape3D_dk2da")
+
+[node name="CollisionShape3D18" type="CollisionShape3D" parent="camera_bound"]
+transform = Transform3D(0.383199, 0, -0.923666, 0, 1, 0, 0.923666, 0, 0.383199, 119.391, 5.9109, 195.486)
+shape = SubResource("BoxShape3D_dk2da")
+
+[node name="CollisionShape3D19" type="CollisionShape3D" parent="camera_bound"]
+transform = Transform3D(0.920947, 0, 0.389687, 0, 1, 0, -0.389687, 0, 0.920947, 108.91, 5.9109, 99.4117)
+shape = SubResource("BoxShape3D_dk2da")

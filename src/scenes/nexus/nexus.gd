@@ -15,3 +15,7 @@ func _process(delta):
 
 func die():
 	print("LOST")
+
+
+func _on_timer_timeout():
+	ResourcesManager.add_mutagen(1)

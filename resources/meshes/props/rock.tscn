@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://3yediwp256c5"]
+
+[ext_resource type="PackedScene" uid="uid://dckxmobc10eh7" path="res://resources/meshes/props/rock.glb" id="1_osid7"]
+[ext_resource type="Material" uid="uid://cveol7l4pvqea" path="res://resources/materials/envrionment/stone.tres" id="2_wh4wd"]
+
+[node name="rock2" instance=ExtResource("1_osid7")]
+
+[node name="rock" parent="." index="0"]
+material_override = ExtResource("2_wh4wd")
+visibility_range_begin = 2.0
+visibility_range_begin_margin = 1.0
+visibility_range_fade_mode = 1
