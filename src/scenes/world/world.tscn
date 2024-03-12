@@ -13,10 +13,12 @@
 [ext_resource type="PackedScene" uid="uid://bswqm3ew8lx38" path="res://resources/meshes/humans/wall.tscn" id="12_8fnke"]
 [ext_resource type="Script" path="res://src/scenes/world/Human_base.gd" id="12_16pwh"]
 [ext_resource type="PackedScene" uid="uid://bapoq7j1vvl6a" path="res://src/scenes/humans/tower/human_tower.tscn" id="13_sfdxh"]
-[ext_resource type="Material" uid="uid://dxq414tybkhjw" path="res://resources/materials/envrionment/mutagen.tres" id="15_yjoyh"]
+[ext_resource type="PackedScene" uid="uid://cy7xfa5e42dq4" path="res://resources/meshes/humans/human_tank.tscn" id="15_knyr5"]
 [ext_resource type="PackedScene" uid="uid://bgk88yp1g50m0" path="res://src/scenes/hitbox/hitbox.tscn" id="16_djj8p"]
+[ext_resource type="PackedScene" uid="uid://diu22vgu8gpxt" path="res://resources/meshes/humans/human_building.tscn" id="17_bcat3"]
 [ext_resource type="PackedScene" uid="uid://byo68y61x8ucu" path="res://src/scenes/humans/human_spawner/human_spawner.tscn" id="17_ifby6"]
 [ext_resource type="PackedScene" uid="uid://iljwpiewk2xg" path="res://src/scenes/camera_bound/camera_bound.tscn" id="17_jq6i6"]
+[ext_resource type="Script" path="res://src/scenes/world/tank.gd" id="17_ylhyu"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_wl4to"]
 frequency = 0.0088
@@ -165,13 +167,6 @@ size = Vector3(11.8704, 2.74023, 11.4603)
 [sub_resource type="BoxShape3D" id="BoxShape3D_lnqtf"]
 size = Vector3(16.0557, 2.74023, 18.3418)
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_ar56n"]
-top_radius = 15.0
-bottom_radius = 17.0
-height = 35.0
-
-[sub_resource type="PrismMesh" id="PrismMesh_gn1aj"]
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_dk2da"]
 size = Vector3(46.3494, 37.2263, 106.143)
 
@@ -214,7 +209,7 @@ transform = Transform3D(-0.000679543, -0.261312, 0.965254, -0.999997, 0.00260049
 [node name="ResourceArea" type="Area3D" parent="resources/mutagen_spot"]
 transform = Transform3D(0.400061, 0, 0.916488, 3.2008e-10, 1, -1.3972e-10, -0.916488, 0, 0.400061, -0.0222454, -0.93311, -0.0577078)
 script = ExtResource("5_2c2qu")
-resources = Vector3i(40, 0, 0)
+resources = Vector3i(100, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="resources/mutagen_spot/ResourceArea"]
 shape = SubResource("BoxShape3D_wv6a8")
@@ -249,7 +244,7 @@ transform = Transform3D(-0.000679543, -0.261312, 0.965254, -0.999997, 0.00260049
 [node name="ResourceArea" type="Area3D" parent="resources/mutagen_spot2"]
 transform = Transform3D(0.400061, 0, 0.916488, 3.2008e-10, 1, -1.3972e-10, -0.916488, 0, 0.400061, -0.0222454, -0.93311, -0.0577078)
 script = ExtResource("5_2c2qu")
-resources = Vector3i(80, 0, 0)
+resources = Vector3i(150, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="resources/mutagen_spot2/ResourceArea"]
 shape = SubResource("BoxShape3D_wv6a8")
@@ -413,7 +408,7 @@ transform = Transform3D(0.93529, 0, 0.353883, 0, 1, 3.49246e-10, -0.353883, 0, 0
 [node name="ResourceArea" type="Area3D" parent="resources/ore_spot"]
 transform = Transform3D(0.400061, 0, 0.916488, 3.2008e-10, 1, -1.3972e-10, -0.916488, 0, 0.400061, -0.0222454, -0.93311, -0.0577078)
 script = ExtResource("5_2c2qu")
-resources = Vector3i(0, 50, 0)
+resources = Vector3i(0, 65, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="resources/ore_spot/ResourceArea"]
 transform = Transform3D(0.905606, 0, 0.42412, 0, 1, 0, -0.42412, 0, 0.905606, 0.97852, 4.76837e-07, -0.218037)
@@ -434,7 +429,7 @@ transform = Transform3D(0.556151, 0, -0.831082, 0, 1, 3.49246e-10, 0.831082, 0, 
 [node name="ResourceArea" type="Area3D" parent="resources/ore_spot2"]
 transform = Transform3D(0.400061, 0, 0.916488, 3.2008e-10, 1, -1.3972e-10, -0.916488, 0, 0.400061, -0.0222454, -0.93311, -0.0577078)
 script = ExtResource("5_2c2qu")
-resources = Vector3i(0, 50, 0)
+resources = Vector3i(0, 100, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="resources/ore_spot2/ResourceArea"]
 transform = Transform3D(0.905606, 0, 0.42412, 0, 1, 0, -0.42412, 0, 0.905606, 0.97852, 4.76837e-07, -0.218037)
@@ -494,13 +489,37 @@ transform = Transform3D(1.83961, 0.273851, -0.569091, -0.434617, 1.82056, -0.528
 [node name="ore5" parent="resources/ore_spot4/ResourceArea" instance=ExtResource("6_x2c17")]
 transform = Transform3D(3.42858, 0.51039, -1.06065, -0.810018, 3.39308, -0.985641, 0.854012, 1.16924, 3.32328, 5.94217, -0.374594, -4.36307)
 
+[node name="ore_spot5" type="Node3D" parent="resources"]
+transform = Transform3D(0.492484, 0, 0.870321, 0, 1, 3.49246e-10, -0.870321, 0, 0.492484, -350.6, 1.06659, -41.3607)
+
+[node name="ResourceArea" type="Area3D" parent="resources/ore_spot5"]
+transform = Transform3D(0.400061, 0, 0.916488, 3.2008e-10, 1, -1.3972e-10, -0.916488, 0, 0.400061, -0.0222454, -0.93311, -0.0577078)
+script = ExtResource("5_2c2qu")
+resources = Vector3i(0, 300, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="resources/ore_spot5/ResourceArea"]
+transform = Transform3D(0.56393, 0, 0.825823, 0, 1, 0, -0.825823, 0, 0.56393, 2.24888, 4.76837e-07, -1.96877)
+shape = SubResource("BoxShape3D_hmcck")
+
+[node name="ore2" parent="resources/ore_spot5/ResourceArea" instance=ExtResource("6_x2c17")]
+transform = Transform3D(0.779071, -0.54052, -1.48866, -0.443208, 1.51833, -0.783239, 1.52047, 0.719538, 0.534462, -1.13539, -0.374594, -4.99812)
+
+[node name="ore3" parent="resources/ore_spot5/ResourceArea" instance=ExtResource("6_x2c17")]
+transform = Transform3D(0.616377, -0.241779, -1.51679, 0.604355, 1.54071, 5.6389e-08, 1.41204, -0.553884, 0.662101, 6.00371, -0.374594, 2.79285)
+
+[node name="ore4" parent="resources/ore_spot5/ResourceArea" instance=ExtResource("6_x2c17")]
+transform = Transform3D(1.83961, 0.273851, -0.569091, -0.434617, 1.82056, -0.528847, 0.458221, 0.627357, 1.78311, 1.35239, -0.344409, -3.7356)
+
+[node name="ore5" parent="resources/ore_spot5/ResourceArea" instance=ExtResource("6_x2c17")]
+transform = Transform3D(3.42858, 0.51039, -1.06065, -0.810018, 3.39308, -0.985641, 0.854012, 1.16924, 3.32328, 5.94217, -0.374594, -4.36307)
+
 [node name="oil_spot" type="Node3D" parent="resources"]
 transform = Transform3D(0.647548, 0, -0.762025, 0, 1, 3.49246e-10, 0.762025, 0, 0.647548, -74.8098, 1.06659, 36.2565)
 
 [node name="ResourceArea" type="Area3D" parent="resources/oil_spot"]
 transform = Transform3D(0.400061, 0, 0.916488, 3.2008e-10, 1, -1.3972e-10, -0.916488, 0, 0.400061, -0.0222454, -0.93311, -0.0577078)
 script = ExtResource("5_2c2qu")
-resources = Vector3i(0, 0, 35)
+resources = Vector3i(0, 0, 80)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="resources/oil_spot/ResourceArea"]
 transform = Transform3D(1, 0, 0, 1.47106e-20, 1, -1.47172e-20, 0, 0, 1, 1.02984, 0, -0.598948)
@@ -512,13 +531,31 @@ transform = Transform3D(4.525, -5.98131e-23, 0, 5.98131e-23, 4.525, 0, 0, 0, 4.5
 [node name="puddle_oil2" parent="resources/oil_spot/ResourceArea" instance=ExtResource("7_rqekb")]
 transform = Transform3D(-1.40365, 0.216422, -4.29634, 0.313427, 4.5124, 0.124906, 4.29036, -0.258843, -1.41474, 0.933105, -0.339256, -1.62317)
 
+[node name="oil_spot3" type="Node3D" parent="resources"]
+transform = Transform3D(0.647548, 0, -0.762025, 0, 1, 3.49246e-10, 0.762025, 0, 0.647548, 22.2448, 1.06659, 31.452)
+
+[node name="ResourceArea" type="Area3D" parent="resources/oil_spot3"]
+transform = Transform3D(0.400061, 0, 0.916488, 3.2008e-10, 1, -1.3972e-10, -0.916488, 0, 0.400061, -0.0222454, -0.93311, -0.0577078)
+script = ExtResource("5_2c2qu")
+resources = Vector3i(0, 0, 60)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="resources/oil_spot3/ResourceArea"]
+transform = Transform3D(1, 0, 0, 1.47106e-20, 1, -1.47172e-20, 0, 0, 1, 1.02984, 0, -0.598948)
+shape = SubResource("BoxShape3D_d37hy")
+
+[node name="puddle_oil" parent="resources/oil_spot3/ResourceArea" instance=ExtResource("7_rqekb")]
+transform = Transform3D(4.525, -5.98131e-23, 0, 5.98131e-23, 4.525, 0, 0, 0, 4.525, 0, 0.25118, 0)
+
+[node name="puddle_oil2" parent="resources/oil_spot3/ResourceArea" instance=ExtResource("7_rqekb")]
+transform = Transform3D(-1.40365, 0.216422, -4.29634, 0.313427, 4.5124, 0.124906, 4.29036, -0.258843, -1.41474, 0.933105, -0.339256, -1.62317)
+
 [node name="oil_spot2" type="Node3D" parent="resources"]
 transform = Transform3D(-0.283597, 0, -0.958944, 0, 1, 3.49246e-10, 0.958944, 0, -0.283597, -132.446, 1.06659, -35.7465)
 
 [node name="ResourceArea" type="Area3D" parent="resources/oil_spot2"]
 transform = Transform3D(0.400061, 0, 0.916488, 3.2008e-10, 1, -1.3972e-10, -0.916488, 0, 0.400061, -0.0222454, -0.93311, -0.0577078)
 script = ExtResource("5_2c2qu")
-resources = Vector3i(0, 0, 80)
+resources = Vector3i(0, 0, 90)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="resources/oil_spot2/ResourceArea"]
 transform = Transform3D(1, 0, 0, 9.84014e-21, 1, -9.84676e-21, 0, 0, 1, 3.12247, 0, -1.37647)
@@ -679,25 +716,36 @@ transform = Transform3D(0.232223, 0, -0.972663, 0, 1, 0, 0.972663, 0, 0.232223, 
 [node name="HumanTower2" parent="Base" instance=ExtResource("13_sfdxh")]
 transform = Transform3D(-0.975176, 0, -0.221429, 0, 1, 0, 0.221429, 0, -0.975176, 19.5549, 3.8147e-06, 20.7413)
 
-[node name="tank" type="MeshInstance3D" parent="Base"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 75.9118, 10.8618, 41.9176)
-material_override = ExtResource("15_yjoyh")
-mesh = SubResource("CylinderMesh_ar56n")
-
-[node name="hitbox" parent="Base/tank" instance=ExtResource("16_djj8p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.8087, -8.13969, -5.14337)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Base"]
-transform = Transform3D(1.49373, 0, 29.9628, 0, 30, 0, -29.9628, 0, 1.49373, 83.1598, 7.90153, 5.92593)
-mesh = SubResource("PrismMesh_gn1aj")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Base"]
-transform = Transform3D(29.4824, 0, 5.5489, 0, 30, 0, -5.5489, 0, 29.4824, 38.2395, 7.90153, 51.4633)
-mesh = SubResource("PrismMesh_gn1aj")
-
 [node name="human_spawner" parent="Base" instance=ExtResource("17_ifby6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.715, -7.62939e-06, 44.9678)
-number_of_simultaneous_spawns = 2
+start_time_sec = 120
+violence_progression_fac = 1.05
+number_of_simultaneous_spawns = 1
+
+[node name="human_tank" parent="Base" instance=ExtResource("15_knyr5")]
+transform = Transform3D(3.24094, 0, -2.34441, 0, 4, 0, 2.34441, 0, 3.24094, 69.9427, -0.0922937, 35.4311)
+
+[node name="hitbox" parent="Base/human_tank" instance=ExtResource("16_djj8p")]
+transform = Transform3D(0.202559, 0, 0.146526, 0, 0.25, 0, -0.146526, 0, 0.202559, -2.25626, 0.703601, 0.0482864)
+script = ExtResource("17_ylhyu")
+MAX_HP = 800.0
+passive_regen = 1.0
+HP = 800.0
+
+[node name="human_building2" parent="Base" instance=ExtResource("17_bcat3")]
+transform = Transform3D(-0.742622, 0, -2.90664, 0, 3, 0, 2.90664, 0, -0.742622, 45.4447, -0.502117, 52.0301)
+
+[node name="human_building3" parent="Base" instance=ExtResource("17_bcat3")]
+transform = Transform3D(0.0260218, 0, -2.99989, 0, 3, 0, 2.99989, 0, 0.0260218, 104.982, -0.502117, -0.646439)
+
+[node name="human_building4" parent="Base" instance=ExtResource("17_bcat3")]
+transform = Transform3D(-2.05947, -2.18134, -0.0178643, 0.0260218, -1.31134e-07, -2.99989, 2.18126, -2.05955, 0.0189209, 90.8238, 18.2949, 72.0339)
+
+[node name="human_building5" parent="Base" instance=ExtResource("17_bcat3")]
+transform = Transform3D(-2.88214, 0, 0.83265, 0, 3, 0, -0.83265, 0, -2.88214, 71.99, -0.502117, -19.8507)
+
+[node name="HumanTower3" parent="Base" instance=ExtResource("13_sfdxh")]
+transform = Transform3D(0.0645317, 0, -0.997916, 0, 1, 0, 0.997916, 0, 0.0645317, 60.8895, 7.6294e-06, 20.6296)
 
 [node name="camera_bound" parent="." instance=ExtResource("17_jq6i6")]
 

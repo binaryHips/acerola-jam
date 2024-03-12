@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://cf14tlj2qyl63"]
+
+[ext_resource type="PackedScene" uid="uid://kvtlqjo5okkt" path="res://resources/meshes/plants/incinerator.glb" id="1_idihs"]
+
+[node name="incinerator" instance=ExtResource("1_idihs")]

@@ -1,6 +1,8 @@
-[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://dxq414tybkhjw"]
+[gd_scene load_steps=7 format=3 uid="uid://cy7xfa5e42dq4"]
 
-[sub_resource type="Shader" id="Shader_jo45a"]
+[ext_resource type="PackedScene" uid="uid://ctn4rluatbowi" path="res://resources/meshes/humans/human_tank.glb" id="1_rtw3j"]
+
+[sub_resource type="Shader" id="Shader_tpami"]
 code = "// NOTE: Shader automatically converted from Godot Engine 4.2.stable's StandardMaterial3D.
 
 shader_type spatial;
@@ -14,11 +16,6 @@ uniform vec4 metallic_texture_channel;
 uniform sampler2D texture_roughness : hint_roughness_r,filter_linear_mipmap,repeat_enable;
 uniform float specular;
 uniform float metallic;
-uniform sampler2D texture_emission : source_color, hint_default_black,filter_linear_mipmap,repeat_enable;
-uniform vec4 emission : source_color;
-uniform float emission_energy;
-uniform sampler2D texture_normal : hint_roughness_normal,filter_linear_mipmap,repeat_enable;
-uniform float normal_scale : hint_range(-16,16);
 uniform vec3 uv1_scale;
 uniform vec3 uv1_offset;
 uniform vec3 uv2_scale;
@@ -36,8 +33,8 @@ void vertex() {
 
 void fragment() {
 	vec2 base_uv = UV;
-	base_uv.x *= 2.0;
-	base_uv *= 4.0;
+	
+	base_uv = base_uv + vec2(TIME/50.0, sin(TIME/50.0));
 	vec4 albedo_tex = texture(texture_albedo,base_uv);
 	ALBEDO = albedo.rgb * albedo_tex.rgb;
 	float metallic_tex = dot(texture(texture_metallic,base_uv),metallic_texture_channel);
@@ -46,46 +43,38 @@ void fragment() {
 	float roughness_tex = dot(texture(texture_roughness,base_uv),roughness_texture_channel);
 	ROUGHNESS = roughness_tex * roughness;
 	SPECULAR = specular;
-	
-	
-	vec2 offset_uv = base_uv + vec2(TIME/50.0, sin(TIME/50.0));
-	NORMAL_MAP = texture(texture_normal,offset_uv).rgb;
-	NORMAL_MAP_DEPTH = normal_scale;
-	vec3 emission_tex = texture(texture_emission,base_uv).rgb;
-	EMISSION = (emission.rgb+emission_tex)*emission_energy;
 }
+"
 
+[sub_resource type="Gradient" id="Gradient_gevd4"]
+offsets = PackedFloat32Array(0.125, 0.647059)
+colors = PackedColorArray(0.598312, 0.562908, 0.350859, 1, 0.859902, 1, 0.825901, 1)
 
-uniform vec3 incident_light = vec3(1, 1, 0);
-void light() {
-    DIFFUSE_LIGHT = vec3(1, 1, 1) * dot(NORMAL, normalize(incident_light));
-	SPECULAR_LIGHT = vec3(0,0,0);
-}"
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_22ge3"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_6lkwf"]
+frequency = 0.0231
 fractal_octaves = 1
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_l3bbf"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_aksma"]
 seamless = true
-as_normal_map = true
-bump_strength = 7.7
-noise = SubResource("FastNoiseLite_22ge3")
+color_ramp = SubResource("Gradient_gevd4")
+noise = SubResource("FastNoiseLite_6lkwf")
 
-[resource]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bpvh5"]
 render_priority = 0
-shader = SubResource("Shader_jo45a")
-shader_parameter/albedo = Color(0.109804, 0.592157, 0, 1)
+shader = SubResource("Shader_tpami")
+shader_parameter/albedo = Color(0.294118, 0.858824, 0, 1)
 shader_parameter/point_size = 1.0
-shader_parameter/roughness = 1.0
+shader_parameter/roughness = 0.0
 shader_parameter/metallic_texture_channel = null
 shader_parameter/specular = 0.5
 shader_parameter/metallic = 0.0
-shader_parameter/emission = Color(0.423529, 0.682353, 0, 1)
-shader_parameter/emission_energy = 0.42
-shader_parameter/normal_scale = 1.0
-shader_parameter/uv1_scale = Vector3(1, 1, 0.2)
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
 shader_parameter/uv1_offset = Vector3(0, 0, 0)
 shader_parameter/uv2_scale = Vector3(1, 1, 1)
 shader_parameter/uv2_offset = Vector3(0, 0, 0)
-shader_parameter/incident_light = Vector3(1, 1, 0)
-shader_parameter/texture_normal = SubResource("NoiseTexture2D_l3bbf")
+shader_parameter/texture_albedo = SubResource("NoiseTexture2D_aksma")
+
+[node name="human_tank2" instance=ExtResource("1_rtw3j")]
+
+[node name="human_tank" parent="." index="0"]
+surface_material_override/1 = SubResource("ShaderMaterial_bpvh5")

@@ -1,0 +1,176 @@
+[gd_scene load_steps=9 format=3 uid="uid://bachcbqku8dxp"]
+
+[ext_resource type="Script" path="res://src/scenes/plants/spawner/spawner.gd" id="1_6y1vb"]
+[ext_resource type="Script" path="res://src/Nodes/plant_ward/ward.gd" id="2_0rd4b"]
+[ext_resource type="PackedScene" uid="uid://bgk88yp1g50m0" path="res://src/scenes/hitbox/hitbox.tscn" id="3_2omfg"]
+[ext_resource type="PackedScene" uid="uid://3fbqi7d4wojx" path="res://resources/meshes/plants/spawner.tscn" id="4_jfy37"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_qvysw"]
+radius = 2.21941
+
+[sub_resource type="Animation" id="Animation_w3p0q"]
+resource_name = "open"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("spawner/Cylinder_036:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6, 1, 1.4, 2, 2.5, 3),
+"transitions": PackedFloat32Array(1, 0.329877, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(1.40993, 2.34826, 2.79272), Vector3(1.06924, -1.88676, -1.53014), Vector3(0.924624, -1.7585, -1.27033), Vector3(1.09955, -1.82088, -1.34361), Vector3(1.40993, 2.34826, 2.79272), Vector3(1.33597, 2.07477, 2.51405), Vector3(1.40993, 2.34826, 2.79272)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("spawner/Cylinder_035:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 1.5, 2, 2.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-1.15463, 2.32416, -1.7305), Vector3(-0.781412, 1.97094, -1.31098), Vector3(-0.864177, 2.0108, -1.3653), Vector3(-1.26225, 2.71572, -2.14791), Vector3(-1.13093, 2.27767, -1.6794), Vector3(-1.15463, 2.32416, -1.7305)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("spawner/branch_004:rotation")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.8, 2.2, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.762553, -2.73748, -0.193927), Vector3(0.762553, -2.73748, -0.193927), Vector3(0.657064, -2.56745, 0.0657783), Vector3(0.74536, -2.70154, -0.14142), Vector3(0.74536, -2.70154, -0.14142)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("spawner/branch_005:rotation")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.7, 1.2, 2.3, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.856618, -2.69259, -0.830327), Vector3(-0.856618, -2.69259, -0.830327), Vector3(-0.936418, -3.04783, -0.378917), Vector3(-0.865667, -2.7151, -0.800655), Vector3(-0.856618, -2.69259, -0.830327)]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_spawn"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_y48r3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("spawner/Cylinder_036:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.40993, 2.34826, 2.79272)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("spawner/Cylinder_035:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1.15463, 2.32416, -1.7305)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("spawner/branch_004:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.762553, -2.73748, -0.193927)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("spawner/branch_005:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.856618, -2.69259, -0.830327)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hloqs"]
+_data = {
+"RESET": SubResource("Animation_y48r3"),
+"open": SubResource("Animation_w3p0q")
+}
+
+[node name="spawner" type="Node3D"]
+script = ExtResource("1_6y1vb")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_qvysw")
+
+[node name="Ward" type="Node3D" parent="."]
+script = ExtResource("2_0rd4b")
+tag = "neuron"
+range = 25.0
+
+[node name="hitbox" parent="." instance=ExtResource("3_2omfg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.368075, 0)
+passive_regen = 4.0
+HP = 100.0
+
+[node name="spawner" parent="." instance=ExtResource("4_jfy37")]
+transform = Transform3D(0.61, 0, 0, 0, 0.61, 0, 0, 0, 0.61, 0, -0.125264, 0)
+
+[node name="Cylinder_035" parent="spawner" index="1"]
+transform = Transform3D(0.220083, -0.211352, 0.0948276, -0.114455, -0.023867, 0.294155, -0.143891, -0.304282, -0.0889393, 0.192722, 0.316959, -1.01917)
+
+[node name="Cylinder_036" parent="spawner" index="2"]
+transform = Transform3D(0.324195, -0.151822, 0.0411349, 0.0197298, -0.0542402, -0.355687, 0.156053, 0.322262, -0.0404869, 0.522635, 0.76773, 1.11647)
+
+[node name="branch_004" parent="spawner" index="3"]
+transform = Transform3D(-0.179388, -0.0936565, -0.0600115, -0.0294126, 0.149763, -0.145805, 0.107274, -0.115554, -0.14033, -0.528071, 2.20141, -0.827176)
+
+[node name="branch_005" parent="spawner" index="4"]
+transform = Transform3D(-0.179388, -0.0936565, -0.0600115, -0.102052, 0.0932709, 0.159496, -0.0442518, 0.164566, -0.12455, -0.528071, 2.20141, 0.637766)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_hloqs")
+}
+autoplay = "open"
+
+[editable path="spawner"]

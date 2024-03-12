@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://b62fl7tq1fev2"]
+[gd_scene load_steps=21 format=3 uid="uid://b62fl7tq1fev2"]
 
 [ext_resource type="PackedScene" uid="uid://d1u318s5pv1iy" path="res://src/scenes/world/world.tscn" id="1_rxcm1"]
 [ext_resource type="PackedScene" uid="uid://d1scgasuvckup" path="res://src/scenes/player/Player.tscn" id="2_6g8be"]
@@ -18,156 +18,6 @@ geometry_parsed_geometry_type = 2
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_gah46"]
 size = Vector3(8.84961, 4.83301, 5.81152)
-
-[sub_resource type="Animation" id="Animation_ugixu"]
-resource_name = "intro"
-length = 20.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Path3D/PathFollow3D:progress_ratio")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 7.3, 15),
-"transitions": PackedFloat32Array(1.86607, 1, 1.46409),
-"update": 0,
-"values": [0.0, 0.4986, 1.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("camera_guide/Camera3D:position")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1.9, 8.6, 9.3, 9.8, 10.5, 11.1, 12.3, 13.7, 15.9, 17.7),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 2.21914, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0.0667419, 0.98355, -3.38326), Vector3(0.436508, 4.1642, -4.36769), Vector3(2.19456, 4.17129, -2.58983), Vector3(2.19456, 4.17129, -2.58983), Vector3(2.19456, 4.17129, -2.58983), Vector3(2.19456, 4.17129, -2.58983), Vector3(5.1302, 3.76921, 0.144259), Vector3(14.2693, 2.54227, -7.15604), Vector3(19.24, -1.21312, -6.38816), Vector3(20.7558, -0.954589, -6.09274), Vector3(19.766, -0.895, -7.023)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("camera_guide/Camera3D:rotation")
-tracks/2/interp = 2
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 1.9, 7.8, 10.3, 10.4, 10.6, 10.8, 11.1, 12.3, 13.4, 14.3, 15.7, 18.1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 3.11789, 0), Vector3(-0.410152, 3.11716, 0), Vector3(-0.411494, 2.77676, 0.00028843), Vector3(-0.411113, 2.87593, 0.000153136), Vector3(-0.412709, 2.88997, 0.00101169), Vector3(-0.411113, 2.87593, 0.000153136), Vector3(-0.412709, 2.88997, 0.00101169), Vector3(-0.411113, 2.87593, 0.000153138), Vector3(-0.363122, 2.48348, -0.0256427), Vector3(-0.339051, 2.23954, -0.0509938), Vector3(-0.339051, 2.23954, -0.0509939), Vector3(-0.199197, 2.18681, 0.121237), Vector3(-0.198968, 2.1869, -0.0785398)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Path3D/PathFollow3D/truck/RemoteTransform3D:remote_path")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 10, 11.1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [NodePath("../../../../camera_guide"), NodePath("../../../../camera_guide"), NodePath("")]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("camera_guide/barrel8:position")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(10.2, 11.1, 11.7, 12.4, 13, 13.5, 13.8, 14.1, 14.8, 19.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 0.594603, 1, 0.517632),
-"update": 0,
-"values": [Vector3(0.902023, 1.88534, 4.79274), Vector3(0.938857, 2.3097, 4.88049), Vector3(5.98656, 1.63583, 0.867268), Vector3(9.24585, -0.379611, -1.23434), Vector3(12.2828, -0.324358, -3.03573), Vector3(13.8217, -1.13439, -4.25373), Vector3(15.7861, -1.03933, -5.29599), Vector3(17.6198, -1.91404, -6.33826), Vector3(17.3591, -1.87888, -6.26009), Vector3(17.0545, -1.83756, -6.24197)]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("camera_guide/barrel8:rotation")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(10.6, 10.9, 11.6, 12.2, 13, 13.7, 14.4, 19.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 0.466517),
-"update": 0,
-"values": [Vector3(-1.17716, 1.52248, 1.61417), Vector3(-0.971836, 0.46971, 2.4162), Vector3(-0.428536, 0.726706, 2.59367), Vector3(0.907001, 1.40804, 1.80986), Vector3(0.231821, 1.46593, 1.30043), Vector3(-0.380385, 1.44885, 1.56148), Vector3(-1.17937, 1.65518, 1.55663), Vector3(-1.44837, 3.08489, 0.115219)]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("puddle2:position")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0, 14),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(-12.916, -0.15, 1.121), Vector3(-12.6285, -0.15, 0.233372)]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("puddle2:rotation")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0, 14),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0.623013, 0)]
-}
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("puddle2:scale")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
-"times": PackedFloat32Array(13.8, 13.9, 15),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(0.0999999, 0.0999999, 0.0999999), Vector3(0.1, 0.1, 0.1), Vector3(2.38, 2.78, 2.455)]
-}
-tracks/9/type = "value"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("../Nexus:position")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
-"times": PackedFloat32Array(0, 15.3, 18.2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(-13.5, -2.7149, -0.377301), Vector3(-13.5, -2.7149, -0.377301), Vector3(-13.5, 0.232662, -0.377301)]
-}
-tracks/10/type = "method"
-tracks/10/imported = false
-tracks/10/enabled = true
-tracks/10/path = NodePath(".")
-tracks/10/interp = 1
-tracks/10/loop_wrap = true
-tracks/10/keys = {
-"times": PackedFloat32Array(19.9),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"_intro_finished"
-}]
-}
-tracks/11/type = "value"
-tracks/11/imported = false
-tracks/11/enabled = true
-tracks/11/path = NodePath("Path3D/PathFollow3D/truck:rolling")
-tracks/11/interp = 1
-tracks/11/loop_wrap = true
-tracks/11/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, 1.0]
-}
 
 [sub_resource type="Animation" id="Animation_e2aji"]
 length = 0.001
@@ -291,6 +141,180 @@ tracks/9/keys = {
 "update": 0,
 "values": [0.0]
 }
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("camera_guide/barrel8/CPUParticles3D:emitting")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_ugixu"]
+resource_name = "intro"
+length = 20.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Path3D/PathFollow3D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 7.3, 15),
+"transitions": PackedFloat32Array(1.86607, 1, 1.46409),
+"update": 0,
+"values": [0.0, 0.4986, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("camera_guide/Camera3D:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.9, 8.6, 9.3, 9.8, 10.5, 11, 11.8, 13.1, 15.4, 17.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 2.21914, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.0667419, 0.98355, -3.38326), Vector3(0.436508, 4.1642, -4.36769), Vector3(2.19456, 4.17129, -2.58983), Vector3(2.19456, 4.17129, -2.58983), Vector3(2.19456, 4.17129, -2.58983), Vector3(2.19456, 4.17129, -2.58983), Vector3(5.1302, 3.76921, 0.144259), Vector3(14.2693, 2.54227, -7.15604), Vector3(19.24, -1.21312, -6.38816), Vector3(20.7558, -0.954589, -6.09274), Vector3(19.766, -0.895, -7.023)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("camera_guide/Camera3D:rotation")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.9, 7.8, 10.3, 10.4, 10.6, 10.8, 11.1, 12.3, 13.4, 14.3, 15.7, 18.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 3.11789, 0), Vector3(-0.410152, 3.11716, 0), Vector3(-0.411494, 2.77676, 0.00028843), Vector3(-0.411113, 2.87593, 0.000153136), Vector3(-0.412709, 2.88997, 0.00101169), Vector3(-0.411113, 2.87593, 0.000153136), Vector3(-0.412709, 2.88997, 0.00101169), Vector3(-0.411113, 2.87593, 0.000153138), Vector3(-0.363122, 2.48348, -0.0256427), Vector3(-0.339051, 2.23954, -0.0509938), Vector3(-0.339051, 2.23954, -0.0509939), Vector3(-0.199197, 2.18681, 0.121237), Vector3(-0.198968, 2.1869, -0.0785398)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Path3D/PathFollow3D/truck/RemoteTransform3D:remote_path")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 10, 11.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [NodePath("../../../../camera_guide"), NodePath("../../../../camera_guide"), NodePath("")]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("camera_guide/barrel8:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(10.2, 11.1, 11.5, 11.9, 12.5, 12.8, 13.2, 14.8, 19.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 0.594603, 1, 0.517632),
+"update": 0,
+"values": [Vector3(0.902023, 1.88534, 4.79274), Vector3(0.938857, 2.3097, 4.88049), Vector3(7.77027, 1.3949, 0.0209723), Vector3(10.2707, -0.518043, -2.70082), Vector3(14.6994, -0.650772, -4.55263), Vector3(16.23, -1.45967, -5.6634), Vector3(17.6198, -1.91404, -6.33826), Vector3(17.3591, -1.87888, -6.26009), Vector3(17.0545, -1.83756, -6.24197)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("camera_guide/barrel8:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(10.6, 10.9, 11.6, 12.2, 13, 14.4, 19.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 0.466517),
+"update": 0,
+"values": [Vector3(-1.17716, 1.52248, 1.61417), Vector3(-0.971836, 0.46971, 2.4162), Vector3(-0.428536, 0.726706, 2.59367), Vector3(0.907001, 1.40804, 1.80986), Vector3(0.209871, 2.16694, 1.3901), Vector3(-1.17937, 1.65518, 1.55663), Vector3(-1.44837, 3.08489, 0.115219)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("puddle2:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 14),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-12.916, -0.15, 1.121), Vector3(-12.6285, -0.15, 0.233372)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("puddle2:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 14),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.623013, 0)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("puddle2:scale")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(13.8, 13.9, 15),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.0999999, 0.0999999, 0.0999999), Vector3(0.1, 0.1, 0.1), Vector3(2.38, 2.78, 2.455)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("../Nexus:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 15.3, 18.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(-13.5, -2.7149, -0.377301), Vector3(-13.5, -2.7149, -0.377301), Vector3(-13.5, 0.232662, -0.377301)]
+}
+tracks/10/type = "method"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath(".")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(19.9),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_intro_finished"
+}]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Path3D/PathFollow3D/truck:rolling")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("camera_guide/barrel8/CPUParticles3D:emitting")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(11.5, 12.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wpy6y"]
 _data = {
@@ -304,6 +328,13 @@ _data = {
 "tilts": PackedFloat32Array(0, 0.0481331, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.193761, 0, 0, 0, 0, 0)
 }
 point_count = 26
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nsham"]
+albedo_color = Color(0.388235, 0.870588, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_6mr02"]
+material = SubResource("StandardMaterial3D_nsham")
+size = Vector3(0.1, 0.1, 0.1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wxxke"]
 render_priority = 0
@@ -350,8 +381,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -235.484, 0.339237, 156.242)
 curve = SubResource("Curve3D_eqpvq")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="intro/Path3D"]
-transform = Transform3D(0.299433, -0.0101131, 0.953903, 0.0194017, 0.999502, 0.00450951, -0.953774, 0.017157, 0.299565, -7.69974, -0.0390417, -3.01753)
-progress = 6.37783
+transform = Transform3D(0.38322, 0, 0.923516, 0, 0.999704, 0, -0.923557, 0, 0.383204, -1.55835, -3.8147e-06, -1.30241)
 
 [node name="truck" parent="intro/Path3D/PathFollow3D" instance=ExtResource("5_4ayd1")]
 transform = Transform3D(-0.57, 0, 8.60676e-08, 0, 0.57, 0, -8.60676e-08, 0, -0.57, 0, 0, 0)
@@ -385,13 +415,23 @@ transform = Transform3D(-1.75439, 9.31323e-10, -3.27826e-07, 1.86265e-09, 1.7543
 remote_path = NodePath("../../../../camera_guide")
 
 [node name="camera_guide" type="Node3D" parent="intro"]
-transform = Transform3D(0.299433, -0.0101131, 0.953903, 0.0194017, 0.999502, 0.00450951, -0.953774, 0.017157, 0.299565, -243.183, 0.300195, 153.224)
+transform = Transform3D(0.383221, -8.0871e-11, 0.923518, 1.0614e-09, 0.999706, 2.65348e-10, -0.923559, 5.4113e-10, 0.383204, -237.042, 0.339233, 154.94)
 
 [node name="barrel8" parent="intro/camera_guide" instance=ExtResource("6_ybmpd")]
-transform = Transform3D(-0.526485, -0.00470601, 0.218371, 0.218418, -0.00948042, 0.526407, -0.000714077, 0.569903, 0.0105601, 0.902023, 1.88534, 4.79274)
+transform = Transform3D(-0.526486, -0.00470533, 0.218368, 0.218415, -0.00947952, 0.526408, -0.000713842, 0.569903, 0.010559, 0.902023, 1.88534, 4.79274)
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="intro/camera_guide/barrel8"]
+transform = Transform3D(1, 5.96046e-08, 3.72529e-08, 2.98023e-07, 1, -2.23517e-08, -2.04891e-07, 1.49012e-08, 1, -0.323225, 1.46476, -0.414951)
+emitting = false
+amount = 20
+mesh = SubResource("BoxMesh_6mr02")
+direction = Vector3(0, 1, 0)
+spread = 0.0
+initial_velocity_min = 0.1
+initial_velocity_max = 10.0
 
 [node name="Camera3D" type="Camera3D" parent="intro/camera_guide"]
-transform = Transform3D(-0.999857, 0, 0.0237037, 0, 1.00025, 0, -0.0237024, 0, -0.999914, 0.0667419, 0.98355, -3.38326)
+transform = Transform3D(-0.999857, 0, 0.0237052, 0, 1.00025, 0, -0.0237038, 0, -0.999914, 0.0667419, 0.98355, -3.38326)
 current = true
 
 [node name="post_process" type="MeshInstance3D" parent="intro/camera_guide/Camera3D"]

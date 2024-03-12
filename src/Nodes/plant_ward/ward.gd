@@ -27,8 +27,9 @@ func debug_view():
 
 
 func _exit_tree():
+	
 	Gamemaster.remove_ward(self)
-	print("WARD REMOVED")
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

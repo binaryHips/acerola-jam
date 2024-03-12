@@ -1,0 +1,101 @@
+[gd_scene load_steps=12 format=3 uid="uid://bo2h3c4cljk87"]
+
+[ext_resource type="Script" path="res://src/scenes/plants/incinerator/incinerator.gd" id="1_68grr"]
+[ext_resource type="Script" path="res://src/Nodes/plant_ward/ward.gd" id="2_fotp1"]
+[ext_resource type="PackedScene" uid="uid://bgk88yp1g50m0" path="res://src/scenes/hitbox/hitbox.tscn" id="3_3q37l"]
+[ext_resource type="PackedScene" uid="uid://cf14tlj2qyl63" path="res://resources/meshes/plants/incinerator.tscn" id="4_p587i"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_qvysw"]
+radius = 6.64932
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5t1jg"]
+albedo_color = Color(0, 0, 0, 1)
+emission_enabled = true
+emission = Color(0.976471, 0.435294, 0.152941, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_mltce"]
+material = SubResource("StandardMaterial3D_5t1jg")
+size = Vector3(0.2, 0.2, 0.2)
+
+[sub_resource type="Curve" id="Curve_0uq38"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_66pnu"]
+albedo_color = Color(0.333333, 0.333333, 0.333333, 1)
+emission = Color(0.976471, 0.435294, 0.152941, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_4sid3"]
+material = SubResource("StandardMaterial3D_66pnu")
+size = Vector3(0.2, 0.2, 0.2)
+
+[sub_resource type="Curve" id="Curve_xt0sk"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.776042, 0.538462), -2.01612, -2.01612, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[node name="incinerator" type="Node3D"]
+script = ExtResource("1_68grr")
+
+[node name="shooting_range" type="Area3D" parent="."]
+collision_layer = 8
+collision_mask = 8
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="shooting_range"]
+shape = SubResource("SphereShape3D_qvysw")
+
+[node name="Ward" type="Node3D" parent="."]
+script = ExtResource("2_fotp1")
+tag = "tower"
+range = 25.0
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[node name="hitbox" parent="." instance=ExtResource("3_3q37l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.803581, 0)
+MAX_HP = 400.0
+passive_regen = 2.0
+HP = 200.0
+
+[node name="incinerator" parent="." instance=ExtResource("4_p587i")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, -0.065726, 0)
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.24941, 0)
+emitting = false
+amount = 200
+lifetime = 0.45
+one_shot = true
+explosiveness = 0.63
+randomness = 0.52
+lifetime_randomness = 0.35
+mesh = SubResource("BoxMesh_mltce")
+spread = 180.0
+flatness = 0.84
+gravity = Vector3(0, 29.19, 0)
+initial_velocity_min = 17.95
+initial_velocity_max = 31.3
+damping_min = 16.982
+damping_max = 17.925
+scale_amount_curve = SubResource("Curve_0uq38")
+
+[node name="CPUParticles3D2" type="CPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.09011, 0)
+amount = 10
+lifetime = 1.27
+explosiveness = 0.54
+mesh = SubResource("BoxMesh_4sid3")
+direction = Vector3(0, 1, 0)
+spread = 81.51
+flatness = 0.84
+gravity = Vector3(0, 1, 0)
+initial_velocity_max = 1.0
+radial_accel_max = 1.0
+scale_amount_min = 0.1
+scale_amount_max = 1.2
+scale_amount_curve = SubResource("Curve_xt0sk")
+
+[connection signal="body_entered" from="shooting_range" to="." method="_on_shooting_range_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

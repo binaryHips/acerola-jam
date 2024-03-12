@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://3fbqi7d4wojx"]
+
+[ext_resource type="PackedScene" uid="uid://b0bpd7n517rb5" path="res://resources/meshes/plants/spawner.glb" id="1_ml6ue"]
+
+[node name="spawner" instance=ExtResource("1_ml6ue")]

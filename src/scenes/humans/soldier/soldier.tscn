@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://b5ywpbkxoaa38"]
+[gd_scene load_steps=8 format=3 uid="uid://b5ywpbkxoaa38"]
 
 [ext_resource type="Script" path="res://src/scenes/humans/soldier/soldier.gd" id="1_iqy7m"]
 [ext_resource type="PackedScene" uid="uid://bgk88yp1g50m0" path="res://src/scenes/hitbox/hitbox.tscn" id="2_i6tkv"]
 [ext_resource type="PackedScene" uid="uid://dxebldut1vkpi" path="res://src/scenes/IA/IA_agent.tscn" id="3_u60yb"]
+[ext_resource type="PackedScene" uid="uid://dxubjmyy6v06m" path="res://resources/meshes/humans/soldier.tscn" id="4_8p52s"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5qxdk"]
 
@@ -20,6 +21,7 @@ shape = SubResource("CapsuleShape3D_5qxdk")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+visible = false
 mesh = SubResource("CapsuleMesh_g8fp8")
 
 [node name="hitbox" parent="." instance=ExtResource("2_i6tkv")]
@@ -40,5 +42,8 @@ monitorable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="detection_range"]
 shape = SubResource("SphereShape3D_cql7f")
+
+[node name="soldier" parent="." instance=ExtResource("4_8p52s")]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
 
 [connection signal="timeout" from="Action_timer" to="." method="_on_action_timer_timeout"]

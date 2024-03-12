@@ -1,6 +1,7 @@
 extends Node3D
 
 @export var start_time_sec:int = 100
+
 @export var time_between_spawns:float = 30
 
 
@@ -12,6 +13,10 @@ extends Node3D
 const SOLDIER = preload("res://src/scenes/humans/soldier/soldier.tscn")
 
 func _ready():
+	
+	Gamemaster.game_started.connect(_start)
+	
+func _start():
 	$Timer.wait_time = time_between_spawns
 	$Timer.start()
 

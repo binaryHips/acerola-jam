@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
 const SHOOT_RANGE = 10.0
-const DAMAGE := 10.0
+const DAMAGE := 5.0
 enum TEAM {plants, humans}
 
 var movement_speed: float = 3.5

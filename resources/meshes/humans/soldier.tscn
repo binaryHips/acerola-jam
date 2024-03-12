@@ -1,0 +1,44 @@
+[gd_scene load_steps=4 format=3 uid="uid://dxubjmyy6v06m"]
+
+[ext_resource type="PackedScene" uid="uid://cr3v4sxoli1x6" path="res://resources/meshes/humans/soldier.glb" id="1_ms662"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bvn1s"]
+albedo_color = Color(0.34902, 0.360784, 0.356863, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_jvm6j"]
+material = SubResource("StandardMaterial3D_bvn1s")
+size = Vector3(2, 0.3, 0.3)
+
+[node name="soldier" instance=ExtResource("1_ms662")]
+
+[node name="Skeleton3D" parent="Armature" index="0"]
+bones/1/rotation = Quaternion(-0.000809367, 3.038e-05, -0.0852262, 0.996361)
+bones/1/scale = Vector3(1, 1, 1)
+bones/2/rotation = Quaternion(-0.00495561, 0.000124006, -0.0272385, 0.999617)
+bones/2/scale = Vector3(1, 1, 1)
+bones/3/rotation = Quaternion(0.00530572, -0.000103292, 0.0162034, 0.999855)
+bones/3/scale = Vector3(1, 1, 1)
+bones/4/rotation = Quaternion(-0.687347, 0.0399412, 0.0540572, 0.723213)
+bones/4/scale = Vector3(1, 1, 1)
+bones/5/rotation = Quaternion(-0.0251806, 0.00111715, -0.000962675, 0.999682)
+bones/6/rotation = Quaternion(0.399483, 0.197008, -0.631185, 0.634986)
+bones/6/scale = Vector3(1, 1, 1)
+bones/7/rotation = Quaternion(0.0465994, 0.687816, 0.722814, -0.0477197)
+bones/7/scale = Vector3(1, 1, 1)
+bones/8/rotation = Quaternion(0.0187849, -0.0411955, 0.804622, 0.592059)
+bones/8/scale = Vector3(1, 1, 1)
+bones/10/rotation = Quaternion(0.942061, 9.88601e-10, -0.0707045, 0.327905)
+bones/10/scale = Vector3(1, 1, 1)
+bones/11/rotation = Quaternion(0.272382, 0.0755639, -0.210862, 0.935754)
+bones/11/scale = Vector3(1, 1, 1)
+bones/12/rotation = Quaternion(0.0695857, 0.000732461, 0.159315, 0.984772)
+bones/12/scale = Vector3(1, 1, 1)
+bones/13/rotation = Quaternion(0.940422, 0.0555524, -0.0899177, -0.323166)
+bones/13/scale = Vector3(1, 1, 1)
+bones/14/rotation = Quaternion(-0.251634, 0.108702, 0.299151, 0.913987)
+bones/15/rotation = Quaternion(-0.00141576, -0.00141547, 0.311908, 0.95011)
+bones/15/scale = Vector3(1, 1, 1)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.14782, 2.34723, -0.424274)
+mesh = SubResource("BoxMesh_jvm6j")

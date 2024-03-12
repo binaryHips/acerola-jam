@@ -14,9 +14,9 @@ tag = "nexus"
 
 [node name="hitbox" parent="." instance=ExtResource("3_0acjy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.01198, 0)
-MAX_HP = 600.0
+MAX_HP = 600000.0
 passive_regen = 5.0
-HP = 600.0
+HP = 600000.0
 
 [node name="nexus" parent="." instance=ExtResource("4_gabjg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.356751, 0)

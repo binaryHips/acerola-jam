@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cj3wgxg5028a5"]
+[gd_scene load_steps=12 format=3 uid="uid://cj3wgxg5028a5"]
 
 [ext_resource type="PackedScene" uid="uid://bble2ybl6rjmc" path="res://src/scenes/UI/shop/shop_item.tscn" id="1_n0wmn"]
 [ext_resource type="Script" path="res://src/scenes/UI/shop/shop.gd" id="1_v8ohl"]
@@ -6,7 +6,11 @@
 [ext_resource type="PackedScene" uid="uid://cdn0c30leai2y" path="res://src/scenes/plants/neuron/neuron.tscn" id="4_an1di"]
 [ext_resource type="PackedScene" uid="uid://bra7l32cvnsev" path="res://src/scenes/plants/mega_extractor/mega_extractor.tscn" id="5_27kac"]
 [ext_resource type="PackedScene" uid="uid://cgod3y3e3usg3" path="res://src/scenes/plants/basic_tower/basic_tower.tscn" id="6_8ubpk"]
+[ext_resource type="PackedScene" uid="uid://bo2h3c4cljk87" path="res://src/scenes/plants/incinerator/incinerator.tscn" id="7_4o4ml"]
 [ext_resource type="PackedScene" uid="uid://cbtc1cwej8cbv" path="res://src/scenes/plants/mega_tower/mega_tower.tscn" id="7_b83wu"]
+[ext_resource type="PackedScene" uid="uid://bachcbqku8dxp" path="res://src/scenes/plants/spawner/spawner.tscn" id="9_q8c6y"]
+[ext_resource type="PackedScene" uid="uid://c2nfw5sd8lxa3" path="res://src/scenes/plants/booster/booster.tscn" id="10_nls0f"]
+[ext_resource type="PackedScene" uid="uid://bqxons334ia7o" path="res://src/scenes/plants/mega_spawner/mega_spawner.tscn" id="11_mjrmi"]
 
 [node name="shop" type="Control"]
 layout_mode = 3
@@ -71,13 +75,15 @@ layout_mode = 2
 item_name = "Slingroot"
 scene = ExtResource("6_8ubpk")
 price = Vector3i(10, 0, 10)
-desc_tooltip = "Shoots "
+desc_tooltip = "Shoots wood at humans.
+Quite short range."
 
 [node name="aoe_tower" parent="defense_plants" instance=ExtResource("1_n0wmn")]
 layout_mode = 2
 item_name = "Incinerator"
+scene = ExtResource("7_4o4ml")
 price = Vector3i(10, 15, 30)
-desc_tooltip = "Attacks all ennemies around it."
+desc_tooltip = "Burns all ennemies around it."
 
 [node name="mega_tower" parent="defense_plants" instance=ExtResource("1_n0wmn")]
 layout_mode = 2
@@ -100,18 +106,24 @@ grow_vertical = 2
 
 [node name="mini_spawner" parent="attack_plants" instance=ExtResource("1_n0wmn")]
 layout_mode = 2
-item_name = "incubator"
+item_name = "Incubator"
+scene = ExtResource("9_q8c6y")
 price = Vector3i(50, 15, 0)
-desc_tooltip = "Periodically spits crawlers."
+desc_tooltip = "Periodically spits out crawlers."
 
 [node name="booster" parent="attack_plants" instance=ExtResource("1_n0wmn")]
 layout_mode = 2
-item_name = "infuser"
-desc_tooltip = "Boost all "
+item_name = "Infuser"
+scene = ExtResource("10_nls0f")
+price = Vector3i(35, 0, 10)
+desc_tooltip = "Boost all crawlers in its range"
 
 [node name="mega_spawner" parent="attack_plants" instance=ExtResource("1_n0wmn")]
 layout_mode = 2
-item_name = "mega incubator"
+item_name = "Mega incubator"
+scene = ExtResource("11_mjrmi")
+price = Vector3i(50, 40, 0)
+desc_tooltip = "spits out crawlers, but faster."
 
 [node name="Resources" type="Button" parent="."]
 layout_mode = 1

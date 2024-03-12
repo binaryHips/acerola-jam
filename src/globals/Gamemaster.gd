@@ -145,6 +145,8 @@ func fade_from_black(time):
 	return
 
 
+signal game_started
+
 var fade: ColorRect
 func _ready():
 	fade = ColorRect.new()
@@ -155,7 +157,8 @@ func _ready():
 	get_parent().get_node("main").add_child(fade) #dirty
 	fade_from_black(0.5)
 
+func game_won():
+	print("WINNED")
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func game_lost():
+	print("LOST")

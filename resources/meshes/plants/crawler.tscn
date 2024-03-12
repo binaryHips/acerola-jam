@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://bevk0pl05o34l"]
+
+[ext_resource type="PackedScene" uid="uid://c8tdbbwv1n3kv" path="res://resources/meshes/plants/crawler.glb" id="1_8ujle"]
+
+[sub_resource type="GDScript" id="GDScript_w1oea"]
+script/source = "extends Node3D
+
+
+var legs_l = [$leg, $leg_001, $leg_002]
+var legs_r = [$leg_003, $leg_004, $leg_005]
+
+var  walking := true
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	#for k in 3:
+		#legs_l[k].rotation.x = 22 + sin((k+1) * 1 +  Time.get_ticks_msec()/100.0) * 10.0
+		#legs_r[k].rotation.x = 22 + sin((k+1) * 1.5 +  Time.get_ticks_msec()/100.0) *10.0
+	pass
+"
+
+[node name="crawler" instance=ExtResource("1_8ujle")]
+script = SubResource("GDScript_w1oea")
