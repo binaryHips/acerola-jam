@@ -3,3 +3,21 @@
 [ext_resource type="PackedScene" uid="uid://bd3x5yo6po2cq" path="res://resources/meshes/plants/turret.glb" id="1_h7pq5"]
 
 [node name="turret" instance=ExtResource("1_h7pq5")]
+
+[node name="base" parent="." index="0"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.227807, 0.999997, 0.242924)
+
+[node name="tower" parent="." index="1"]
+transform = Transform3D(0, -4.37114e-08, 1, -1, 0, 0, 0, -1, -4.37114e-08, 0.0745116, 1.49676, 0.225889)
+
+[node name="Cylinder_027" parent="." index="2"]
+transform = Transform3D(0.152791, -0.114416, 0.0678006, -0.074465, -0.015528, 0.191378, -0.0769514, -0.212152, -0.0505732, 0.239751, 0.395708, -0.660438)
+
+[node name="Cylinder_028" parent="." index="3"]
+transform = Transform3D(-0.0700334, 0.220565, -0.0375196, -0.135333, -0.0730692, -0.176938, -0.178162, -0.0311977, 0.149153, 0.908887, 0.464304, 0.315221)
+
+[node name="Cylinder_029" parent="." index="4"]
+transform = Transform3D(-0.187552, 0.0072026, 0.140477, -0.135333, -0.0730692, -0.176938, 0.0383475, -0.222644, 0.0626135, 0.517765, 0.464304, -0.283845)
+
+[node name="Cylinder_030" parent="." index="5"]
+transform = Transform3D(-0.0495259, -0.228669, -0.0381584, -0.074465, -0.015528, 0.191378, -0.163749, 0.0762222, -0.0754885, -0.55844, 0.395708, 0.207515)

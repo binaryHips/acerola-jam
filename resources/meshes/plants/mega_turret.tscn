@@ -3,3 +3,27 @@
 [ext_resource type="PackedScene" uid="uid://b7mhibnn34ije" path="res://resources/meshes/plants/mega_turret.glb" id="1_gfn2k"]
 
 [node name="mega_turret" instance=ExtResource("1_gfn2k")]
+
+[node name="base_001" parent="." index="0"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.19383, 0.999997, 0.280218)
+
+[node name="Cylinder_034" parent="." index="1"]
+transform = Transform3D(0.152791, -0.114416, 0.0678006, -0.074465, -0.015528, 0.191378, -0.0769514, -0.212152, -0.0505732, 0.205774, 0.395708, -0.623144)
+
+[node name="Cylinder_033" parent="." index="2"]
+transform = Transform3D(-0.0246641, 0.232555, 0.0164759, -0.0634991, 0.00924053, -0.225486, -0.224323, -0.0281849, 0.0620167, 0.87491, 0.464304, 0.352514)
+
+[node name="Cylinder_032" parent="." index="3"]
+transform = Transform3D(-0.232569, -0.00356937, 0.0293289, -0.0290628, 0.0695244, -0.221998, -0.00531773, -0.223864, -0.0694126, 0.483788, 0.464304, -0.246551)
+
+[node name="Cylinder_031" parent="." index="4"]
+transform = Transform3D(-0.0495259, -0.228669, -0.0381584, -0.074465, -0.015528, 0.191378, -0.163749, 0.0762222, -0.0754885, -0.592417, 0.395708, 0.244808)
+
+[node name="turret_001" parent="." index="5"]
+transform = Transform3D(-2.00872e-08, 0, 0.459542, 0, 0.459542, 0, -0.459542, 0, -2.00872e-08, 0.19383, 1.51463, 0.208195)
+
+[node name="shield_002" parent="." index="6"]
+transform = Transform3D(0.197495, 0.0977926, -0.273486, -0.133733, 0.247231, 0.0475101, 0.235237, 0.0584489, 0.256617, -0.417127, 0.747332, -0.420142)
+
+[node name="shield_003" parent="." index="7"]
+transform = Transform3D(-0.285225, -0.0939812, 0.224991, -0.148272, 0.272165, -0.0201132, -0.17648, -0.0767715, -0.34673, 0.951054, 0.760601, 0.552204)
