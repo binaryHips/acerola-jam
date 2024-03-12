@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://cgod3y3e3usg3"]
+[gd_scene load_steps=7 format=3 uid="uid://cgod3y3e3usg3"]
 
 [ext_resource type="Script" path="res://src/scenes/plants/basic_tower/basic_tower.gd" id="1_d5oei"]
 [ext_resource type="Script" path="res://src/Nodes/plant_ward/ward.gd" id="2_vauo6"]
 [ext_resource type="PackedScene" uid="uid://bgk88yp1g50m0" path="res://src/scenes/hitbox/hitbox.tscn" id="3_qu16u"]
 [ext_resource type="PackedScene" uid="uid://b0sfjuu8e6oqo" path="res://resources/meshes/plants/turret.tscn" id="4_3eyew"]
+[ext_resource type="AudioStream" uid="uid://du1fuukty2wc5" path="res://resources/sound/plants/basic_turret_shoot.mp3" id="5_egviu"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_qvysw"]
 radius = 6.64932
@@ -36,6 +37,10 @@ HP = 150.0
 
 [node name="turret" parent="." instance=ExtResource("4_3eyew")]
 transform = Transform3D(0.73, 0, 0, 0, 0.73, 0, 0, 0, 0.73, 0, -0.1, 0)
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("5_egviu")
+max_distance = 20.0
 
 [connection signal="body_entered" from="shooting_range" to="." method="_on_shooting_range_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="shoot"]

@@ -53,11 +53,11 @@ func remove_ward(ward:Ward):
 	
 	recompute_connexity()
 
-func can_connect(w1:Ward, w2:Ward):
+func can_connect(w1:Ward, w2:Ward) -> bool:
 	var dist := w1.global_position.distance_to(w2.global_position)
 	return dist <= max(w1.range, w2.range)
 
-func get_closest_connected(ward):
+func get_closest_connected(ward) -> Ward:
 	
 	var dist:float = INF
 	var candidate:Ward
@@ -68,7 +68,7 @@ func get_closest_connected(ward):
 			candidate = w
 	return candidate
 
-func get_closest_in(ward, array):
+func get_closest_in(ward, array) -> Ward:
 	
 	var dist:float = INF
 	var candidate:Ward
@@ -78,6 +78,14 @@ func get_closest_in(ward, array):
 			dist = ward.global_position.distance_squared_to(w.global_position)
 			candidate = w
 	return candidate
+
+func is_in_range_from_plants(position:Vector3) -> bool:
+	
+	for w in linked:
+		if w.global_position.distance_to(position) <= w.range:
+			return true
+	return false
+
 
 func recompute_connexity():
 	
@@ -103,6 +111,7 @@ func recompute_connexity():
 	
 	for w in not_visited:
 		w.is_linked_to_base = false
+		roots_manager.remove_connections(w)
 	
 	
 	#second pass for roots.
@@ -131,7 +140,7 @@ func recompute_connexity():
 func fade_to_black(time):
 	
 	var tween = get_tree().create_tween()
-	tween.tween_property(fade, "color", Color(0, 0, 0, 1), 1.0)
+	tween.tween_property(fade, "color", Color(0, 0, 0, 1), time)
 	tween.play()
 	await tween.finished
 	return
@@ -139,12 +148,13 @@ func fade_to_black(time):
 func fade_from_black(time):
 	
 	var tween = get_tree().create_tween()
-	tween.tween_property(fade, "color", Color(0, 0, 0, 0), 1.0)
+	tween.tween_property(fade, "color", Color(0, 0, 0, 0), time)
 	tween.play()
 	await tween.finished
 	return
 
 
+var has_game_started := false
 signal game_started
 
 var fade: ColorRect
@@ -155,10 +165,22 @@ func _ready():
 	fade.set_anchors_preset(Control.PRESET_FULL_RECT)
 	fade.mouse_filter =Control.MOUSE_FILTER_IGNORE
 	get_parent().get_node("main").add_child(fade) #dirty
-	fade_from_black(0.5)
+	
+	var audio:AudioStreamPlayer = get_parent().get_node("main").get_node("general_player_1") as AudioStreamPlayer
+	
+	audio.stream = preload("res://resources/sound/intro/intro_pad.mp3")
+	audio.volume_db = -80
+	audio.play()
+	var tween = get_tree().create_tween()
+	tween.tween_property(audio, "volume_db", -30, 1.5)
+	tween.play()
+	
+	fade_from_black(1.5)
 
 func game_won():
-	print("WINNED")
+	print("WON")
+	fade_to_black(3.0)
 
 func game_lost():
 	print("LOST")
+	fade_to_black(3.0)

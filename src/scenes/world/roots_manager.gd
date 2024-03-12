@@ -12,6 +12,8 @@ func _ready():
 
 func add_connection(w1:Ward, w2:Ward):
 	
+	if ! (is_instance_valid(w1) && is_instance_valid(w2)): return #just in case?
+	
 	if w2 in connected: return #zlready connected?
 	
 	connected.append(w2)

@@ -11,8 +11,11 @@ enum TEAM {plants, humans}
 
 
 func _ready():
-	pass # Replace with function body.
+	$Sprite3D.visible = Gamemaster.has_game_started
+	Gamemaster.game_started.connect(_game_started)
 
+func _game_started():
+	$Sprite3D.show()
 
 
 func damage(d:float):

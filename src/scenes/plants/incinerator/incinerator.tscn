@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://bo2h3c4cljk87"]
+[gd_scene load_steps=13 format=3 uid="uid://bo2h3c4cljk87"]
 
 [ext_resource type="Script" path="res://src/scenes/plants/incinerator/incinerator.gd" id="1_68grr"]
 [ext_resource type="Script" path="res://src/Nodes/plant_ward/ward.gd" id="2_fotp1"]
 [ext_resource type="PackedScene" uid="uid://bgk88yp1g50m0" path="res://src/scenes/hitbox/hitbox.tscn" id="3_3q37l"]
 [ext_resource type="PackedScene" uid="uid://cf14tlj2qyl63" path="res://resources/meshes/plants/incinerator.tscn" id="4_p587i"]
+[ext_resource type="AudioStream" uid="uid://cwjkr0u07loyu" path="res://resources/sound/plants/incinerator_shoot.mp3" id="5_2v346"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_qvysw"]
 radius = 6.64932
@@ -96,6 +97,11 @@ radial_accel_max = 1.0
 scale_amount_min = 0.1
 scale_amount_max = 1.2
 scale_amount_curve = SubResource("Curve_xt0sk")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("5_2v346")
+volume_db = -12.0
+max_distance = 20.0
 
 [connection signal="body_entered" from="shooting_range" to="." method="_on_shooting_range_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -14,7 +14,7 @@ frame_2/texture = ExtResource("3_abjfp")
 frame_2/duration = 1.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xvorn"]
-size = Vector3(1.08984, 1, 1.44141)
+size = Vector3(2.00684, 8, 2.2522)
 
 [node name="cursor" type="Node3D"]
 
@@ -28,9 +28,9 @@ texture = SubResource("AnimatedTexture_3r7fc")
 [node name="audio" type="AudioStreamPlayer3D" parent="."]
 
 [node name="Area3D" type="Area3D" parent="."]
-collision_layer = 2
-collision_mask = 2
+collision_layer = 0
+collision_mask = 11
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.617982, 0.0173228)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.11798, 0.0173228)
 shape = SubResource("BoxShape3D_xvorn")

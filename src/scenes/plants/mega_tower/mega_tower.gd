@@ -4,7 +4,7 @@ extends Node3D
 #booo duplicated code
 enum TEAM {plants, humans}
 
-const DAMAGE := 20.0
+@export var DAMAGE := 40.0
 
 var target
 @onready var tower = $mega_turret/turret_001
@@ -39,6 +39,5 @@ func shoot():
 
 	if is_instance_valid(target): #just in case the bro is dead already
 		
-		#play shooting animation
-		print("SHOOT")
+		$AudioStreamPlayer3D.shoot()
 		target.damage(DAMAGE)

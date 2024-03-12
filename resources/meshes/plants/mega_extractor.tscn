@@ -1,7 +1,107 @@
-[gd_scene load_steps=6 format=3 uid="uid://wy87vcatkra8"]
+[gd_scene load_steps=7 format=3 uid="uid://wy87vcatkra8"]
 
 [ext_resource type="PackedScene" uid="uid://cnqm68s5b5q6v" path="res://resources/meshes/plants/mega_extractor.glb" id="1_nmmd5"]
 [ext_resource type="Material" uid="uid://bqm6o0o5n2466" path="res://resources/materials/envrionment/resources balls/metalball.tres" id="2_xfjdn"]
+[ext_resource type="AudioStream" uid="uid://6mygffxnxs04" path="res://resources/sound/plants/extractor_hit.mp3" id="3_pngt8"]
+
+[sub_resource type="Animation" id="Animation_egofh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cylinder_004:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.32825, 1.64438, -0.497876)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Cylinder_005:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.301629, 2.16873, -1.22963)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("root2_001:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.759955, 1.60827, -1.04782)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("root2_001:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.458036, -2.16344, -0.797824)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("shield_001:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.774099, 0.747332, -1.44845)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("shield:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.126012, 1.57989, -0.414129)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("branch_002:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.531302, 1.09977, -1.38921)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("branch_003:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.634321, -2.19952, -0.847967)]
+}
 
 [sub_resource type="Animation" id="Animation_gl5jx"]
 resource_name = "mining"
@@ -103,105 +203,25 @@ tracks/7/keys = {
 "update": 0,
 "values": [Vector3(0.634321, -2.19952, -0.847967), Vector3(0.743618, -2.0549, -0.621399), Vector3(0.634321, -2.19952, -0.847967), Vector3(0.743618, -2.0549, -0.621399)]
 }
-
-[sub_resource type="Animation" id="Animation_egofh"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Cylinder_004:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-0.32825, 1.64438, -0.497876)]
+tracks/8/type = "audio"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("AudioStreamPlayer3D")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("3_pngt8")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("3_pngt8")
+}],
+"times": PackedFloat32Array(0, 1.1)
 }
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Cylinder_005:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0.301629, 2.16873, -1.22963)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("root2_001:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0.759955, 1.60827, -1.04782)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("root2_001:rotation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0.458036, -2.16344, -0.797824)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("shield_001:position")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0.774099, 0.747332, -1.44845)]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("shield:rotation")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-0.126012, 1.57989, -0.414129)]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("branch_002:position")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0.531302, 1.09977, -1.38921)]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("branch_003:rotation")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0.634321, -2.19952, -0.847967)]
-}
+tracks/8/use_blend = true
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_avv0m"]
 _data = {
@@ -212,20 +232,33 @@ _data = {
 [node name="mega_extractor" instance=ExtResource("1_nmmd5")]
 
 [node name="root2_001" parent="." index="0"]
-transform = Transform3D(-0.224798, -1.15681, -1.31204, -1.13231, 1.10451, -0.779831, 1.33325, 0.742995, -0.883522, 0.759955, 1.60827, -1.04782)
+transform = Transform3D(-0.224796, -1.15681, -1.31204, -1.13231, 1.10451, -0.779831, 1.33325, 0.742997, -0.883518, 0.759955, 1.60827, -1.04782)
 
 [node name="branch_003" parent="." index="1"]
-transform = Transform3D(-0.0062463, -0.16002, -0.137505, -0.127501, 0.112467, -0.12509, 0.168099, 0.079359, -0.0999888, -0.528071, 1.27008, -0.167607)
+transform = Transform3D(-0.00624614, -0.16002, -0.137505, -0.127501, 0.112467, -0.12509, 0.168099, 0.0793593, -0.0999886, -0.528071, 1.27008, -0.167607)
+
+[node name="branch_002" parent="." index="2"]
+transform = Transform3D(0.159865, 0.119374, 0.177126, -0.202147, 0.15602, 0.0772972, -0.0689962, -0.180521, 0.183935, 0.531302, 1.09977, -1.38921)
+
+[node name="Cylinder_004" parent="." index="4"]
+transform = Transform3D(0.346979, 0, 0, 0, 1.24054, 0, 0, 0, 0.346979, -0.32825, 1.64438, -0.497876)
 
 [node name="shield" parent="." index="5"]
-transform = Transform3D(0.0224319, -0.0630326, 0.52675, -0.211969, 0.482243, 0.0667334, -0.486321, -0.213099, -0.00478986, 0, 1.78101, 0.171672)
+transform = Transform3D(0.0224315, -0.0630325, 0.52675, -0.211969, 0.482243, 0.0667332, -0.486321, -0.213099, -0.00479023, 0, 1.78101, 0.171672)
 material_override = ExtResource("2_xfjdn")
 
 [node name="shield_001" parent="." index="6"]
+transform = Transform3D(-0.311311, -0.0773508, -0.339604, -0.176981, 0.327184, 0.0628745, 0.261363, 0.129418, -0.36193, 0.774099, 0.747332, -1.44845)
 material_override = ExtResource("2_xfjdn")
+
+[node name="Cylinder_005" parent="." index="7"]
+transform = Transform3D(0.346979, 0, 0, 0, 1.24054, 0, 0, 0, 0.346979, 0.301629, 2.16873, -1.22963)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="8"]
 libraries = {
 "": SubResource("AnimationLibrary_avv0m")
 }
 autoplay = "mining"
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." index="9"]
+volume_db = -12.0

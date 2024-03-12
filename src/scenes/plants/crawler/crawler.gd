@@ -5,7 +5,7 @@ var DAMAGE := 5.0
 enum TEAM {plants, humans}
 
 var movement_speed: float = 6.0
-var movement_target_position: Vector3 = Vector3(-3.0,0.0,2.0)
+var movement_target_position: Vector3 = Vector3(0.0,0.0,-20000.0) #just makes them go forward for a tiny bit
 var team := TEAM.plants
 
 
@@ -15,11 +15,11 @@ func _ready():
 	spawn.call_deferred()
 
 func spawn():
-	$AI_agent.set_movement_target(global_position + Vector3.FORWARD * 4)
+	#$AI_agent.set_movement_target(global_position + Vector3.FORWARD * 4)
 
-	await $AI_agent.target_reached
-	
-	$Action_timer.start()
+	#await $AI_agent.target_reached
+	pass
+	#$Action_timer.start()
 
 func _physics_process(delta):
 	pass

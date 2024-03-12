@@ -39,9 +39,26 @@ var last_screen_pos:Vector2
 func _ready():
 	Gamemaster.player = self
 
-
+var can_place_plant := true
+func handle_cursor():
+	
+	if not Gamemaster.is_in_range_from_plants($cursor.global_position):
+		$cursor/Sprite3D.modulate = Color.YELLOW
+		can_place_plant = false
+	
+	elif is_cursor_space_occupied():
+		$cursor/Sprite3D.modulate = Color.DARK_RED
+		can_place_plant = false
+		
+		print("bodies: ", $cursor/Area3D.get_overlapping_bodies())
+		print("areas: ", $cursor/Area3D.get_overlapping_areas())
+	else:
+		$cursor/Sprite3D.modulate = Color.WHITE
+		can_place_plant = true
 
 func _physics_process(delta):
+	
+	handle_cursor()
 	
 	if !is_active: return
 	
@@ -135,7 +152,7 @@ func get_3d_mouse_pos() -> Vector3:
 	else:
 		return Vector3.INF
 
-func is_cursor_space_free():
+func is_cursor_space_occupied():
 	return ($cursor/Area3D.has_overlapping_bodies()
 	|| $cursor/Area3D.has_overlapping_bodies()
 	)

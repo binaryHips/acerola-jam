@@ -13,3 +13,5 @@ func _on_timer_timeout():
 		if t.team == TEAM.humans:
 			t.damage(DAMAGE)
 			$CPUParticles3D.emitting = true
+			if not $AudioStreamPlayer3D.playing:
+				$AudioStreamPlayer3D.play()

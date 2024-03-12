@@ -39,5 +39,5 @@ func shoot():
 	if is_instance_valid(target): #just in case the bro is dead already
 		
 		#play shooting animation
-		print("SHOOT")
+		$AudioStreamPlayer3D.play()
 		target.damage(DAMAGE)

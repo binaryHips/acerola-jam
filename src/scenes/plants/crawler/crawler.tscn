@@ -34,6 +34,7 @@ HP = 60.0
 
 [node name="Action_timer" type="Timer" parent="."]
 wait_time = 0.3
+autostart = true
 
 [node name="detection_range" type="Area3D" parent="."]
 collision_layer = 8
