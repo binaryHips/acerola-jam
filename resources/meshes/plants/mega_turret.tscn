@@ -1,6 +1,20 @@
-[gd_scene load_steps=2 format=3 uid="uid://b8sgurht8pgd4"]
+[gd_scene load_steps=5 format=3 uid="uid://b8sgurht8pgd4"]
 
 [ext_resource type="PackedScene" uid="uid://b7mhibnn34ije" path="res://resources/meshes/plants/mega_turret.glb" id="1_gfn2k"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xoyt7"]
+albedo_color = Color(0.290196, 0.290196, 0.290196, 1)
+emission_enabled = true
+emission = Color(0.517647, 0.517647, 0.517647, 1)
+emission_energy_multiplier = 0.3
+
+[sub_resource type="BoxMesh" id="BoxMesh_al7uf"]
+material = SubResource("StandardMaterial3D_xoyt7")
+size = Vector3(0.2, 0.2, 0.2)
+
+[sub_resource type="Curve" id="Curve_d6vm6"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.677083, 0.659341), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
 
 [node name="mega_turret" instance=ExtResource("1_gfn2k")]
 
@@ -21,6 +35,24 @@ transform = Transform3D(-0.0495259, -0.228669, -0.0381584, -0.074465, -0.015528,
 
 [node name="turret_001" parent="." index="5"]
 transform = Transform3D(-2.00872e-08, 0, 0.459542, 0, 0.459542, 0, -0.459542, 0, -2.00872e-08, 0.19383, 1.51463, 0.208195)
+
+[node name="particles" type="CPUParticles3D" parent="turret_001" index="0"]
+transform = Transform3D(1, 0, -3.55271e-14, 0, 1, 0, 3.55271e-14, 0, 1, -6.75466, -0.312408, -0.70363)
+emitting = false
+amount = 20
+one_shot = true
+explosiveness = 1.0
+lifetime_randomness = 0.36
+fixed_fps = 12
+mesh = SubResource("BoxMesh_al7uf")
+direction = Vector3(-1, 0, 0)
+spread = 21.25
+gravity = Vector3(0, 4, 0)
+initial_velocity_min = 9.0
+initial_velocity_max = 15.0
+damping_min = 6.554
+damping_max = 6.554
+scale_amount_curve = SubResource("Curve_d6vm6")
 
 [node name="shield_002" parent="." index="6"]
 transform = Transform3D(0.197495, 0.0977926, -0.273486, -0.133733, 0.247231, 0.0475101, 0.235237, 0.0584489, 0.256617, -0.417127, 0.747332, -0.420142)

@@ -1,5 +1,7 @@
 extends CharacterBody3D
 
+
+
 const SHOOT_RANGE = 2.0
 var DAMAGE := 5.0
 enum TEAM {plants, humans}
@@ -55,3 +57,10 @@ func _on_action_timer_timeout():
 
 func shoot():
 	target.damage(DAMAGE)
+
+func _enter_tree():
+	Gamemaster.n_crawlers += 1
+	
+
+func _exit_tree():
+	Gamemaster.n_crawlers -= 1

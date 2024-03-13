@@ -1,14 +1,154 @@
-[gd_scene load_steps=2 format=3 uid="uid://b0sfjuu8e6oqo"]
+[gd_scene load_steps=16 format=3 uid="uid://b0sfjuu8e6oqo"]
 
 [ext_resource type="PackedScene" uid="uid://bd3x5yo6po2cq" path="res://resources/meshes/plants/turret.glb" id="1_h7pq5"]
+
+[sub_resource type="Shader" id="Shader_opwpi"]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.2.stable's StandardMaterial3D.
+
+shader_type spatial;
+render_mode blend_mix,depth_draw_opaque,cull_back,diffuse_burley,specular_schlick_ggx;
+uniform vec4 albedo : source_color;
+uniform sampler2D texture_albedo : source_color,filter_linear_mipmap,repeat_enable;
+uniform float point_size : hint_range(0,128);
+uniform float roughness : hint_range(0,1);
+uniform sampler2D texture_metallic : hint_default_white,filter_linear_mipmap,repeat_enable;
+uniform vec4 metallic_texture_channel;
+uniform sampler2D texture_roughness : hint_roughness_r,filter_linear_mipmap,repeat_enable;
+uniform float specular;
+uniform float metallic;
+uniform sampler2D texture_emission : source_color, hint_default_black,filter_linear_mipmap,repeat_enable;
+uniform sampler2D normal_map : source_color, repeat_enable;
+uniform vec4 emission : source_color;
+uniform float emission_energy;
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
+uniform vec3 uv2_scale;
+uniform vec3 uv2_offset;
+
+
+void vertex() {
+	//UV=UV*uv1_scale.xy+uv1_offset.xy;
+}
+
+
+
+float fresnel(float amount, vec3 normal, vec3 view)
+{
+	return pow((1.0 - clamp(dot(normalize(normal), normalize(view)), 0.0, 1.0 )), amount);
+}
+
+
+void fragment() {
+	vec2 base_uv = UV;
+	base_uv.x *= 2.5;
+	vec4 albedo_tex = texture(texture_albedo,base_uv);
+	ALBEDO = albedo.rgb * albedo_tex.rgb;
+	float metallic_tex = dot(texture(texture_metallic,base_uv),metallic_texture_channel);
+	METALLIC = metallic_tex * metallic;
+	vec4 roughness_texture_channel = vec4(1.0,0.0,0.0,0.0);
+	float roughness_tex = dot(texture(texture_roughness,base_uv),roughness_texture_channel);
+	ROUGHNESS = roughness_tex * roughness;
+	SPECULAR = specular;
+	vec3 emission_tex = texture(texture_emission,base_uv).rgb;
+	
+	NORMAL = texture(normal_map, base_uv).rgb;
+	
+	EMISSION = (emission.rgb+emission_tex)*30.0 * fresnel(3.0, NORMAL, VIEW);
+}
+"
+
+[sub_resource type="Gradient" id="Gradient_73rsm"]
+offsets = PackedFloat32Array(0, 0.801282)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_nfkcv"]
+frequency = 0.0134
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_j1swb"]
+seamless = true
+as_normal_map = true
+bump_strength = 22.3
+color_ramp = SubResource("Gradient_73rsm")
+noise = SubResource("FastNoiseLite_nfkcv")
+
+[sub_resource type="Gradient" id="Gradient_o7d5e"]
+offsets = PackedFloat32Array(0.0769231, 0.558824, 0.769231)
+colors = PackedColorArray(0.461866, 0.259761, 0.116423, 1, 0.344853, 0.332274, 0.30556, 1, 0.332913, 0.339673, 0.32486, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_sr6na"]
+frequency = 0.0134
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_2kcar"]
+seamless = true
+color_ramp = SubResource("Gradient_o7d5e")
+noise = SubResource("FastNoiseLite_sr6na")
+
+[sub_resource type="Gradient" id="Gradient_v5vgf"]
+offsets = PackedFloat32Array(0, 0.654412, 0.830882, 0.933824, 1)
+colors = PackedColorArray(0.908759, 0.26023, 0.59176, 1, 0.888605, 0.60777, 0.807355, 1, 0.821258, 0.343303, 0.650496, 1, 0.47268, 0.05955, 0.501465, 1, 0, 0, 0, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_o5aus"]
+frequency = 0.0134
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_f627c"]
+seamless = true
+color_ramp = SubResource("Gradient_v5vgf")
+noise = SubResource("FastNoiseLite_o5aus")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b6bv1"]
+render_priority = 0
+shader = SubResource("Shader_opwpi")
+shader_parameter/albedo = Color(0.615686, 0.615686, 0.615686, 1)
+shader_parameter/point_size = null
+shader_parameter/roughness = null
+shader_parameter/metallic_texture_channel = null
+shader_parameter/specular = null
+shader_parameter/metallic = null
+shader_parameter/emission = Color(0.737255, 0, 0.0705882, 1)
+shader_parameter/emission_energy = 25.5
+shader_parameter/uv1_scale = null
+shader_parameter/uv1_offset = null
+shader_parameter/uv2_scale = null
+shader_parameter/uv2_offset = null
+shader_parameter/texture_albedo = SubResource("NoiseTexture2D_2kcar")
+shader_parameter/texture_emission = SubResource("NoiseTexture2D_f627c")
+shader_parameter/normal_map = SubResource("NoiseTexture2D_j1swb")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v0dou"]
+albedo_color = Color(0.333333, 0.333333, 0.333333, 1)
+emission_enabled = true
+emission = Color(0.337255, 0.305882, 0.12549, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_m1gv4"]
+material = SubResource("StandardMaterial3D_v0dou")
+size = Vector3(0.2, 0.2, 0.2)
+
+[sub_resource type="Curve" id="Curve_otf06"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.755208, 0.78022), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
 
 [node name="turret" instance=ExtResource("1_h7pq5")]
 
 [node name="base" parent="." index="0"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.227807, 0.999997, 0.242924)
+material_override = SubResource("ShaderMaterial_b6bv1")
 
 [node name="tower" parent="." index="1"]
 transform = Transform3D(0, -4.37114e-08, 1, -1, 0, 0, 0, -1, -4.37114e-08, 0.0745116, 1.49676, 0.225889)
+
+[node name="particles" type="CPUParticles3D" parent="tower" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0984743, -1.34765, -8.9407e-08)
+emitting = false
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 12
+mesh = SubResource("BoxMesh_m1gv4")
+direction = Vector3(0, -1, 0)
+spread = 1.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 2.0
+initial_velocity_max = 30.0
+scale_amount_curve = SubResource("Curve_otf06")
 
 [node name="Cylinder_027" parent="." index="2"]
 transform = Transform3D(0.152791, -0.114416, 0.0678006, -0.074465, -0.015528, 0.191378, -0.0769514, -0.212152, -0.0505732, 0.239751, 0.395708, -0.660438)

@@ -15,7 +15,7 @@ func _ready():
 func _physics_process(delta):
 	if is_instance_valid(target):
 		tower.look_at(target.global_position, Vector3.UP, true)
-
+		tower.rotate_y(PI/2) #because idk what to rotate to make it line up lol
 
 func _on_shooting_range_body_entered(body):
 	
@@ -38,6 +38,6 @@ func shoot():
 	find_new_target()
 
 	if is_instance_valid(target): #just in case the bro is dead already
-		
-		$AudioStreamPlayer3D.shoot()
+		tower.get_node("particles").emitting = true
+		$AudioStreamPlayer3D.play()
 		target.damage(DAMAGE)

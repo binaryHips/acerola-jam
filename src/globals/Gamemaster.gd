@@ -26,6 +26,8 @@ var linked:Array[Ward] = [nexus]
 var max_connected_wards:int = 10
 
 
+var n_crawlers:int = 0
+
 func add_ward(ward:Ward):
 	wards.append(ward)
 

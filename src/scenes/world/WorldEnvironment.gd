@@ -1,7 +1,11 @@
 extends WorldEnvironment
 
 
-const TIMESCALE = 1.0
+
+func _ready():
+	
+	Gamemaster.game_started.connect(_start_cycle)
 
 
-
+func _start_cycle():
+	get_parent().play("cycle")

@@ -47,7 +47,7 @@ desc_tooltip = "Extracts materials from near sources."
 layout_mode = 2
 item_name = "Neuron"
 scene = ExtResource("4_an1di")
-price = Vector3i(15, 10, 0)
+price = Vector3i(25, 0, 0)
 desc_tooltip = "Augments your plants cap by 4."
 
 [node name="mega_extractor" parent="resources_plants" instance=ExtResource("1_n0wmn")]

@@ -78,6 +78,18 @@ tracks/2/keys = {
 "update": 0,
 "values": [Color(0.6463, 0.6558, 0.6708, 1)]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("daynight cycle/WorldEnvironment:environment:ambient_light_color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.564706, 0.258824, 0.2, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_k5o7a"]
 resource_name = "cycle"
@@ -102,7 +114,7 @@ tracks/1/path = NodePath("daynight cycle/WorldEnvironment:environment:sky:sky_ma
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.9, 4, 5.1, 5.8, 8.6, 10),
+"times": PackedFloat32Array(0, 0.9, 4.7, 5.6, 6.5, 8.6, 10),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [Color(0.560784, 0.160784, 0, 1), Color(0.258824, 0.454902, 0.698039, 1), Color(0.258824, 0.454902, 0.698039, 1), Color(0.454902, 0.12549, 0, 1), Color(0.305882, 0.0980392, 0.470588, 1), Color(0.305882, 0.0980392, 0.470588, 1), Color(0.560784, 0.160784, 0, 1)]
@@ -114,10 +126,22 @@ tracks/2/path = NodePath("daynight cycle/WorldEnvironment:environment:sky:sky_ma
 tracks/2/interp = 2
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 1.3, 3.6, 4.6, 6.2, 7.9, 10),
+"times": PackedFloat32Array(0, 1.3, 4.4, 5.4, 6.8, 7.9, 10),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [Color(0.784314, 0.47451, 0, 1), Color(0.6463, 0.6558, 0.6708, 1), Color(0.6463, 0.6558, 0.6708, 1), Color(0.784314, 0.47451, 0, 1), Color(0.254902, 0.145098, 0.223529, 1), Color(0.254902, 0.145098, 0.223529, 1), Color(0.784314, 0.47451, 0, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("daynight cycle/WorldEnvironment:environment:ambient_light_color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.7, 5, 5.8, 6.9, 8.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.564706, 0.258824, 0.2, 1), Color(0.298039, 0.364706, 0.482353, 1), Color(0.298039, 0.364706, 0.482353, 1), Color(0.564706, 0.258824, 0.2, 1), Color(0.152941, 0.129412, 0.0901961, 1), Color(0.152941, 0.129412, 0.0901961, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_aqwhh"]
@@ -137,7 +161,7 @@ background_mode = 2
 background_color = Color(1, 1, 1, 1)
 sky = SubResource("Sky_7orkv")
 ambient_light_source = 2
-ambient_light_color = Color(0.6, 0.780392, 0.831373, 1)
+ambient_light_color = Color(0.564706, 0.258824, 0.2, 1)
 ambient_light_sky_contribution = 0.0
 tonemap_exposure = 1.1
 ssao_enabled = true
@@ -145,6 +169,10 @@ ssao_radius = 3.11
 ssao_intensity = 6.36
 ssao_detail = 3.49
 ssao_horizon = 0.0
+fog_enabled = true
+fog_light_color = Color(0.564706, 0.552941, 0.482353, 1)
+fog_light_energy = 0.1
+fog_sky_affect = 0.0
 adjustment_enabled = true
 adjustment_brightness = 1.4
 adjustment_contrast = 1.4
@@ -184,7 +212,6 @@ size = Vector3(742.698, 1, 805.802)
 libraries = {
 "": SubResource("AnimationLibrary_aqwhh")
 }
-autoplay = "cycle"
 speed_scale = 0.2
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="daynight cycle"]
@@ -209,7 +236,7 @@ transform = Transform3D(-0.000679543, -0.261312, 0.965254, -0.999997, 0.00260049
 [node name="ResourceArea" type="Area3D" parent="resources/mutagen_spot"]
 transform = Transform3D(0.400061, 0, 0.916488, 3.2008e-10, 1, -1.3972e-10, -0.916488, 0, 0.400061, -0.0222454, -0.93311, -0.0577078)
 script = ExtResource("5_2c2qu")
-resources = Vector3i(100, 0, 0)
+resources = Vector3i(150, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="resources/mutagen_spot/ResourceArea"]
 shape = SubResource("BoxShape3D_wv6a8")
@@ -408,7 +435,7 @@ transform = Transform3D(0.93529, 0, 0.353883, 0, 1, 3.49246e-10, -0.353883, 0, 0
 [node name="ResourceArea" type="Area3D" parent="resources/ore_spot"]
 transform = Transform3D(0.400061, 0, 0.916488, 3.2008e-10, 1, -1.3972e-10, -0.916488, 0, 0.400061, -0.0222454, -0.93311, -0.0577078)
 script = ExtResource("5_2c2qu")
-resources = Vector3i(0, 65, 0)
+resources = Vector3i(0, 120, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="resources/ore_spot/ResourceArea"]
 transform = Transform3D(0.905606, 0, 0.42412, 0, 1, 0, -0.42412, 0, 0.905606, 0.97852, 4.76837e-07, -0.218037)
@@ -424,7 +451,7 @@ transform = Transform3D(0.372433, -0.14609, -0.916488, 0.365169, 0.930941, 3.492
 transform = Transform3D(0.945815, 0.140797, -0.292592, -0.223453, 0.936023, -0.271901, 0.235589, 0.322549, 0.916766, 3.74511, -0.374594, -1.43831)
 
 [node name="ore_spot2" type="Node3D" parent="resources"]
-transform = Transform3D(0.556151, 0, -0.831082, 0, 1, 3.49246e-10, 0.831082, 0, 0.556151, 15.5241, 1.06659, -37.775)
+transform = Transform3D(0.556151, 0, -0.831082, 0, 1, 3.49246e-10, 0.831082, 0, 0.556151, -27.9872, 1.06659, -46.7496)
 
 [node name="ResourceArea" type="Area3D" parent="resources/ore_spot2"]
 transform = Transform3D(0.400061, 0, 0.916488, 3.2008e-10, 1, -1.3972e-10, -0.916488, 0, 0.400061, -0.0222454, -0.93311, -0.0577078)
@@ -537,7 +564,7 @@ transform = Transform3D(0.647548, 0, -0.762025, 0, 1, 3.49246e-10, 0.762025, 0, 
 [node name="ResourceArea" type="Area3D" parent="resources/oil_spot3"]
 transform = Transform3D(0.400061, 0, 0.916488, 3.2008e-10, 1, -1.3972e-10, -0.916488, 0, 0.400061, -0.0222454, -0.93311, -0.0577078)
 script = ExtResource("5_2c2qu")
-resources = Vector3i(0, 0, 60)
+resources = Vector3i(0, 0, 150)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="resources/oil_spot3/ResourceArea"]
 transform = Transform3D(1, 0, 0, 1.47106e-20, 1, -1.47172e-20, 0, 0, 1, 1.02984, 0, -0.598948)
@@ -548,6 +575,30 @@ transform = Transform3D(4.525, -5.98131e-23, 0, 5.98131e-23, 4.525, 0, 0, 0, 4.5
 
 [node name="puddle_oil2" parent="resources/oil_spot3/ResourceArea" instance=ExtResource("7_rqekb")]
 transform = Transform3D(-1.40365, 0.216422, -4.29634, 0.313427, 4.5124, 0.124906, 4.29036, -0.258843, -1.41474, 0.933105, -0.339256, -1.62317)
+
+[node name="oil_spot4" type="Node3D" parent="resources"]
+transform = Transform3D(0.647548, 0, -0.762025, 0, 1, 3.49246e-10, 0.762025, 0, 0.647548, -53.0507, 1.06659, 1.96468)
+
+[node name="ResourceArea" type="Area3D" parent="resources/oil_spot4"]
+transform = Transform3D(0.400061, 0, 0.916488, 3.2008e-10, 1, -1.3972e-10, -0.916488, 0, 0.400061, -0.0222454, -0.93311, -0.0577078)
+script = ExtResource("5_2c2qu")
+resources = Vector3i(0, 0, 80)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="resources/oil_spot4/ResourceArea"]
+transform = Transform3D(1, 0, 0, 1.47106e-20, 1, -1.47172e-20, 0, 0, 1, 1.02984, 0, -0.598948)
+shape = SubResource("BoxShape3D_d37hy")
+
+[node name="puddle_oil" parent="resources/oil_spot4/ResourceArea" instance=ExtResource("7_rqekb")]
+transform = Transform3D(1, -1.32184e-23, 0, 1.32184e-23, 1, 0, 0, 0, 1, 0, 0.25118, 0)
+
+[node name="puddle_oil2" parent="resources/oil_spot4/ResourceArea" instance=ExtResource("7_rqekb")]
+transform = Transform3D(-0.310199, 0.0478281, -0.949468, 0.0692656, 0.997216, 0.0276037, 0.948145, -0.0572028, -0.312648, 0.933104, 0.097323, -1.62317)
+
+[node name="puddle_oil3" parent="resources/oil_spot4/ResourceArea" instance=ExtResource("7_rqekb")]
+transform = Transform3D(0.64003, -1.43994e-16, -0.76835, 3.03853e-16, 1, 6.57005e-17, 0.76835, -2.75516e-16, 0.64003, 1.22191, 0.25118, -0.14494)
+
+[node name="puddle_oil4" parent="resources/oil_spot4/ResourceArea" instance=ExtResource("7_rqekb")]
+transform = Transform3D(-0.927044, 0.0745632, -0.367464, 0.0692656, 0.997216, 0.0276037, 0.368499, 0.000137234, -0.929628, 3.06629, 0.097323, -0.466867)
 
 [node name="oil_spot2" type="Node3D" parent="resources"]
 transform = Transform3D(-0.283597, 0, -0.958944, 0, 1, 3.49246e-10, 0.958944, 0, -0.283597, -132.446, 1.06659, -35.7465)

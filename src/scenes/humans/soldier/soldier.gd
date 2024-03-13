@@ -49,3 +49,4 @@ func _on_action_timer_timeout():
 
 func shoot():
 	target.damage(DAMAGE)
+	$particles.emitting = true

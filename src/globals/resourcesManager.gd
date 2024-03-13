@@ -10,9 +10,9 @@ var resource_UI:Node3D
 
 var audio_player:AudioStreamPlayer3D
 func _ready():
-	add_mutagen.call_deferred(200)
-	add_metal.call_deferred(200)
-	add_oil.call_deferred(200)
+	add_mutagen.call_deferred(20)
+	add_metal.call_deferred(0)
+	add_oil.call_deferred(0)
 	
 	audio_player = AudioStreamPlayer3D.new()
 	get_parent().get_node("main").add_child(audio_player) #dirty
