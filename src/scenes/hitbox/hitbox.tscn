@@ -10,8 +10,8 @@ colors = PackedColorArray(0.67, 0, 0.122833, 1, 0.95, 0.601667, 0.532, 1, 0.69, 
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_tgqo4"]
 gradient = SubResource("Gradient_5j8ri")
-width = 200
-height = 30
+width = 250
+height = 40
 fill_to = Vector2(1, 0.310345)
 
 [node name="hitbox" type="Area3D"]
@@ -25,7 +25,7 @@ shape = SubResource("BoxShape3D_nbqxt")
 
 [node name="Sprite3D" type="Sprite3D" parent="." groups=["hitbox"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.22355, 0)
-visibility_range_end = 25.0
+visibility_range_end = 35.0
 visibility_range_end_margin = 3.0
 billboard = 1
 transparent = false

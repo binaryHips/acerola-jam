@@ -27,13 +27,12 @@ shape = SubResource("CapsuleShape3D_5qxdk")
 
 [node name="hitbox" parent="." instance=ExtResource("2_g4gvd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.591851, 0)
-MAX_HP = 60.0
 HP = 60.0
 
 [node name="AI_agent" parent="." instance=ExtResource("3_6rl0y")]
 
 [node name="Action_timer" type="Timer" parent="."]
-wait_time = 0.3
+wait_time = 0.6
 autostart = true
 
 [node name="detection_range" type="Area3D" parent="."]

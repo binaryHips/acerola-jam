@@ -7,7 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://cwjkr0u07loyu" path="res://resources/sound/plants/incinerator_shoot.mp3" id="5_2v346"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_qvysw"]
-radius = 6.64932
+radius = 15.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5t1jg"]
 albedo_color = Color(0, 0, 0, 1)
@@ -51,7 +51,7 @@ tag = "tower"
 range = 25.0
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 0.9
 autostart = true
 
 [node name="hitbox" parent="." instance=ExtResource("3_3q37l")]
@@ -67,15 +67,16 @@ transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, -0.065726, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.24941, 0)
 emitting = false
 amount = 200
-lifetime = 0.45
+lifetime = 0.8
 one_shot = true
 explosiveness = 0.63
 randomness = 0.52
 lifetime_randomness = 0.35
+fixed_fps = 12
 mesh = SubResource("BoxMesh_mltce")
 spread = 180.0
-flatness = 0.84
-gravity = Vector3(0, 29.19, 0)
+flatness = 0.95
+gravity = Vector3(0, -9, 0)
 initial_velocity_min = 17.95
 initial_velocity_max = 31.3
 damping_min = 16.982
@@ -87,6 +88,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.09011, 0)
 amount = 10
 lifetime = 1.27
 explosiveness = 0.54
+fixed_fps = 12
 mesh = SubResource("BoxMesh_4sid3")
 direction = Vector3(0, 1, 0)
 spread = 81.51

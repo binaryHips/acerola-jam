@@ -16,3 +16,8 @@ func _process(delta):
 	$debug_text.text = str(Engine.get_frames_per_second())
 	
 	$maxplants.text = "[center]" + str(len(Gamemaster.linked)) + "\n" + str(Gamemaster.max_connected_wards)
+
+
+func _on_help_pressed():
+	get_tree().paused = $help.button_pressed
+	$Help_UI.visible = $help.button_pressed

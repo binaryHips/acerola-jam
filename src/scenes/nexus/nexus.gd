@@ -13,13 +13,13 @@ func _process(delta):
 	pass
 
 
-func die():
-	print("LOST")
+
 
 
 func _on_timer_timeout():
 	ResourcesManager.add_mutagen(1)
 
 
-func _die():
+func die():
+	
 	Gamemaster.game_lost()

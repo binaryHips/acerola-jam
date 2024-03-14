@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cnbkuj1ns2a35"]
+[gd_scene load_steps=8 format=3 uid="uid://cnbkuj1ns2a35"]
 
 [ext_resource type="Texture2D" uid="uid://dmu5e54hblxmy" path="res://resources/textures/cursor/cursor_ground1.png" id="1_3hiyf"]
 [ext_resource type="Texture2D" uid="uid://b4h5fr80ug61w" path="res://resources/textures/cursor/cursor_ground2.png" id="2_vhcd8"]
@@ -15,6 +15,16 @@ frame_2/duration = 1.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xvorn"]
 size = Vector3(2.00684, 8, 2.2522)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vapve"]
+albedo_color = Color(0, 0, 0, 1)
+emission_enabled = true
+emission = Color(0, 0.729412, 0.831373, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_rj8pa"]
+top_radius = 0.9
+bottom_radius = 1.0
+height = 0.1
 
 [node name="cursor" type="Node3D"]
 
@@ -34,3 +44,7 @@ collision_mask = 11
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.11798, 0.0173228)
 shape = SubResource("BoxShape3D_xvorn")
+
+[node name="range_indicator" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_vapve")
+mesh = SubResource("CylinderMesh_rj8pa")

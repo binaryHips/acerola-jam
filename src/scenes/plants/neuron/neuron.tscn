@@ -21,7 +21,7 @@ shape = SubResource("SphereShape3D_qvysw")
 [node name="Ward" type="Node3D" parent="."]
 script = ExtResource("2_q8b2x")
 tag = "neuron"
-range = 25.0
+range = 35.0
 
 [node name="hitbox" parent="." instance=ExtResource("3_s7t8r")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.368075, 0)

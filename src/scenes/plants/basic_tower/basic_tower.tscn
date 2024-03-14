@@ -7,7 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://du1fuukty2wc5" path="res://resources/sound/plants/basic_turret_shoot.mp3" id="5_egviu"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_qvysw"]
-radius = 6.64932
+radius = 10.0
 
 [node name="basic_tower" type="Node3D"]
 script = ExtResource("1_d5oei")
@@ -30,13 +30,13 @@ wait_time = 0.8
 autostart = true
 
 [node name="hitbox" parent="." instance=ExtResource("3_qu16u")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.49853, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.08494, 0.240491)
 MAX_HP = 200.0
 passive_regen = 2.0
 HP = 150.0
 
 [node name="turret" parent="." instance=ExtResource("4_3eyew")]
-transform = Transform3D(0.73, 0, 0, 0, 1.33, 0, 0, 0, 0.73, 0, -0.1, 0)
+transform = Transform3D(0.73, 0, 0, 0, 0.995, 0, 0, 0, 0.73, 0, -0.237018, 0)
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("5_egviu")

@@ -8,7 +8,7 @@ var velocity := Vector3(0, 0, 0)
 var zoom_velocity := 0.0
 var rotate_velocity := 0.0
 
-const MAX_DIST = 950
+const MAX_DIST = 600
 var moving:=false
 var last_pos:Vector3
 
@@ -42,6 +42,8 @@ func _ready():
 var can_place_plant := true
 func handle_cursor():
 	
+	update_cursor_range()
+	
 	if not Gamemaster.is_in_range_from_plants($cursor.global_position):
 		$cursor/Sprite3D.modulate = Color.YELLOW
 		can_place_plant = false
@@ -50,13 +52,21 @@ func handle_cursor():
 		$cursor/Sprite3D.modulate = Color.DARK_RED
 		can_place_plant = false
 		
-		print("bodies: ", $cursor/Area3D.get_overlapping_bodies())
-		print("areas: ", $cursor/Area3D.get_overlapping_areas())
 	else:
 		$cursor/Sprite3D.modulate = Color.WHITE
 		can_place_plant = true
 
 func _physics_process(delta):
+	
+	if position.length_squared() > 600**2:
+		
+		await Gamemaster.fade_to_black(0.5)
+		moving = false
+		last_pos = Vector3.ZERO
+	
+		Gamemaster.player.global_position = Vector3.ZERO
+		Gamemaster.player.velocity = Vector3.ZERO
+		Gamemaster.fade_from_black(0.5)
 	
 	handle_cursor()
 	
@@ -80,8 +90,8 @@ func _physics_process(delta):
 		zoom_velocity = move_toward(zoom_velocity, 0.0, delta * 1.0)
 	
 	if abs(rotate_velocity) >= 0.05:
-		rotate_y(rotate_velocity/10.0)
-		rotate_velocity = move_toward(rotate_velocity, 0.0, delta * 10.0)
+		rotate_y(rotate_velocity/20.0)
+		rotate_velocity = move_toward(rotate_velocity, 0.0, delta * 20.0)
 	
 	
 	velocity = velocity.move_toward(Vector3.ZERO, delta * 5.0)
@@ -160,3 +170,21 @@ func is_cursor_space_occupied():
 func play_sound(sound):
 	$cursor.get_node("audio").stream = sound
 	$cursor.get_node("audio").play()
+
+
+var ranges = {
+	"Slingroot": 10.0,
+	"Canon": 25.0,
+	"Incinerator": 15.0,
+	"Infuser":30.0,
+} #8 hours left
+
+func update_cursor_range():
+	if is_instance_valid(ResourcesManager.selected_shop_item) && ResourcesManager.selected_shop_item.item_name in ranges.keys():
+		
+		$cursor/range_indicator.scale.x = ranges[ResourcesManager.selected_shop_item.item_name]
+		$cursor/range_indicator.scale.z = ranges[ResourcesManager.selected_shop_item.item_name]
+		
+		$cursor/range_indicator.visible = (sin(Time.get_ticks_msec()/100.0) >= 0.0)
+	else:
+		$cursor/range_indicator.visible = false

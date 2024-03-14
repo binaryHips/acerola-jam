@@ -5,7 +5,7 @@ extends Node3D
 
 enum TEAM {plants, humans}
 
-const DAMAGE := 50.0
+const DAMAGE := 50
 
 var target
 
@@ -40,7 +40,7 @@ func shoot():
 	find_new_target()
 
 	if is_instance_valid(target): #just in case the bro is dead already
-		
+		$AudioStreamPlayer3D.play()
 		#play shooting animation
-		print("SHOOT")
+		tower.get_node("particles").emitting = true
 		target.damage(DAMAGE)

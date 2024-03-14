@@ -7,7 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://bdgoi5doe6dqu" path="res://resources/sound/plants/mega_turret_shoot.mp3" id="5_a1vdx"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_qvysw"]
-radius = 6.64932
+radius = 25.0
 
 [node name="mega_tower" type="Node3D"]
 script = ExtResource("1_dq71t")
@@ -33,7 +33,7 @@ autostart = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.89207, 0)
 MAX_HP = 350.0
 passive_regen = 4.0
-HP = 200.0
+HP = 300.0
 
 [node name="mega_turret" parent="." instance=ExtResource("4_dou6b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.151154, 0)

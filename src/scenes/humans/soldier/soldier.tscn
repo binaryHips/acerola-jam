@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://b5ywpbkxoaa38"]
+[gd_scene load_steps=11 format=3 uid="uid://b5ywpbkxoaa38"]
 
 [ext_resource type="Script" path="res://src/scenes/humans/soldier/soldier.gd" id="1_iqy7m"]
 [ext_resource type="PackedScene" uid="uid://bgk88yp1g50m0" path="res://src/scenes/hitbox/hitbox.tscn" id="2_i6tkv"]
 [ext_resource type="PackedScene" uid="uid://dxebldut1vkpi" path="res://src/scenes/IA/IA_agent.tscn" id="3_u60yb"]
 [ext_resource type="PackedScene" uid="uid://dxubjmyy6v06m" path="res://resources/meshes/humans/soldier.tscn" id="4_8p52s"]
+[ext_resource type="AudioStream" uid="uid://doltguhelk8m6" path="res://resources/sound/humans/shoot.mp3" id="5_s7s6k"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5qxdk"]
 
@@ -38,7 +39,7 @@ team = 1
 target_desired_distance = 5.0
 
 [node name="Action_timer" type="Timer" parent="."]
-wait_time = 0.6
+wait_time = 0.8
 autostart = true
 
 [node name="detection_range" type="Area3D" parent="."]
@@ -58,6 +59,7 @@ emitting = false
 lifetime = 0.48
 one_shot = true
 explosiveness = 0.99
+fixed_fps = 12
 mesh = SubResource("BoxMesh_ylqgn")
 spread = 26.33
 gravity = Vector3(0, 0, 0)
@@ -66,5 +68,11 @@ initial_velocity_max = 10.0
 damping_min = 6.604
 damping_max = 8.491
 scale_amount_curve = SubResource("Curve_l3ere")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("5_s7s6k")
+volume_db = -12.0
+pitch_scale = 1.06
+max_polyphony = 3
 
 [connection signal="timeout" from="Action_timer" to="." method="_on_action_timer_timeout"]

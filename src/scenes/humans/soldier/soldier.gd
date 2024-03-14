@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
-const SHOOT_RANGE = 10.0
-const DAMAGE := 5.0
+const SHOOT_RANGE = 9.0
+const DAMAGE := 10.0
 enum TEAM {plants, humans}
 
 var movement_speed: float = 3.5
@@ -15,9 +15,9 @@ func _ready():
 	pass
 
 func _physics_process(delta):
-	pass
-	
-	
+	look_at(global_position+velocity) # 9 hours left
+	rotate_y(PI/2.0)
+
 
 func find_new_target():
 	if not is_instance_valid(target): target = null
@@ -49,4 +49,5 @@ func _on_action_timer_timeout():
 
 func shoot():
 	target.damage(DAMAGE)
+	$AudioStreamPlayer3D.play()
 	$particles.emitting = true

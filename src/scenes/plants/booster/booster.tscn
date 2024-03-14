@@ -7,7 +7,7 @@
 [ext_resource type="Material" uid="uid://bok4kxthh2a7" path="res://resources/materials/envrionment/wood.tres" id="5_q6mgq"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_qvysw"]
-radius = 6.64932
+radius = 30.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k6vf4"]
 albedo_color = Color(0, 0, 0, 1)
@@ -16,7 +16,7 @@ emission = Color(0.392157, 0.658824, 0, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_tdcgp"]
 material = SubResource("StandardMaterial3D_k6vf4")
-size = Vector3(0.2, 0.2, 0.2)
+size = Vector3(0.2, 0.5, 0.2)
 
 [sub_resource type="Curve" id="Curve_xt0sk"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.776042, 0.538462), -2.01612, -2.01612, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -51,10 +51,15 @@ transform = Transform3D(0.7, 0, 0, 0, -0.7, -6.11959e-08, 0, 6.11959e-08, -0.7, 
 surface_material_override/0 = ExtResource("5_q6mgq")
 
 [node name="CPUParticles3D2" type="CPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.20303, 0)
-amount = 40
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.635141, 0)
+amount = 70
 lifetime = 2.63
+explosiveness = 0.3
+randomness = 0.3
+fixed_fps = 12
 mesh = SubResource("BoxMesh_tdcgp")
+emission_shape = 3
+emission_box_extents = Vector3(25, 1, 25)
 spread = 180.0
 flatness = 1.0
 gravity = Vector3(0, 10, 0)

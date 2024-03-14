@@ -1,16 +1,25 @@
-[gd_scene load_steps=12 format=3 uid="uid://cj3wgxg5028a5"]
+[gd_scene load_steps=21 format=3 uid="uid://cj3wgxg5028a5"]
 
 [ext_resource type="PackedScene" uid="uid://bble2ybl6rjmc" path="res://src/scenes/UI/shop/shop_item.tscn" id="1_n0wmn"]
 [ext_resource type="Script" path="res://src/scenes/UI/shop/shop.gd" id="1_v8ohl"]
 [ext_resource type="PackedScene" uid="uid://bg41wlohdjem7" path="res://src/scenes/plants/extractor/extractor.tscn" id="3_odaow"]
 [ext_resource type="PackedScene" uid="uid://cdn0c30leai2y" path="res://src/scenes/plants/neuron/neuron.tscn" id="4_an1di"]
+[ext_resource type="Texture2D" uid="uid://d0athscgkml04" path="res://resources/textures/UI/thumbnails/thumbnail_extractor.png" id="4_johbv"]
 [ext_resource type="PackedScene" uid="uid://bra7l32cvnsev" path="res://src/scenes/plants/mega_extractor/mega_extractor.tscn" id="5_27kac"]
 [ext_resource type="PackedScene" uid="uid://cgod3y3e3usg3" path="res://src/scenes/plants/basic_tower/basic_tower.tscn" id="6_8ubpk"]
+[ext_resource type="Texture2D" uid="uid://dg20astm0mcew" path="res://resources/textures/UI/thumbnails/thumbnail_neuron.png" id="6_hvkaq"]
 [ext_resource type="PackedScene" uid="uid://bo2h3c4cljk87" path="res://src/scenes/plants/incinerator/incinerator.tscn" id="7_4o4ml"]
 [ext_resource type="PackedScene" uid="uid://cbtc1cwej8cbv" path="res://src/scenes/plants/mega_tower/mega_tower.tscn" id="7_b83wu"]
+[ext_resource type="Texture2D" uid="uid://wjxhcd2g15eo" path="res://resources/textures/UI/thumbnails/thumbnail_mega_extractor.png" id="8_l4t27"]
 [ext_resource type="PackedScene" uid="uid://bachcbqku8dxp" path="res://src/scenes/plants/spawner/spawner.tscn" id="9_q8c6y"]
+[ext_resource type="Texture2D" uid="uid://dp8fmiysvtrnu" path="res://resources/textures/UI/thumbnails/thumbnail_turret.png" id="10_etiri"]
 [ext_resource type="PackedScene" uid="uid://c2nfw5sd8lxa3" path="res://src/scenes/plants/booster/booster.tscn" id="10_nls0f"]
 [ext_resource type="PackedScene" uid="uid://bqxons334ia7o" path="res://src/scenes/plants/mega_spawner/mega_spawner.tscn" id="11_mjrmi"]
+[ext_resource type="Texture2D" uid="uid://c0q6wxjucm4yw" path="res://resources/textures/UI/thumbnails/thumbnail_incinerator.png" id="12_5dvf8"]
+[ext_resource type="Texture2D" uid="uid://1noiwbqsrn0m" path="res://resources/textures/UI/thumbnails/thumbnail_canon.png" id="14_8n6an"]
+[ext_resource type="Texture2D" uid="uid://chd8orvrgwpjm" path="res://resources/textures/UI/thumbnails/thumbnail_spawner.png" id="16_hmvqn"]
+[ext_resource type="Texture2D" uid="uid://x4uwo0ws0vyi" path="res://resources/textures/UI/thumbnails/thumbnail_booster.png" id="18_ckw75"]
+[ext_resource type="Texture2D" uid="uid://di7rxbcanrhsb" path="res://resources/textures/UI/thumbnails/thumbnail_mega_spawner.png" id="20_5ke6u"]
 
 [node name="shop" type="Control"]
 layout_mode = 3
@@ -41,13 +50,15 @@ layout_mode = 2
 item_name = "Extractor"
 scene = ExtResource("3_odaow")
 price = Vector3i(10, 0, 0)
+thumbnail = ExtResource("4_johbv")
 desc_tooltip = "Extracts materials from near sources."
 
 [node name="neuron" parent="resources_plants" instance=ExtResource("1_n0wmn")]
 layout_mode = 2
 item_name = "Neuron"
 scene = ExtResource("4_an1di")
-price = Vector3i(25, 0, 0)
+price = Vector3i(20, 0, 0)
+thumbnail = ExtResource("6_hvkaq")
 desc_tooltip = "Augments your plants cap by 4."
 
 [node name="mega_extractor" parent="resources_plants" instance=ExtResource("1_n0wmn")]
@@ -55,6 +66,7 @@ layout_mode = 2
 item_name = "Mega extractor"
 scene = ExtResource("5_27kac")
 price = Vector3i(25, 10, 0)
+thumbnail = ExtResource("8_l4t27")
 desc_tooltip = "Extracts materials from near sources.
 Faster than a simple extractor."
 
@@ -75,6 +87,7 @@ layout_mode = 2
 item_name = "Slingroot"
 scene = ExtResource("6_8ubpk")
 price = Vector3i(10, 0, 10)
+thumbnail = ExtResource("10_etiri")
 desc_tooltip = "Shoots wood at humans.
 Quite short range."
 
@@ -83,6 +96,7 @@ layout_mode = 2
 item_name = "Incinerator"
 scene = ExtResource("7_4o4ml")
 price = Vector3i(10, 15, 30)
+thumbnail = ExtResource("12_5dvf8")
 desc_tooltip = "Burns all ennemies around it."
 
 [node name="mega_tower" parent="defense_plants" instance=ExtResource("1_n0wmn")]
@@ -90,6 +104,7 @@ layout_mode = 2
 item_name = "Canon"
 scene = ExtResource("7_b83wu")
 price = Vector3i(30, 10, 20)
+thumbnail = ExtResource("14_8n6an")
 desc_tooltip = "Shoots chunks of metal that can hit multiple targets."
 
 [node name="attack_plants" type="HBoxContainer" parent="."]
@@ -109,6 +124,7 @@ layout_mode = 2
 item_name = "Incubator"
 scene = ExtResource("9_q8c6y")
 price = Vector3i(50, 15, 0)
+thumbnail = ExtResource("16_hmvqn")
 desc_tooltip = "Periodically spits out crawlers."
 
 [node name="booster" parent="attack_plants" instance=ExtResource("1_n0wmn")]
@@ -116,6 +132,7 @@ layout_mode = 2
 item_name = "Infuser"
 scene = ExtResource("10_nls0f")
 price = Vector3i(35, 0, 10)
+thumbnail = ExtResource("18_ckw75")
 desc_tooltip = "Boost all crawlers in its range"
 
 [node name="mega_spawner" parent="attack_plants" instance=ExtResource("1_n0wmn")]
@@ -123,6 +140,7 @@ layout_mode = 2
 item_name = "Mega incubator"
 scene = ExtResource("11_mjrmi")
 price = Vector3i(50, 40, 0)
+thumbnail = ExtResource("20_5ke6u")
 desc_tooltip = "spits out crawlers, but faster."
 
 [node name="Resources" type="Button" parent="."]

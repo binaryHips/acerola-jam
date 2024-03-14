@@ -4,13 +4,13 @@ extends Control
 @export var scene:PackedScene 
 @export var price: Vector3i;
 
-@export var img:ImageTexture;
+@export var thumbnail:Texture;
 @export_multiline var desc_tooltip:String = ""
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	if img:
-		$TextureButton.texture_normal = img
+	if thumbnail:
+		$TextureButton.texture_normal = thumbnail
 	$RichTextLabel.text = "[center]" + item_name
 	
 	$TextureButton.tooltip_text = ( #TODO use a custom popup better formatted for this.

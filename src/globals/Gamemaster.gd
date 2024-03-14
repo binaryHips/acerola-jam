@@ -25,8 +25,8 @@ var linked:Array[Ward] = [nexus]
 
 var max_connected_wards:int = 10
 
-
-var n_crawlers:int = 0
+var n_incubators:int = 1
+var n_crawlers:int = 1
 
 func add_ward(ward:Ward):
 	wards.append(ward)
@@ -180,9 +180,7 @@ func _ready():
 	fade_from_black(1.5)
 
 func game_won():
-	print("WON")
-	fade_to_black(3.0)
+	get_parent().get_node("main").get_node("end_win")._win()
 
 func game_lost():
-	print("LOST")
-	fade_to_black(3.0)
+	get_parent().get_node("main").get_node("end_lose")._lose()

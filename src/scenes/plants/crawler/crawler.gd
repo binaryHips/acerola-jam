@@ -2,7 +2,7 @@ extends CharacterBody3D
 
 
 
-const SHOOT_RANGE = 2.0
+const SHOOT_RANGE = 5.0
 var DAMAGE := 5.0
 enum TEAM {plants, humans}
 
@@ -20,7 +20,7 @@ func spawn():
 	#$AI_agent.set_movement_target(global_position + Vector3.FORWARD * 4)
 
 	#await $AI_agent.target_reached
-	pass
+	$AI_agent.run_for_enemy_base()
 	#$Action_timer.start()
 
 func _physics_process(delta):
@@ -44,7 +44,8 @@ func find_new_target():
 				target = k
 
 func _on_action_timer_timeout():
-	find_new_target()
+	var old_target = target
+	find_new_target() 
 	if is_instance_valid(target):
 		
 		$AI_agent.run_to_target(target)
@@ -56,7 +57,7 @@ func _on_action_timer_timeout():
 		
 
 func shoot():
-	target.damage(DAMAGE)
+	target.damage(DAMAGE * (max(1.0, Gamemaster.n_crawlers/10.0)) * max(1.0, Gamemaster.n_incubators * 0.15)) #teamworks rulz
 
 func _enter_tree():
 	Gamemaster.n_crawlers += 1

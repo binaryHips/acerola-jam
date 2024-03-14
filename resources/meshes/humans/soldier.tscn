@@ -1,6 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://dxubjmyy6v06m"]
+[gd_scene load_steps=6 format=3 uid="uid://dxubjmyy6v06m"]
 
 [ext_resource type="PackedScene" uid="uid://cr3v4sxoli1x6" path="res://resources/meshes/humans/soldier.glb" id="1_ms662"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vp0i3"]
+albedo_color = Color(0.470588, 0.470588, 0.470588, 1)
+emission_enabled = true
+emission = Color(0.160784, 0.160784, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w4e75"]
+albedo_color = Color(0.572549, 0.572549, 0.572549, 1)
+emission_enabled = true
+emission = Color(0.164706, 0.341176, 0.431373, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bvn1s"]
 albedo_color = Color(0.34902, 0.360784, 0.356863, 1)
@@ -37,6 +47,12 @@ bones/13/rotation = Quaternion(0.940422, 0.0555524, -0.0899177, -0.323166)
 bones/13/scale = Vector3(1, 1, 1)
 bones/14/rotation = Quaternion(-0.296647, 0.0285673, 0.0854963, 0.950723)
 bones/15/rotation = Quaternion(-0.0461069, -4.73528e-05, 0.0118031, 0.998867)
+
+[node name="Cube_004" parent="Armature/Skeleton3D" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_vp0i3")
+
+[node name="Cube_007" parent="Armature/Skeleton3D" index="3"]
+surface_material_override/0 = SubResource("StandardMaterial3D_w4e75")
 
 [node name="AnimationPlayer" parent="." index="1"]
 autoplay = "ArmatureAction"

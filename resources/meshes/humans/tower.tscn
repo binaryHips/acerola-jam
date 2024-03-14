@@ -1,5 +1,31 @@
-[gd_scene load_steps=2 format=3 uid="uid://x1y3fr01gxnn"]
+[gd_scene load_steps=4 format=3 uid="uid://x1y3fr01gxnn"]
 
 [ext_resource type="PackedScene" uid="uid://2nffn2ukrelh" path="res://resources/meshes/humans/tower.glb" id="1_7x4dr"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_06s5i"]
+albedo_color = Color(0.301961, 0.301961, 0.301961, 1)
+emission_enabled = true
+emission = Color(0.956863, 0, 0.14902, 1)
+emission_energy_multiplier = 3.26
+
+[sub_resource type="BoxMesh" id="BoxMesh_eyem6"]
+material = SubResource("StandardMaterial3D_06s5i")
+size = Vector3(0.2, 0.2, 1)
+
 [node name="tower" instance=ExtResource("1_7x4dr")]
+
+[node name="particles" type="CPUParticles3D" parent="human_tower_head" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00563335, 9.65842)
+emitting = false
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.79
+fixed_fps = 12
+mesh = SubResource("BoxMesh_eyem6")
+direction = Vector3(0, 0, 1)
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 176.66
+initial_velocity_max = 176.66
+damping_min = 21.698
+damping_max = 21.698

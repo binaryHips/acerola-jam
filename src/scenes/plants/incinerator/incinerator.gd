@@ -4,7 +4,7 @@ extends Node3D
 #booo duplicated code
 enum TEAM {plants, humans}
 
-const DAMAGE := 4
+const DAMAGE := 12.0
 
 
 func _on_timer_timeout():
